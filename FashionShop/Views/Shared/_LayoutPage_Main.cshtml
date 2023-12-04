@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Shop</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Reset Layout HTML -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="~/assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/grid.css" />
+    <link rel="stylesheet" href="~/assets/css/base.css" />
+    <link rel="stylesheet" href="~/assets/css/home.css" />
+    <link rel="stylesheet" href="~/assets/css/product.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+          rel="stylesheet" />
+    @RenderSection("LibraryCSS", required: false)
+</head>
+<body>
+    <div class="app">
+        @{
+            Html.RenderPartial("_PartialPage_Header");
+        }
+
+        @{
+            Html.RenderPartial("_PartialPage_MenuNavigation");
+        }
+
+        @RenderSection("Banner", required: false)
+
+        <div class="app__container">
+            <div class="grid wide">
+                @RenderBody()
+            </div>
+        </div>
+
+        @{
+            Html.RenderPartial("_PartialPage_Footer");
+        }
+    </div>
+    @RenderSection("LibraryJS", required: false)
+    <!-- Iconify-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="~/assets/javascript/base.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+</body>
+</html>

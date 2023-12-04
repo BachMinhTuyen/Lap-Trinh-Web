@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "GetInfoAboutBrand";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+
+<div class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li>Tất Cả Sản phẩm</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+
+<div class="app__container">
+    <div class="grid wide">
+        <div class="row sm-gutter">
+            <div class="col col-xl-2 col-lg-2">
+                @Html.Action("ProductTypePartial", "ProductType")
+                @Html.Action("BrandsPartial", "Brands")
+            </div>
+
+            <div class="col col-xl-10 col-lg-10">
+                <div class="product-content product--new">
+                    <div class="product__header">
+                        <h2>Tất Cả Sản Phẩm</h2>
+                        <!-- <div>
+                            <i class="fa-solid fa-caret-left"></i><i class="fa-solid fa-caret-right"></i>
+                        </div> -->
+                        <div class="filter">
+                            <h3>Sắp xếp theo</h3>
+                            <select name="" id="">
+                                <option value="">Mặc định</option>
+                                <option value="">Giá từ cao -> thấp</option>
+                                <option value="">Giá từ thấp -> cao</option>
+                                <option value="">A -> Z</option>
+                                <option value="">Z -> A</option>
+                            </select>
+                            <div class="select-view">
+                                <a class="active" href="#"><iconify-icon icon="bxs:grid"></iconify-icon></a>
+                                <a href="./product-list.html"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel row no-gutters">
+                        @if (@Model.Count != 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <div class="product-container col col-xl-2-4 col-lg-2-4">
+                                    <div class="product-item" onclick="window.location.href='/detail.html'">
+                                        <div class="product-item__img" style="background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');"></div>
+                                        <h4 class="product-item__name">@item.TenSanPham</h4>
+                                        <div class="product-item__price">
+                                            <span class="product-item__price-old">@string.Format("{0:#,##0đ}đ", item.GiaSanPham)</span>
+                                            @if (item.KhuyenMai != 0)
+                                            {
+                                                <span class="product-item__price-current">@string.Format("{0:#,##0}đ", item.GiaSanPham - (item.GiaSanPham * item.KhuyenMai))</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="product-item__price-current">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
+                                            }
+                                        </div>
+
+                                        <div class="product-item__action">
+                                            <span class="product-item__like product-item__like--liked">
+                                                <i class="product-item__like-icon-empty fa-regular fa-heart"></i>
+                                                <i class="product-item__like-icon-fill fa-solid fa-heart"></i>
+                                            </span>
+
+                                            <div class="product-item__rating">
+                                                <i class="product-item__star--gold fa-solid fa-star"></i>
+                                                <i class="product-item__star--gold fa-solid fa-star"></i>
+                                                <i class="product-item__star--gold fa-solid fa-star"></i>
+                                                <i class="product-item__star--gold fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <span class="product-item__sold">0 đã bán</span>
+                                        </div>
+
+                                        <div class="product-item__origin">
+                                            <span class="product-item__brand">@item.ThuongHieu.TenThuongHieu</span>
+                                            <span class="product-item__origin-name">@item.ThuongHieu.XuatXu</span>
+                                        </div>
+
+                                        <div class="product-item__status">
+                                            <i class="fa-solid fa-check"></i>
+                                            <span>New</span>
+                                        </div>
+
+                                        @if (item.KhuyenMai != 0)
+                                        {
+                                            <div class="product-item__sale-off">
+                                                <span class="product-item__sale-off-percent">@string.Format("-{0}%", item.KhuyenMai * 100)</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <h2 style="margin: 25px auto;">Nơi đây thật trống trải ...</h2>
+                        }
+                    </div>
+                    <div class="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a class="active" href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

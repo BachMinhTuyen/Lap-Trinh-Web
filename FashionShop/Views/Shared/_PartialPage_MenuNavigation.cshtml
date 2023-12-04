@@ -1,0 +1,67 @@
+﻿<div class="navbar">
+    <div class="grid wide">
+        <nav class="navbar__container">
+            <ul class="nav-list">
+                <li class="nav__item">
+                    <!-- <iconify-icon class="nav__item-icon" icon="ion:sharp"></iconify-icon> -->
+                    <a class="nav__link" href="@Url.Action("Index", "Home")"><i class="nav__item-icon fa-solid fa-house"></i>Trang chủ</a>
+                </li>
+                <li class="nav__item">
+                    <!-- <iconify-icon class="nav__item-icon" icon="gridicons:dropdown"></iconify-icon> -->
+                    <a class="nav__link" href="@Url.Action("GetAllProduct", "Product")">
+                        Sản Phẩm <i class="nav__item-icon fa-solid fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-list">
+                        <li>
+                            <a class="sub-nav__link" href="#">
+                                Quần áo
+                                <i class="nav__item-icon fa-solid fa-caret-right"></i>
+                            </a>
+                            <ul class="dropdown-list--second">
+                                <li>
+                                    <a class="sub-nav__link" href="#">Quần áo công sở</a>
+                                </li>
+                                <li>
+                                    <a class="sub-nav__link" href="#">Quần áo thời trang</a>
+                                </li>
+                                <li>
+                                    <a class="sub-nav__link" href="#">Quần áo du lịch</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="sub-nav__link" href="#">
+                                Giày dép
+                                <i class="nav__item-icon fa-solid fa-caret-right"></i>
+                            </a>
+                            <ul class="dropdown-list--second">
+                                <li>
+                                    <a class="sub-nav__link" href="#">Giày dép công sở</a>
+                                </li>
+                                <li>
+                                    <a class="sub-nav__link" href="#">Giày dép du lịch</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="sub-nav__link" href="#">Phụ kiện</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="@Url.Action("AboutUs", "Home")">Về chúng tôi</a>
+                </li>
+                <li class="nav__item">
+                    <a class="nav__link" href="@Url.Action("ContactUs", "Home")">Liên hệ</a>
+                </li>
+            </ul>
+            <ul class="nav-list">
+                <li class="nav__item">
+                    <!-- <iconify-icon class="nav__item-icon" icon="majesticons:phone-retro"></iconify-icon> -->
+                    <i class="nav__item-icon fa-solid fa-phone"></i>
+                    <a class="nav__link" href="#">Holine: <span>1900 0000</span></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

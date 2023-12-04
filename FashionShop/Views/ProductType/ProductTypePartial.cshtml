@@ -1,0 +1,40 @@
+﻿@model List<FashionShop.Models.LoaiSanPham>
+@{
+    var SkipItems = ViewBag.SkipItems as List<FashionShop.Models.LoaiSanPham>;
+}
+<div class="category">
+    <div class="category__header">
+        <h2><i class="fa-solid fa-bars"></i>Danh mục sản phẩm</h2>
+    </div>
+    <div class="category__content">
+        <ul class="category__menu">
+            <li><a href="@Url.Action("GetNewProduct", "Product")">Sản phẩm mới</a></li>
+
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("GetInfoAboutProductType", "ProductType", new { maLoaiSanPham = item.MaLoai})">@item.TenLoai</a>
+                </li>
+            }
+
+            @if (Model.Count > 10)
+            {
+                foreach (var item in SkipItems)
+                {
+                    <li class="toggleable" style="display: none">
+                        <a href="@Url.Action("GetInfoAboutProductType", "ProductType", new { maLoaiSanPham = item.MaLoai})">@item.TenLoai</a>
+                    </li>
+                }
+                <li class="more">
+                    <a><label for="">Xem thêm ...</label></a>
+                </li>
+            }
+            else
+            {
+                <li style="display: none;">
+                    <a href="#">Khác</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

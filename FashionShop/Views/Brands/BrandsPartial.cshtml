@@ -1,0 +1,39 @@
+﻿@model List<FashionShop.Models.ThuongHieu>
+@{
+    var SkipItems = ViewBag.SkipItems as List<FashionShop.Models.ThuongHieu>;
+}
+<div class="category support-online">
+    <div class="category__header">
+        <h2><i class="fa-solid fa-bars"></i>Thương Hiệu</h2>
+    </div>
+    <div class="category__content">
+        <ul class="category__menu">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("GetInfoAboutBrand", "Brands", new { maThuongHieu = item.MaThuongHieu})">@item.TenThuongHieu</a>
+                </li>
+            }
+
+            @if (Model.Count > 10)
+            {
+                foreach (var item in SkipItems)
+                {
+                    <li class="toggleable" style="display: none">
+                        <a href="@Url.Action("GetInfoAboutBrand", "Brands", new { maThuongHieu = item.MaThuongHieu})">@item.TenThuongHieu</a>
+                    </li>
+                }
+                <li class="more">
+                    <a><label for="">Xem thêm ...</label></a>
+                </li>
+            }
+            else
+            {
+                <li style="display: none;">
+                    <a href="#">Khác</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,246 @@
+﻿@model FashionShop.Models.SanPham
+@{
+    ViewBag.Title = "Thông tin sản phẩm";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+
+    var BienThe = ViewBag.BienThe as List<FashionShop.Models.BienTheSanPham>;
+    var HinhAnh = ViewBag.HinhAnh as List<FashionShop.Models.HinhAnh>;
+}
+@section LibraryCSS {
+    <link href="~/assets/css/detail.css" rel="stylesheet" />
+}
+@section LibraryJS {
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            var swiper = new Swiper(".picture", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        })
+    </script>
+}
+<div class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("GetAllProduct", "Product")">Sản phẩm</a></li>
+                <li>Thông tin sản phẩm</li>
+            </ul>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col col-xl-5">
+            <div class="swiper picture">
+                <div class="swiper-wrapper">
+                    @*<div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/13-min-9a0b67fc-1d89-4277-8906-7b4b50c664d3.jpg?v=1468200190343" alt="picture">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/9-min-c44a1a73-e77c-4cc4-bbb1-9b9899959f09.jpg?v=1468201120747" alt="picture">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/8-min.jpg?v=1468201476660" alt="picture">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/4-min-b44f4156-7226-4759-a2a2-545531ef7c8d.jpg?v=1468202743280" alt="picture">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/15-min-f93d1b0d-711f-4c4b-b6e8-7de18c53f671.jpg?v=1468203346717" alt="picture">
+                            </a>
+                        </div>
+                    </div>*@
+                    @foreach (var item in HinhAnh)
+                    {
+                        <div class="swiper-slide">
+                            <div class="picture__container">
+                                <a class="picture__link" href="#">
+                                    <img class="picture__img" src="@Url.Content("~/assets/img/")@item.TenHinhAnh" alt="picture">
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="swiper-button-prev prev-btn"></div>
+                <div class="swiper-button-next next-btn"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        @*<div class="col col-xl-5">
+            <div class="swiper picture">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="picture__container">
+                            <a class="picture__link" href="#">
+                                <img class="picture__img" src="@Url.Content("~/assets/img/")@Model.AnhDaiDien" alt="picture">
+                            </a>
+                        </div>
+                    </div>
+                    @foreach (var item in HinhAnh)
+                    {
+                        <div class="swiper-slide">
+                            <div class="picture__container">
+                                <a class="picture__link" href="#">
+                                    <img class="picture__img" src="@Url.Content("~/assets/img/")@item.TenHinhAnh" alt="picture">
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="swiper-button-prev prev-btn"></div>
+                <div class="swiper-button-next next-btn"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>*@
+        <div class="col col-xl-7">
+            <div class="product-info-main">
+                <div class="product-info__name">
+                    <h2>@Model.TenSanPham</h2>
+                </div>
+                <div class="product-info__price">
+                    @if (Model.KhuyenMai != 0)
+                    {
+                        <span class="product-info__normal-price">@string.Format("{0:#,##0}đ", Model.GiaSanPham - (Model.GiaSanPham * Model.KhuyenMai))</span>
+                    }
+                    else
+                    {
+                        <span class="product-info__normal-price">@string.Format("{0:#,##0}đ", Model.GiaSanPham)</span>
+                    }
+
+                </div>
+                <div class="product-info__custom">
+                    <div class="product-info__color">
+                        <span class="label-color">Chọn màu sắc:</span>
+                        <span class="color-selected">Màu Trắng</span>
+                        <div class="color-options">
+                            @foreach (var item in BienThe.Select(s => s.TenMau).Distinct())
+                            {
+
+                                <div class="box-color">@item</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="product-info__size">
+                        <span class="label-size">Chọn size:</span>
+                        <span class="size-selected">XXL</span>
+                        <div class="size-options">
+                            @foreach (var item in BienThe.Select(s => s.TenSize).Distinct())
+                            {
+                                <div class="box-size">@item</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="button-actions">
+                        <div class="product-info__quantity">
+                            <span class="label-quantity">Chọn số lượng:</span>
+                            <span class="quantity-selected">1</span>
+                            <div class="quantity-options">
+                                <input type="button" value="-">
+                                <input type="text" value="0">
+                                <input type="button" value="+">
+                            </div>
+                            <div class="inventory-quantity">Còn lại 50 sản phẩm</div>
+                        </div>
+                        <div class="product-info__buy">
+                            <a class="btn-to-cart" href="@Url.Action("AddToCart", "GioHang")">Thêm vào giỏ hàng</a>
+                            <a class="btn-to-cart" href="">Mua ngay</a>
+                        </div>
+                        <div class="product-info__favourite">
+                            <i class="fa-regular fa-heart no-liked"></i>
+                            <i class="fa-solid fa-heart icon-liked"></i>
+                        </div>
+                    </div>
+                </div>
+                <ul class="product-info__promotion row">
+                    <li class="col col-4">
+                        <i class="icon fa-regular fa-clock"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Giao hàng nhanh</h3>
+                            <p>Từ 2 - 5 ngày</p>
+                        </div>
+                    </li>
+                    <li class="col col-4">
+                        <i class="icon fa-solid fa-truck-moving"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Miễn phí vận chuyển</h3>
+                            <p>Đơn hàng từ 399K</p>
+                        </div>
+                    </li>
+                    <li class="col col-4">
+                        <i class="icon fa-solid fa-magnifying-glass"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Theo dõi đơn hàng một cách dễ dàng</h3>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li class="col col-4">
+                        <i class="icon fa-solid fa-box"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Đổi trả linh hoạt</h3>
+                            <p>Với sản phẩm không áp dụng khuyến mãi</p>
+                        </div>
+                    </li>
+                    <li class="col col-4">
+                        <i class="icon fa-solid fa-wallet"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Thanh toán dễ dàng nhiều hình thức</h3>
+                            <p></p>
+                        </div>
+                    </li>
+                    <li class="col col-4">
+                        <i class="icon fa-solid fa-headphones-simple"></i>
+                        <div class="product-info__promotion-content">
+                            <h3>Hotline hỗ trợ</h3>
+                            <p>0123 456 789</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="details">
+                <h2 class="details__title">Mô Tả Sản Phẩm</h2>
+
+                <p class="details__paragraph">
+                    @Model.MoTaSanPham
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

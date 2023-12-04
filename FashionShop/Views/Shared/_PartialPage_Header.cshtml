@@ -1,0 +1,63 @@
+﻿<header class="header">
+    <div class="grid wide">
+        <div class="top-bar row">
+            <div class="col col-xl-10 col-lg-10">
+                <div class="top-bar__welcome">
+                    Chào mừng bạn đã đến với Fashion Shop!
+                </div>
+            </div>
+            <div class="col col-xl-2 col-lg-2">
+                <ul class="top-bar__social-media">
+                    <!-- <li><i class="fa-brands fa-facebook"></i></li>
+                                <li><i class="fa-brands fa-instagram"></i></li> -->
+                    <li onclick="window.location = 'https://www.facebook.com/'"><iconify-icon icon="bi:facebook"></iconify-icon></li>
+                    <li onclick="window.location = 'https://www.instagram.com/'"><iconify-icon icon="bi:instagram"></iconify-icon></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-header row">
+            <div class="col col-xl-3 col-lg-3">
+                <div class="logo">
+                    <a class="logo__link" href="@Url.Action("Index", "Home")">
+                        <img class="logo__img"
+                             src="https://bizweb.dktcdn.net/100/091/132/themes/877468/assets/logo.png?1676015131562"
+                             alt="Logo" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="col col-xl-6 col-lg-6">
+                <div class="search">
+                    <form action="@Url.Action("SearchProduct", "Product")" method="post">
+                        <div class="search-form">
+                            <input name="txtBox_SearchInput" type="text" placeholder="Tìm kiếm ..." />
+                            <input type="submit" value="Tìm kiếm" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col col-xl-1 col-lg-1">
+                <div class="cart" onclick="window.location = '/cart.html'">
+                    <iconify-icon class="cart__icon"
+                                  icon="ps:shopping-cart"></iconify-icon>
+                    <div class="cart__title">Giỏ hàng</div>
+                </div>
+            </div>
+
+            <div class="col col-xl-2 col-lg-2">
+                <div class="user">
+                    <div class="user__icon">
+                        <iconify-icon icon="codicon:account"></iconify-icon>
+                    </div>
+                    <ul class="user-account">
+                        <li><a href="@Url.Action("Register", "Account")">Đăng ký</a></li>
+                        <li>/</li>
+                        <li><a href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

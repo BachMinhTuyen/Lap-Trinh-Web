@@ -1,0 +1,78 @@
+﻿@model FashionShop.Models.TaiKhoan
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link href="~/assets/css/login-register.css" rel="stylesheet" />
+}
+<div class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li>Đăng nhập tài khoản</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col col-xl-4 col-lg-4"></div>
+
+        <div class="col col-xl-4 col-lg-4">
+            <form id="login-form" action="@Url.Action("Login", "Account")" method="post">
+                <h2>Đăng nhập</h2>
+                <div class="form-group">
+                    <label for="">Email <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.Email, new
+                    {
+                        @class = "form-control",
+                        type = "email",
+                        name = "Email",
+                        id = "",
+                        placeholder = "example@domain.com"
+                    })
+                    @Html.ValidationMessageFor(model => model.Email, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Mật khẩu <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.Password, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "Password",
+                        id = "",
+                        placeholder = "Mật khẩu của bạn"
+                    })
+                    @Html.ValidationMessageFor(model => model.Password, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="submit" value="ĐĂNG NHẬP">
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+                <div class="form-group">
+                    <div class="separator-with-border">
+                        <div class="line"></div>
+                        <span>Hoặc đăng nhập bằng</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="login-with-social-media">
+                        <a href="#"><iconify-icon icon="flat-color-icons:google"></iconify-icon><p>Google</p></a>
+                        <a href="#"><iconify-icon icon="bi:facebook"></iconify-icon><p>Facebook</p></a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="not-account">Bạn chưa có tài khoản<a class="register__link" href="@Url.Action("Register", "Account")">Đăng ký ngay</a></span>
+                </div>
+            </form>
+        </div>
+
+        <div class="col col-xl-4 col-lg-4"></div>
+    </div>
+</div>

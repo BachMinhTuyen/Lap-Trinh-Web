@@ -1,0 +1,138 @@
+﻿@model FashionShop.Models.TaiKhoan
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link href="~/assets/css/login-register.css" rel="stylesheet" />
+}
+
+<div class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li>Đăng ký tài khoản</li>
+            </ul>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col col-xl-4"></div>
+        <div class="col col-xl-4">
+            <form id="register-form" action="@Url.Action("Register", "Account")" method="post">
+                <h2>Đăng Ký</h2>
+                <div class="form-group">
+                    <label for="">Họ Và Tên <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.TenNguoiDung, new
+                       {
+                           @class = "form-control",
+                           type = "text",
+                           name = "TenNguoiDung",
+                           id = "",
+                           placeholder = "Nguyễn Văn A"
+                       })
+                    @Html.ValidationMessageFor(model => model.TenNguoiDung, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Tên Người Dùng - UserName<span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.UserName, new
+                    {
+                       @class = "form-control",
+                       type = "text",
+                       name = "UserName",
+                       id = "",
+                       placeholder = "nguyenvana123"
+                    })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.DiaChi, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        name = "DiaChi",
+                        id = "",
+                        placeholder = "Đường - Ấp/Khu Phố - Xã/Phường - Huyện/Quận - Tỉnh/Thành phố"
+                    })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Email <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.Email, new
+                    {
+                        @class = "form-control",
+                        type = "email",
+                        name = "Email",
+                        id = "",
+                        placeholder = "example@domain.com"
+                    })
+                    @Html.ValidationMessageFor(model => model.Email, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Số điện thoại <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.SoDienThoai, new
+                    {
+                        @class = "form-control",
+                        type = "tel",
+                        name = "SoDienThoai",
+                        id = "",
+                        placeholder = "0123 456 789"
+                    })
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Mật Khẩu <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.Password, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "Password",
+                        id = "",
+                        placeholder = "Nhập mật khẩu"
+                    })
+                    @Html.ValidationMessageFor(model => model.Password, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+                <div class="form-group">
+                    <label for="">Xác Minh Mật Khẩu <span style="color: red;">*</span></label>
+                    @*@Html.TextBoxFor(model => model.Password, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "ConfirmPassword",
+                        id = "",
+                        placeholder = "Nhập lại mật khẩu"
+                    })
+                    @Html.ValidationMessageFor(model => model.Password, "", new
+                    {
+                        style = "color: red;"
+                    })*@
+                    <input class="form-control" type="password" name="ConfirmPassword" id="" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="submit" value="ĐĂNG KÝ">
+                    <a class="back-to-login" href="@Url.Action("Login", "Account")">QUAY LẠI ĐĂNG NHẬP</a>
+                </div>
+            </form>
+        </div>
+        <div class="col col-xl-4"></div>
+    </div>
+</div>
