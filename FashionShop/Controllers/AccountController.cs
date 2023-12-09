@@ -1,4 +1,6 @@
 ﻿using FashionShop.Models;
+using FashionShop.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,23 +19,27 @@ namespace FashionShop.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(TaiKhoan taiKhoan, FormCollection frm)
+        public ActionResult Register(RegisterVM register)
         {
             if (ModelState.IsValid)
             {
-                if (!db.TaiKhoan.Any(r => r.UserName == taiKhoan.UserName))
+                if (!db.TaiKhoan.Any(r => r.UserName == register.UserName))
                 {
-                    string password = taiKhoan.Password;
-                    if (String.Compare(taiKhoan.Password, frm["ConfirmPassword"]) == 0)
+                    string passwordHash = Password.Create_SHA256(register.ConfirmPassword);
+                    var user = new TaiKhoan()
                     {
-                        password = Password.Create_SHA256(frm["Password"]);
-                        taiKhoan.Password = password;
-                        taiKhoan.VaiTro = "User";
-
-                        db.TaiKhoan.Add(taiKhoan);
-                        db.SaveChanges();
-                        return RedirectToAction("Login", "Account");
-                    }
+                        UserName = register.UserName,
+                        Password = passwordHash,
+                        TenNguoiDung = register.TenNguoiDung,
+                        DiaChi = register.DiaChi,
+                        Email = register.Email,
+                        SoDienThoai = register.SoDienThoai,
+                        VaiTro = "User"
+                    };
+                    
+                    db.TaiKhoan.Add(user);
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "Account");
                 }
             }
             return RedirectToAction("Register", "Account");
@@ -43,28 +49,39 @@ namespace FashionShop.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(TaiKhoan taiKhoan)
+        public ActionResult Login(LoginVM login)
         {
             if (ModelState.IsValid)
             {
-                var nguoiDung = db.TaiKhoan.FirstOrDefault(t => t.Email == taiKhoan.Email);
+                var nguoiDung = db.TaiKhoan.FirstOrDefault(t => t.UserName == login.UserName);
                 if (nguoiDung != null)
                 {
-                    if (nguoiDung.VaiTro == "User")
+                    string passwordHash = nguoiDung.Password;
+                    if (Password.verify(login.Password, passwordHash, "sha256") == true)
                     {
-                        return RedirectToAction("Index", "Home");
+                        Session["User"] = nguoiDung;
+
+                        if (nguoiDung.VaiTro == "User")
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else if (nguoiDung.VaiTro == "Admin")
+                        {
+                            return Redirect("/Admin/Dashboard/Index");
+                        }
+                        else
+                        {
+                            return RedirectToAction("AboutUs", "Home");
+                        }
                     }
-                    else if (nguoiDung.VaiTro == "Admin")
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Login", "Account");
-                    }    
                 }
             }
             return RedirectToAction("Login", "Account");
+        }
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }

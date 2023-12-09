@@ -11,9 +11,11 @@ namespace FashionShop.Models
         [Key]
         public string MaHoaDon { get; set; }
         public double TongTien { get; set; }
+        public double PhiVanChuyen { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayDatMuaHang { get; set; }
         public string PhuongThucThanhToan { get; set; }
+        public string PhuongThucVanChuyen { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

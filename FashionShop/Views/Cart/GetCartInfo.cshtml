@@ -1,0 +1,116 @@
+﻿@model List<FashionShop.ViewModel.CartVM>
+@{
+    ViewBag.Title = "Thông tin giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+
+    var BienThe = ViewBag.BienThe as List<FashionShop.Models.BienTheSanPham>;
+    var sizeName = @ViewBag.TenSize;
+}
+
+@section LibraryCSS {
+    <link rel="stylesheet" href="~/assets/css/cart.css">
+}
+@section LibraryJS {
+    <script src="~/assets/javascript/cart.js"></script>
+}
+
+<div style="background-color: #fff;" class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li>Giỏ hàng</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            @if (Session["Cart"] == null)
+            {
+                <div class="no-item">
+                    <iconify-icon icon="noto:shopping-bags"></iconify-icon>
+                    <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
+                </div>
+            }
+            else
+            {
+                <div class="cart__product-list">
+                    @foreach (var item in Model)
+                    {
+                        <div class="cart__product-item">
+                            <div class="cart__product-item-img">
+                                <img src="@Url.Content("~/assets/img/")@item.sAnhDaiDien" alt="@item.sTenSanPham">
+                            </div>
+                            <div class="cart__product-item-info">
+                                <div class="cart__product-item-name"><a href="@Url.Action("GetProductDetails", "Product", new { maSanPham = item.sMaSanPham })">@item.sTenSanPham</a></div>
+                                <div class="cart__product-item-type">
+                                    <div class="product-item-type">
+                                        <div class="product-item-type__title">Màu sắc</div>
+                                        <select class="product-item-type__color">
+
+                                            @foreach (var color in BienThe.Where(sp => sp.SanPham.MaSanPham == item.sMaSanPham).Select(s => s.TenMau).Distinct())
+                                            {
+                                                if (color == item.sTenMau)
+                                                {
+                                                    <option value="" selected>@color</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="">@color</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="product-item-type">
+                                        <div class="product-item-type__title">Size</div>
+                                        <select class="product-item-type__size">
+
+                                            @foreach (var size in BienThe.Where(sp => sp.SanPham.MaSanPham == item.sMaSanPham).Select(s => s.TenSize).Distinct())
+                                            {
+                                                if (size == item.sTenSize)
+                                                {
+                                                    <option value="" selected>@size</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="">@size</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="cart__product-item-price">@string.Format("{0:#,##0}đ", item.dDonGia)</div>
+                            
+                            <div class="cart__product-item-quantity">
+                                <button class="quantity-btn" onclick="decreaseQuantity('@string.Format("quantityInput{0}", item.iCartItem)')">-</button>
+                                <input id="@string.Format("quantityInput{0}", item.iCartItem)"
+                                       type="text"
+                                       value="@item.iSoLuong" />
+                                <button class="quantity-btn" onclick="increaseQuantity('@string.Format("quantityInput{0}", item.iCartItem)')">+</button>
+                            </div>
+                            
+                            <div class="cart__product-item-price--total">@string.Format("{0:#,##0}đ", item.dThanhTien)</div>
+                            
+                            <div class="cart__product-item--remove">
+                                <iconify-icon onclick="updateCartItem('@item.iCartItem', '@string.Format("quantityInput{0}", item.iCartItem)')" class="cart__remove-icon" icon="jam:pen-f"></iconify-icon>
+                                <iconify-icon onclick="window.location.href ='/Cart/DeleteCartItem/@item.iCartItem'" class="cart__remove-icon" icon="icomoon-free:bin"></iconify-icon>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="cart__subtotal">
+                    <div class="cart__total-label">Tổng tiền:</div>
+                    <div class="cart__product-total-prices">@string.Format("{0:#,##0}đ", @ViewBag.TongThanhTien)</div>
+                </div>
+                <div class="proceed-checkout">
+                    <a class="back-to-buy" href="@Url.Action("GetAllProduct", "Product")">Tiếp tục mua hàng</a>
+                    <a class="checkout" href="@Url.Action("Checkout", "Cart")">TIẾN HÀNH THANH TOÁN</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

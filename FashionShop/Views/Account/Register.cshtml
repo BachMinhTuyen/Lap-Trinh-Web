@@ -1,4 +1,4 @@
-﻿@model FashionShop.Models.TaiKhoan
+﻿@model FashionShop.ViewModel.RegisterVM
 @{
     ViewBag.Title = "Đăng Ký";
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
@@ -113,7 +113,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Xác Minh Mật Khẩu <span style="color: red;">*</span></label>
-                    @*@Html.TextBoxFor(model => model.Password, new
+                    @Html.TextBoxFor(model => model.ConfirmPassword, new
                     {
                         @class = "form-control",
                         type = "password",
@@ -121,11 +121,11 @@
                         id = "",
                         placeholder = "Nhập lại mật khẩu"
                     })
-                    @Html.ValidationMessageFor(model => model.Password, "", new
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new
                     {
                         style = "color: red;"
-                    })*@
-                    <input class="form-control" type="password" name="ConfirmPassword" id="" placeholder="Nhập lại mật khẩu" required>
+                    })
+                    @*<input class="form-control" type="password" name="ConfirmPassword" id="" placeholder="Nhập lại mật khẩu" required>*@
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="submit" value="ĐĂNG KÝ">

@@ -1,4 +1,4 @@
-﻿@model FashionShop.Models.TaiKhoan
+﻿@model FashionShop.ViewModel.LoginVM
 @{
     ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
@@ -23,16 +23,16 @@
             <form id="login-form" action="@Url.Action("Login", "Account")" method="post">
                 <h2>Đăng nhập</h2>
                 <div class="form-group">
-                    <label for="">Email <span style="color: red;">*</span></label>
-                    @Html.TextBoxFor(model => model.Email, new
+                    <label for="">Tên Người Dùng - UserName <span style="color: red;">*</span></label>
+                    @Html.TextBoxFor(model => model.UserName, new
                     {
-                        @class = "form-control",
-                        type = "email",
-                        name = "Email",
-                        id = "",
-                        placeholder = "example@domain.com"
+                       @class = "form-control",
+                       type = "text",
+                       name = "UserName",
+                       id = "",
+                       placeholder = "nguyenvana123"
                     })
-                    @Html.ValidationMessageFor(model => model.Email, "", new
+                    @Html.ValidationMessageFor(model => model.UserName, "", new
                     {
                         style = "color: red;"
                     })

@@ -39,23 +39,31 @@
             </div>
 
             <div class="col col-xl-1 col-lg-1">
-                <div class="cart" onclick="window.location = '/cart.html'">
-                    <iconify-icon class="cart__icon"
-                                  icon="ps:shopping-cart"></iconify-icon>
-                    <div class="cart__title">Giỏ hàng</div>
-                </div>
+                @Html.Action("CartPartial", "Cart")
             </div>
 
             <div class="col col-xl-2 col-lg-2">
                 <div class="user">
-                    <div class="user__icon">
-                        <iconify-icon icon="codicon:account"></iconify-icon>
-                    </div>
-                    <ul class="user-account">
-                        <li><a href="@Url.Action("Register", "Account")">Đăng ký</a></li>
-                        <li>/</li>
-                        <li><a href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
-                    </ul>
+                    @if (Session["User"] == null)
+                    {
+                        <div class="user__icon">
+                            <iconify-icon icon="codicon:account"></iconify-icon>
+                        </div>
+                        <ul class="user-account">
+                            <li><a href="@Url.Action("Register", "Account")">Đăng ký</a></li>
+                            <li>/</li>
+                            <li><a style="color: var(--primary-color);" href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="user__icon" style=" border: 1.5px solid; border-radius: 50%; margin: 0px 65px; color: #00f;">
+                            <iconify-icon icon="mdi:account-tie" style="color: blue;"></iconify-icon>
+                        </div>
+                        <ul class="user-account">
+                            <li><a href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
+                        </ul>
+                    }
                 </div>
             </div>
         </div>

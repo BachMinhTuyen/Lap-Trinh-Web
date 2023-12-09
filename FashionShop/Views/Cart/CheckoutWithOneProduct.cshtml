@@ -1,0 +1,171 @@
+﻿@model FashionShop.Models.TaiKhoan
+@{
+    Layout = null;
+    var sp = ViewBag.SanPham as FashionShop.Models.SanPham;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Shop</title>
+    <!-- Reset Layout HTML -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css">
+    <link rel="stylesheet" href="~/assets/css/grid.css">
+    <link rel="stylesheet" href="~/assets/css/base.css">
+    <link rel="stylesheet" href="~/assets/css/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="app">
+
+
+        <div class="grid wide">
+            <form id="checkout-form" action="#">
+                <div class="row">
+                    <!-- <div class="col col-xl-1 xol-lg-1"></div> -->
+                    <!-- <div class="col col-xl-3 col-lg-3"> -->
+                    <div class="col col-xl-4 col-lg-4">
+                        <h2><a href="@Url.Action("Index", "Home")">Fashionshop</a></h2>
+                        <div class="receive-infor">
+                            <h3>Thông tin nhận hàng</h3>
+                            <div class="form-group">
+                                <label for="">Họ và tên <span style="color: red;">*</span></label>
+                                <input type="text" name="ho-ten" id="" value="@Model.TenNguoiDung" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Số điện thoại <span style="color: red;">*</span></label>
+                                <input type="tel" name="so-dien-thoai" id="" value="@Model.SoDienThoai" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Email <span style="color: red;">*</span></label>
+                                <input type="email" name="email" id="" value="@Model.Email" readonly>
+                            </div>
+                            <div class="address-group">
+                                <div class="form-group">
+                                    <h3>Địa chỉ</h3>
+
+                                    <label for="">Tỉnh thành phố <span style="color: red;">*</span></label>
+                                    <select name="" id="select-province-city" onchange="updateDeliveryFee()"></select>
+
+                                    <label for="">Quận huyện <span style="color: red;">*</span></label>
+                                    <select name="" id="select-district"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                                    <input type="text" name="dia-chi" id="" placeholder="số nhà/đường/ấp/xóm" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Ghi chú</label>
+                                <textarea name="GhiChu" id="note" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-xl-3 col-lg-3">
+                        <div class="delivery-method">
+                            <h3>Phương thức vận chuyển</h3>
+                            <div class="form-group">
+                                <div>
+                                    <input type="radio" name="delivery-method" id="delivery-method--first">
+                                    <label for="delivery-method--first">Giao Hàng Hoả Tốc</label>
+                                </div>
+                                <div class="fee" id="delivery-fee--first"></div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="radio" name="delivery-method" id="delivery-method--second">
+                                    <label for="delivery-method--second">Giao Hàng Nhanh</label>
+                                </div>
+                                <div class="fee" id="delivery-fee--second"></div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="radio" name="delivery-method" id="delivery-method--third">
+                                    <label for="delivery-method--third">Giao hàng Tiết Kiệm</label>
+                                </div>
+                                <div class="fee" id="delivery-fee--third"></div>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <h3>Thanh toán</h3>
+                            <div class="form-group">
+                                <input type="radio" name="payment-method" id="payment-method--first" checked>
+                                <label for="payment-method--first">Thanh toán khi nhận hàng</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="payment-method" id="payment-method--second">
+                                <label for="payment-method--second">Thanh toán trực tuyến</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bill col col-xl-5 col-lg-5">
+
+                        <h3>Đơn hàng (<span class="total-quantity">@ViewBag.SoLuong</span> sản phẩm)</h3>
+                        <div class="container-payment">
+                            <div class="product-info">
+                                <div class="image-quantity">
+                                    <img src="@Url.Content("~/assets/img/")@sp.AnhDaiDien" alt="@sp.TenSanPham" />
+                                    <div class="product-info__quantity" id="product_quantity">@ViewBag.SoLuong</div>
+                                </div>
+                                <div class="product-details">
+                                    <div id="product_name">@sp.TenSanPham</div>
+                                    <div id="product_info">@string.Format("Size {0} / {1}", ViewBag.TenSize, ViewBag.TenMau)</div>
+                                </div>
+                                <div class="price">@string.Format("{0:#,##0}đ", (sp.GiaSanPham - sp.GiaSanPham * sp.KhuyenMai))</div>
+                            </div>
+                        </div>
+
+                        <div class="voucher">
+                            <input type="text" placeholder="Mã giảm giá" />
+                            <button>Sử dụng</button>
+                        </div>
+
+                        <div class="info-details">
+                            <div class="info">
+                                <div>Tạm tính</div>
+                                <span id="subtotal">@string.Format("{0:#,##0}đ", ViewBag.SoLuong * (sp.GiaSanPham - sp.GiaSanPham * sp.KhuyenMai))</span>
+                            </div>
+                            <div class="info">
+                                <div>Phí ship</div>
+                                <span id="delivery_fee">_</span>
+                            </div>
+                            <div class="info">
+                                <div>Phương thức vận chuyển</div>
+                                <span id="delivery_name">_</span>
+                            </div>
+                            <div class="info">
+                                <div>Phương thức thanh toán</div>
+                                <span id="payment_name">_</span>
+                            </div>
+                        </div>
+
+                        <div class="total">
+                            <span>Tổng tiền</span>
+                            <div class="number">VND <span id="total_amount">_</span>đ</div>
+                        </div>
+                        <div class="redirect-method">
+                            <div class="redirec-to-cart">
+                                <a href="@Url.Action("GetCartInfo", "Cart")">Quay lại giỏ hàng</a>
+                            </div>
+                            <button type="submit" class="order" onclick="sendMail()">Đặt hàng</button>
+                        </div>
+                    </div>
+                    <!-- <div class="col col-xl-1 xol-lg-1"></div> -->
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- Iconify-->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/assets/javascript/base.js"></script>
+    <script src="~/assets/javascript/checkout.js"></script>
+</body>
+</html>
+

@@ -56,6 +56,11 @@
     line-height: 2.5rem;
 }
 
+#product-ID {
+    margin-bottom: 15px;
+    font-size: 1.7rem;
+}
+
 .product-info__price {
     padding: 4px 0;
 }
@@ -95,10 +100,25 @@
 
 .product-info__color .box-color,
 .product-info__size .box-size {
-    width: 30px;
-    height: 30px;
+    min-width: 50px;
     margin: 8px 8px 8px 0;
+    padding: 8px;
     border: 1px solid #333;
+    text-align: center;
+}
+
+.product-info__color .box-color:hover,
+.product-info__size .box-size:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.product-info__color .box-color.active,
+.product-info__size .box-size.active {
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 .button-actions {

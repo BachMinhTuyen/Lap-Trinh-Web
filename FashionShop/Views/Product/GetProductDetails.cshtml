@@ -10,6 +10,7 @@
     <link href="~/assets/css/detail.css" rel="stylesheet" />
 }
 @section LibraryJS {
+    <script src="~/assets/javascript/details.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
@@ -49,41 +50,6 @@
         <div class="col col-xl-5">
             <div class="swiper picture">
                 <div class="swiper-wrapper">
-                    @*<div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/13-min-9a0b67fc-1d89-4277-8906-7b4b50c664d3.jpg?v=1468200190343" alt="picture">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/9-min-c44a1a73-e77c-4cc4-bbb1-9b9899959f09.jpg?v=1468201120747" alt="picture">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/8-min.jpg?v=1468201476660" alt="picture">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/4-min-b44f4156-7226-4759-a2a2-545531ef7c8d.jpg?v=1468202743280" alt="picture">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="//bizweb.dktcdn.net/thumb/large/100/091/132/products/15-min-f93d1b0d-711f-4c4b-b6e8-7de18c53f671.jpg?v=1468203346717" alt="picture">
-                            </a>
-                        </div>
-                    </div>*@
                     @foreach (var item in HinhAnh)
                     {
                         <div class="swiper-slide">
@@ -100,37 +66,12 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        @*<div class="col col-xl-5">
-            <div class="swiper picture">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="picture__container">
-                            <a class="picture__link" href="#">
-                                <img class="picture__img" src="@Url.Content("~/assets/img/")@Model.AnhDaiDien" alt="picture">
-                            </a>
-                        </div>
-                    </div>
-                    @foreach (var item in HinhAnh)
-                    {
-                        <div class="swiper-slide">
-                            <div class="picture__container">
-                                <a class="picture__link" href="#">
-                                    <img class="picture__img" src="@Url.Content("~/assets/img/")@item.TenHinhAnh" alt="picture">
-                                </a>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div class="swiper-button-prev prev-btn"></div>
-                <div class="swiper-button-next next-btn"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>*@
         <div class="col col-xl-7">
             <div class="product-info-main">
                 <div class="product-info__name">
                     <h2>@Model.TenSanPham</h2>
                 </div>
+                <div id="product-ID" >Mã sản phẩm: <span style=" font-weight: bold; ">@Model.MaSanPham</span></div>
                 <div class="product-info__price">
                     @if (Model.KhuyenMai != 0)
                     {
@@ -145,18 +86,17 @@
                 <div class="product-info__custom">
                     <div class="product-info__color">
                         <span class="label-color">Chọn màu sắc:</span>
-                        <span class="color-selected">Màu Trắng</span>
+                        <span class="color-selected">Màu trắng</span>
                         <div class="color-options">
                             @foreach (var item in BienThe.Select(s => s.TenMau).Distinct())
                             {
-
                                 <div class="box-color">@item</div>
                             }
                         </div>
                     </div>
                     <div class="product-info__size">
                         <span class="label-size">Chọn size:</span>
-                        <span class="size-selected">XXL</span>
+                        <span class="size-selected"></span>
                         <div class="size-options">
                             @foreach (var item in BienThe.Select(s => s.TenSize).Distinct())
                             {
@@ -167,17 +107,19 @@
                     <div class="button-actions">
                         <div class="product-info__quantity">
                             <span class="label-quantity">Chọn số lượng:</span>
-                            <span class="quantity-selected">1</span>
+                            <span id="quantity-selected" class="quantity-selected">1</span>
                             <div class="quantity-options">
-                                <input type="button" value="-">
-                                <input type="text" value="0">
-                                <input type="button" value="+">
+                                <input type="button" onclick="decreaseQuantity()" value="-">
+                                <input id="quantityInput" type="text" value="1">
+                                <input type="button" onclick="increaseQuantity()" value="+">
                             </div>
                             <div class="inventory-quantity">Còn lại 50 sản phẩm</div>
                         </div>
                         <div class="product-info__buy">
-                            <a class="btn-to-cart" href="@Url.Action("AddToCart", "GioHang")">Thêm vào giỏ hàng</a>
-                            <a class="btn-to-cart" href="">Mua ngay</a>
+
+                            @*Sử dụng javascript để điều hướng cho nút thêm vào giỏ hàng và mua ngay*@
+                            <a id="add-to-cart" class="btn-to-cart" href="">Thêm vào giỏ hàng</a>
+                            <a id="to-order" class="btn-to-cart" href="">Mua ngay</a>
                         </div>
                         <div class="product-info__favourite">
                             <i class="fa-regular fa-heart no-liked"></i>

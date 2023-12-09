@@ -4,6 +4,28 @@
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
 }
 
+@section LibraryJS{
+    <script>
+    document.getElementById('nextPage').addEventListener('click', (event) => {
+        var currentPage = @ViewBag.Page;
+        var nextPage = currentPage + 1;
+
+        if (nextPage > 0 && nextPage <= @ViewBag.NoOfPages) {
+            var link = '@Url.Action("GetAllProduct", "Product")?page=' + nextPage;
+            document.getElementById('nextPage').setAttribute('href', link)
+        }
+    })
+    document.getElementById('prevPage').addEventListener('click', (event) => {
+         var currentPage = @ViewBag.Page;
+         var prevPage = currentPage - 1;
+
+         if (prevPage > 0 && prevPage <= @ViewBag.NoOfPages) {
+             var link = '@Url.Action("GetAllProduct", "Product")?page=' + prevPage;
+             document.getElementById('prevPage').setAttribute('href', link)
+         }
+    })
+    </script>
+}
 
 <div class="grid wide">
     <section class="row">
@@ -43,7 +65,7 @@
                             </select>
                             <div class="select-view">
                                 <a class="active" href="#"><iconify-icon icon="bxs:grid"></iconify-icon></a>
-                                <a href="./product-list.html"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
+                                <a href="@Url.Action("GetAllProduct_List", "Product")"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
                             </div>
                         </div>
                     </div>
@@ -55,7 +77,7 @@
                                 if (item.KhuyenMai != 0)
                                 {
                                     <div class="product-container col col-xl-2-4 col-lg-2-4">
-                                        <div class="product-item">
+                                        <div class="product-item" onclick="window.location = '@Url.Action("GetProductDetails", "Product", new { maSanPham = item.MaSanPham})'">
                                             <div class="product-item__img"
                                                  style="
                                                       background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');
@@ -113,14 +135,19 @@
                         }
                     </div>
                     <div class="pagination">
-                        <a href="#">&laquo;</a>
-                        <a href="#">1</a>
-                        <a class="active" href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">&raquo;</a>
+                        <a id="prevPage" href="#">Prev</a>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if ((i + 1) == ViewBag.Page)
+                            {
+                                <a class="active" href="@Url.Action("GetNewProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("GetNewProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                            }
+                        }
+                        <a id="nextPage" href="#">Next</a>
                     </div>
                 </div>
             </div>

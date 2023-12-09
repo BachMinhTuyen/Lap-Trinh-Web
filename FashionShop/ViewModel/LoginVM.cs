@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+
+namespace FashionShop.ViewModel
+{
+    public class LoginVM
+    {
+        [Required(ErrorMessage = "Bắt buộc nhập UserName!")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Bắt buộc nhập Password!")]
+        [StringLength(255, ErrorMessage = "Phải nhập từ 5 tới 255 ký tự", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+    }
+}

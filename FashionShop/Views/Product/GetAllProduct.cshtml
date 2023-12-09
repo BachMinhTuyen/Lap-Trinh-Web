@@ -4,6 +4,28 @@
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
 }
 
+@section LibraryJS{
+    <script>
+        document.getElementById('nextPage').addEventListener('click', (event) => {
+            var currentPage = @ViewBag.Page;
+            var nextPage = currentPage + 1;
+
+            if (nextPage > 0 && nextPage <= @ViewBag.NoOfPages) {
+                var link = '@Url.Action("GetAllProduct", "Product")?page=' + nextPage;
+                document.getElementById('nextPage').setAttribute('href', link)
+            }
+        })
+        document.getElementById('prevPage').addEventListener('click', (event) => {
+             var currentPage = @ViewBag.Page;
+             var prevPage = currentPage - 1;
+
+             if (prevPage > 0 && prevPage <= @ViewBag.NoOfPages) {
+                 var link = '@Url.Action("GetAllProduct", "Product")?page=' + prevPage;
+                 document.getElementById('prevPage').setAttribute('href', link)
+             }
+        })
+    </script>
+}
 <div class="grid wide">
     <section class="row">
         <div class="col">
@@ -41,8 +63,8 @@
                                 <option value="">Z -> A</option>
                             </select>
                             <div class="select-view">
-                                <a class="active" href="#"><iconify-icon icon="bxs:grid"></iconify-icon></a>
-                                <a href="./product-list.html"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
+                                <a class="active" href="@Url.Action("GetAllProduct", "Product")"><iconify-icon icon="bxs:grid"></iconify-icon></a>
+                                <a href="@Url.Action("GetAllProduct_List", "Product")"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +74,7 @@
                             foreach (var item in Model)
                             {
                                 <div class="product-container col col-xl-2-4 col-lg-2-4">
-                                    <div class="product-item" onclick="window.location.href='/detail.html'">
+                                    <div class="product-item" onclick="window.location = '@Url.Action("GetProductDetails", "Product", new { maSanPham = item.MaSanPham})'">
                                         <div class="product-item__img" style="background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');"></div>
                                         <h4 class="product-item__name">@item.TenSanPham</h4>
                                         <div class="product-item__price">
@@ -67,7 +89,7 @@
                                             }
                                         </div>
 
-                                        <div class= "product-item__action">
+                                        <div class="product-item__action">
                                             <span class="product-item__like product-item__like--liked">
                                                 <i class="product-item__like-icon-empty fa-regular fa-heart"></i>
                                                 <i class="product-item__like-icon-fill fa-solid fa-heart"></i>
@@ -105,18 +127,23 @@
                         }
                         else
                         {
-                        <h2 style="margin: 25px auto;">Nơi đây thật trống trải ...</h2>
+                            <h2 style="margin: 25px auto;">Nơi đây thật trống trải ...</h2>
                         }
                     </div>
                     <div class="pagination">
-                        <a href="#">&laquo;</a>
-                        <a href="#">1</a>
-                        <a class="active" href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#">6</a>
-                        <a href="#">&raquo;</a>
+                        <a id="prevPage" href="#">Prev</a>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if ((i + 1) == ViewBag.Page)
+                            {
+                                <a class="active" href="@Url.Action("GetAllProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("GetAllProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                            }
+                        }
+                        <a id="nextPage" href="#">Next</a>
                     </div>
                 </div>
             </div>
