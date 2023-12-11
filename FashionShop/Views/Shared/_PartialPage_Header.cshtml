@@ -46,7 +46,7 @@
                 <div class="user">
                     @if (Session["User"] == null)
                     {
-                        <div class="user__icon">
+                        <div class="user__icon" onclick="window.location.href = '@Url.Action("Login", "Account")'">
                             <iconify-icon icon="codicon:account"></iconify-icon>
                         </div>
                         <ul class="user-account">
@@ -57,7 +57,7 @@
                     }
                     else
                     {
-                        <div class="user__icon" style=" border: 1.5px solid; border-radius: 50%; margin: 0px 65px; color: #00f;">
+                        <div class="user__icon" style=" border: 1.5px solid; border-radius: 50%; margin: 0px 65px; color: #00f;" onclick="window.location.href = '@Url.Action("Profile", "Account")'">
                             <iconify-icon icon="mdi:account-tie" style="color: blue;"></iconify-icon>
                         </div>
                         <ul class="user-account">

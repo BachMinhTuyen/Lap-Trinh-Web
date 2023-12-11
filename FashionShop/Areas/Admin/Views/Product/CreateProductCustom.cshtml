@@ -1,0 +1,21 @@
+﻿@model FashionShop.Models.SanPham
+@{
+    ViewBag.Title = "CreateProductCustom";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage_Admin.cshtml";
+}
+
+<form action="@Url.Action("CreateProductCustom", "Product", new { maSanPham = @Model.MaSanPham })" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Tên màu</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_TenMau">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Tên size</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_TenSize">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Số Lượng</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_SoLuong">
+    </div>
+    <button type="submit" class="btn btn-primary">Tạo</button>
+</form>

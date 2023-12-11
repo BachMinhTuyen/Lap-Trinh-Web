@@ -106,7 +106,8 @@ namespace FashionShop.Controllers
             }
             if (list.Count == 0)
             {
-                list = null;
+                Session["Cart"] = null;
+                //list = null;
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("GetCartInfo", "Cart");
@@ -143,8 +144,7 @@ namespace FashionShop.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
-        [HttpPost]
-        public ActionResult Order(double tongTienThanhToan, string GhiChu, string phuongThucThanhToan,string phuongThucVanChuyen)
+        public ActionResult Order(double tongTienThanhToan, string GhiChu, string phuongThucThanhToan,string phuongThucVanChuyen, double phiVanChuyen)
         {
             int count = db.HoaDon.Count();
             string maHoaDon = "HD" + (count + 1).ToString();
@@ -154,6 +154,7 @@ namespace FashionShop.Controllers
             hd.MaHoaDon = maHoaDon;
             hd.NgayDatMuaHang = DateTime.Now;
             hd.TongTien = tongTienThanhToan;
+            hd.PhiVanChuyen = phiVanChuyen;
             hd.GhiChu = GhiChu;
             hd.PhuongThucThanhToan = phuongThucThanhToan;
             hd.PhuongThucVanChuyen = phuongThucVanChuyen;
@@ -167,8 +168,10 @@ namespace FashionShop.Controllers
 
             // Lấy thông tin sản phẩm trong giỏ hàng
             List<CartVM> lst = GetCart();
+            
+            List<ChiTietHoaDon> danhSachChiTiet = db.ChiTietHoaDon.ToList();
+            int index = danhSachChiTiet.Count();
 
-            int index = 0;
             foreach (var item in  lst)
             {
                 ChiTietHoaDon chiTiet = new ChiTietHoaDon();
@@ -194,7 +197,8 @@ namespace FashionShop.Controllers
         }
         public ActionResult OrderSuccess()
         {
-            return View();
+            TaiKhoan taiKhoan = Session["User"] as TaiKhoan;
+            return View(taiKhoan);
         }
     }
 }

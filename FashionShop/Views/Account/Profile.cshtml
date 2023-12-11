@@ -1,0 +1,105 @@
+﻿@model FashionShop.Models.TaiKhoan
+@{
+    ViewBag.Title = "Hồ sơ người dùng";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link href="~/assets/css/login-register.css" rel="stylesheet" />
+}
+<div class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li>Hồ sơ người dùng</li>
+            </ul>
+        </div>
+    </section>
+</div>
+<div class="app__container">
+    <div class="grid wide">
+        <div class="row sm-gutter">
+            <div class="col col-xl-2 col-lg-2">
+
+                <div class="category support-online">
+                    <div class="category__header">
+                        <h2><i class="fa-solid fa-bars"></i>Hồ sơ người dùng</h2>
+                    </div>
+                    <div class="category__content">
+                        <ul class="category__menu">
+                            <li>
+                                <a href="@Url.Action("ViewBills", "Bill", new { UserName = Model.UserName})">Hoá Đơn Của Bạn</a>
+                            </li>
+                            <li>
+                                <a href="#">Sản Phẩm Yêu Thích</a>
+                            </li>
+                            <li style="display: none">
+                                <a href="#">Khác</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col col-xl-10 col-lg-10">
+                <form id="register-form" action="@Url.Action("", "Account")" method="post">
+                    <h2>Thông tin người dùng</h2>
+                    <div class="form-group">
+                        <label for="">Họ Và Tên <span style="color: red;">*</span></label>
+                        @Html.TextBoxFor(model => model.TenNguoiDung, new
+                           {
+                               @class = "form-control",
+                               type = "text",
+                               name = "TenNguoiDung",
+                               id = "",
+                               value = Model.TenNguoiDung
+                           })
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tên Người Dùng - UserName<span style="color: red;">*</span></label>
+                        <input class = "form-control" type="text" name="UserName" value= '@Model.UserName' readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                        @Html.TextBoxFor(model => model.DiaChi, new
+                        {
+                            @class = "form-control",
+                            type = "text",
+                            name = "DiaChi",
+                            id = "",
+                            value = Model.DiaChi
+                        })
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email <span style="color: red;">*</span></label>
+                        @Html.TextBoxFor(model => model.Email, new
+                        {
+                            @class = "form-control",
+                            type = "email",
+                            name = "Email",
+                            id = "",
+                            value = Model.Email
+                        })
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số điện thoại <span style="color: red;">*</span></label>
+                        @Html.TextBoxFor(model => model.SoDienThoai, new
+                        {
+                            @class = "form-control",
+                            type = "tel",
+                            name = "SoDienThoai",
+                            id = "",
+                            value = Model.SoDienThoai
+                        })
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="submit" value="Lưu">
+                        <a class="back-to-login" href="@Url.Action("Index", "Home")">Quay Lại Trang Chủ</a>
+                        <button></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

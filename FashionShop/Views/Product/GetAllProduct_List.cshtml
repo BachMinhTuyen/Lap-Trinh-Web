@@ -15,7 +15,7 @@
             var nextPage = currentPage + 1;
 
             if (nextPage > 0 && nextPage <= @ViewBag.NoOfPages) {
-                var link = '@Url.Action("GetAllProduct", "Product")?page=' + nextPage;
+                var link = '@Url.Action("GetAllProduct_List", "Product")?page=' + nextPage;
                 document.getElementById('nextPage').setAttribute('href', link)
             }
         })
@@ -24,7 +24,7 @@
              var prevPage = currentPage - 1;
 
              if (prevPage > 0 && prevPage <= @ViewBag.NoOfPages) {
-                 var link = '@Url.Action("GetAllProduct", "Product")?page=' + prevPage;
+                 var link = '@Url.Action("GetAllProduct_List", "Product")?page=' + prevPage;
                  document.getElementById('prevPage').setAttribute('href', link)
              }
         })
@@ -156,11 +156,11 @@
                         {
                             if ((i + 1) == ViewBag.Page)
                             {
-                                <a class="active" href="@Url.Action("GetAllProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                                <a class="active" href="@Url.Action("GetAllProduct_List", "Product", new { page = (i + 1)})">@(i+1)</a>
                             }
                             else
                             {
-                                <a href="@Url.Action("GetAllProduct", "Product", new { page = (i + 1)})">@(i+1)</a>
+                                <a href="@Url.Action("GetAllProduct_List", "Product", new { page = (i + 1)})">@(i+1)</a>
                             }
                         }
                         <a id="nextPage" href="#">Next</a>

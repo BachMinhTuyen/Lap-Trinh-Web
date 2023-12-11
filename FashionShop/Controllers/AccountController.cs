@@ -83,5 +83,34 @@ namespace FashionShop.Controllers
             Session["User"] = null;
             return RedirectToAction("Index", "Home");
         }
+        public new ActionResult Profile()
+        { 
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                TaiKhoan taiKhoan = Session["User"] as TaiKhoan;
+                return View(taiKhoan);
+            }    
+        }
+        [HttpPut]
+        public new ActionResult Profile(FormCollection form)
+        {
+            TaiKhoan tk = Session["User"] as TaiKhoan;
+            string userName = tk.UserName;
+            TaiKhoan taiKhoan = db.TaiKhoan.First(x => x.UserName == userName);
+            taiKhoan.TenNguoiDung = form["TenNguoiDung"];
+            taiKhoan.DiaChi = form["DiaChi"];
+            taiKhoan.Email = form["Email"];
+            taiKhoan.SoDienThoai = form["SoDienThoai"];
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult ChangePassword(FormCollection form)
+        {
+            return View();
+        }
     }
 }

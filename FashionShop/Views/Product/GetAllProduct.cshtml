@@ -76,7 +76,16 @@
                                 <div class="product-container col col-xl-2-4 col-lg-2-4">
                                     <div class="product-item" onclick="window.location = '@Url.Action("GetProductDetails", "Product", new { maSanPham = item.MaSanPham})'">
                                         <div class="product-item__img" style="background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');"></div>
-                                        <h4 class="product-item__name">@item.TenSanPham</h4>
+                                        
+                                        @if (item.TenSanPham.Length > 25)
+                                        {
+                                            <h4 class="product-item__name">@item.TenSanPham.Substring(0, 20)...</h4>
+                                        }
+                                        else
+                                        {
+                                            <h4 class="product-item__name">@item.TenSanPham</h4>
+                                        }
+
                                         <div class="product-item__price">
                                             <span class="product-item__price-old">@string.Format("{0:#,##0đ}đ", item.GiaSanPham)</span>
                                             @if (item.KhuyenMai != 0)

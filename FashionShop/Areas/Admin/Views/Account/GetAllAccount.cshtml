@@ -1,0 +1,139 @@
+﻿@model List<FashionShop.Models.TaiKhoan>
+@{
+    ViewBag.Title = "Tất cả tài khoản người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage_Admin.cshtml";
+}
+
+@section LibraryCSS{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>    
+}
+
+@section LibraryJS{
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var clipboard = new ClipboardJS('.copy-password');
+
+        clipboard.on('success', function (e) {
+            alert('Password đã được sao chép thành công!');
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            alert('Không thể sao chép Password. Hãy thử lại!');
+        });
+    });
+    </script>    
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Quản Lý <small>Tài Khoản</small></h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                <div class="input-group">
+                    <form style="display: flex;" action="@Url.Action("GetAllAccount", "Account")" method="post">
+                        <input type="text" name="txtInput_ID" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Tất Cả Tài Khoản</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <p>Bảng quản lý toàn bộ các tài khoản người dùng - website thời trang - Fashion Shop</p>
+                    <a href="@Url.Action("CreateAccount", "Account")" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Create </a>
+                    <!-- start project list -->
+                    <table style="font-size: 15px;" class="table table-striped projects">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">User Name</th>
+                                <th style="width: 10%">Password</th>
+                                <th style="width: 10%">Vai trò</th>
+                                <th style="width: 10%">Họ Tên</th>
+                                <th style="width: 10%">Địa Chỉ</th>
+                                <th style="width: 10%">Số Điện Thoại</th>
+                                <th style="width: 10%">Email</th>
+                                <th style="width: 20%">#Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count != 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.UserName</td>
+                                        <td>
+                                            <button class="copy-password btn btn-success btn-xs" data-clipboard-text="@item.Password">
+                                                <i class="fa fa-copy"></i> Copy
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <a>@item.VaiTro</a>
+                                        </td>
+                                        <td>
+                                            @item.TenNguoiDung
+                                        </td>
+                                        <td>
+                                            @item.DiaChi
+                                        </td>
+                                        <td>
+                                            @item.SoDienThoai
+                                        </td>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Details", "Account", new { maHoaDon = item.UserName})" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                            @*<a href="@Url.Action("DeleteAccount", "Account", new { maHoaDon = item.MaHoaDon})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>*@
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="8">
+                                        <h2 style="text-align: center;">Chưa có hoá đơn nào để thống kê</h2>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <!-- end project list -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

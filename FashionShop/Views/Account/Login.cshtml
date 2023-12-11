@@ -6,6 +6,18 @@
 @section LibraryCSS {
     <link href="~/assets/css/login-register.css" rel="stylesheet" />
 }
+@section LibraryJS {
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var showPasswordCheckbox = document.getElementById('ShowPassword');
+        var passwordInput = document.getElementById('Password');
+
+        showPasswordCheckbox.addEventListener('change', function () {
+            passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+        });
+    });
+    </script>    
+}
 <div class="grid wide">
     <section class="row">
         <div class="col">
@@ -44,13 +56,17 @@
                         @class = "form-control",
                         type = "password",
                         name = "Password",
-                        id = "",
+                        id = "Password",
                         placeholder = "Mật khẩu của bạn"
                     })
                     @Html.ValidationMessageFor(model => model.Password, "", new
                     {
                         style = "color: red;"
                     })
+                </div>
+                <div style="margin-left: 12px;">
+                    <input class="form-control" type="checkbox" id="ShowPassword">
+                    <label style="user-select: none;" for="ShowPassword">Hiện Mật khẩu</label>
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="submit" value="ĐĂNG NHẬP">

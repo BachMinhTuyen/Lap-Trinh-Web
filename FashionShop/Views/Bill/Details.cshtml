@@ -1,0 +1,81 @@
+﻿@model List<FashionShop.Models.ChiTietHoaDon>
+@{
+    ViewBag.Title = "Chi Tiết Hoá Đơn";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+
+
+@section LibraryCSS {
+    <style>
+        .bill__table {
+            width: 100%;
+            text-align: center;
+            font-size: 1.3rem;
+            padding: 12px 8px;
+        }
+
+        .bill__col {
+            padding: 12px 4px;
+            border: 1px solid #333;
+        }
+
+        .bill__details-link {
+            display: block;
+            margin: 0 auto;
+            padding: 8px;
+            text-decoration: none;
+            width: fit-content;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 5px;
+            color: #fff;
+            background-color: var(--primary-color);
+        }
+    </style>
+}
+@section LibraryJS {
+
+}
+
+<div style="background-color: #fff;" class="grid wide">
+    <section class="row">
+        <div class="col">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Profile", "Account")">Hồ sơ người dùng</a></li>
+                <li><a href="@Url.Action("ViewBills", "Bill", new { UserName = ViewBag.UserName})">Hoá đơn</a></li>
+                <li>Chi tiết hoá đơn</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <table class="bill__table">
+                <thead>
+                    <tr>
+                        <th width="10%" class="bill__col">Mã Chi Tiết Hoá Đơn</th>
+                        <th width="15%" class="bill__col">Tên Sản Phẩm</th>
+                        <th width="10%" class="bill__col">Tên Màu</th>
+                        <th width="10%" class="bill__col">Tên Size</th>
+                        <th width="15%" class="bill__col">Giá Sản Phẩm</th>
+                        <th width="15%" class="bill__col">Số Lượng</th>
+                        <th width="15%" class="bill__col">Thành Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="bill__col">@item.MaChiTietHoaDon</td>
+                            <td class="bill__col">@item.BienTheSanPham.SanPham.TenSanPham</td>
+                            <td class="bill__col">@item.BienTheSanPham.TenMau</td>
+                            <td class="bill__col">@item.BienTheSanPham.TenSize</td>
+                            <td class="bill__col">@string.Format("{0:#,##0}đ", @item.BienTheSanPham.SanPham.GiaSanPham)</td>
+                            <td class="bill__col">@item.SoLuongSanPhamDaDat</td>
+                            <td class="bill__col">@item.ThanhTien</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

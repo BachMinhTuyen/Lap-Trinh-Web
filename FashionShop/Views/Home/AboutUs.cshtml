@@ -4,15 +4,206 @@
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
 }
 
-<div class="grid wide">
+@section LibraryCSS {
+    <style>
+        .no-item iconify-icon {
+            font-size: 20rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .no-item p {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .intro__table {
+            width: 100%;
+            text-align: center;
+            font-size: 1.8rem;
+            padding: 12px 8px;
+        }
+
+        .intro__col {
+            padding: 12px 4px;
+            border: 1px solid #333;
+        }
+
+        .intro__details-link {
+            display: block;
+            margin: 0 auto;
+            padding: 8px;
+            text-decoration: none;
+            width: fit-content;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 5px;
+            color: #fff;
+            background-color: var(--primary-color);
+        }
+        .intro__list {
+            margin: 0;
+            list-style: none;
+        }
+        .intro__list-item {
+            padding: 4px;
+        }
+        
+        tr td:first-child {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+}
+@section LibraryJS {
+
+}
+
+<div style="background-color: #fff;" class="grid wide">
     <section class="row">
         <div class="col">
             <ul class="breadcrumb">
                 <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
-                <li>Giới thiệu</li>
+                <li>Giới Thiệu</li>
             </ul>
         </div>
     </section>
-</div>
 
-<h2>Đây là trang giới thiệu</h2>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <table class="intro__table">
+                <thead>
+                    <tr>
+                        <th style="font-size: 20px" class="intro__col">Thông Tin Tiêu Đề</th>
+                        <th style="font-size: 20px" class="intro__col">Chi Tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="intro__col">Học Phần - GVHD</td>
+                        <td class="intro__col">Lập Trình Web - Nguyễn Hải Yến</td>
+                    </tr>
+                    <tr>
+                        <td class="intro__col">Tên Đề Tài</td>
+                        <td class="intro__col">Xây Dựng Website Shop Thời Trang</td>
+                    </tr>
+                    <tr>
+                        <td class="intro__col">Thành Viên Nhóm 12</td>
+                        <td class="intro__col">
+                            <ul class="intro__list">
+                                <li class="intro__list-item">Bạch Minh Tuyên</li>
+                                <li class="intro__list-item">Cao Nhật Linh</li>
+                                <li class="intro__list-item">Trần Thị Trúc</li>
+                                <li class="intro__list-item">Nguyễn Thị Xuân Lan</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="intro__col">Ngôn ngữ lập trình được sử dụng trong dự án</td>
+                        <td class="intro__col">
+                            <ul class="intro__list">
+                                <li class="intro__list-item">C# (ASP.NET - MVC)</li>
+                                <li class="intro__list-item">HTML - CSS - Javascipt</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="intro__col">Công cụ được sử dụng trong dự án</td>
+                        <td class="intro__col">
+                            <ul class="intro__list">
+                                <li class="intro__list-item">Visual Studio 2022</li>
+                                <li class="intro__list-item">SQL Server Management Studio 2019 (SQL Server 2022)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="intro__col">Thư viện, API, kỹ thuật được sử dụng trong dự án</td>
+                        <td class="intro__col">
+                            <ul class="intro__list">
+                                <li class="intro__list-item">Swiper</li>
+                                <li class="intro__list-item">Boostrap 5</li>
+                                <li class="intro__list-item">API Provinces - 63 tỉnh thành phố Việt Nam</li>
+                                <li class="intro__list-item">Sử dụng Code First - tạo bảng từ mô hình Dữ liệu (Data Model)</li>
+                                <li class="intro__list-item">Phân quyền vai trò User - Admin</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@*@section LibraryCSS {
+        <style>
+            .container {
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+            h1,
+            h3,
+            h5 {
+                color: var(--primary-color);
+            }
+            .member {
+                margin-top: 20px;
+            }
+            h2 {
+                color: #333;
+                margin-bottom: 5px;
+            }
+            p {
+                color: #333;
+            }
+        </style>
+    }
+    <div class="grid wide">
+        <section class="row">
+            <div class="col">
+                <ul class="breadcrumb">
+                    <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    <li>Giới thiệu</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <h1>Đồ án lập trình web: Shop thời trang</h1>
+        <div>
+            <h3>Giáo viên hướng dẫn:</h3>
+            <p>Nguyễn Hải Yến</p>
+        </div>
+
+        <div>
+            <h1>Giới Thiệu Thành Viên</h1>
+
+            <div class="member">
+                <h2>Thành viên 1</h2>
+                <p>Mô tả ngắn về thành viên 1 và các đóng góp trong dự án.</p>
+            </div>
+
+            <div class="member">
+                <h2>Thành viên 2</h2>
+                <p>Mô tả ngắn về thành viên 2 và các đóng góp trong dự án.</p>
+            </div>
+
+            <div class="member">
+                <h2>Thành viên 3</h2>
+                <p>Mô tả ngắn về thành viên 3 và các đóng góp trong dự án.</p>
+            </div>
+
+            <div class="member">
+                <h2>Thành viên 4</h2>
+                <p>Mô tả ngắn về thành viên 4 và các đóng góp trong dự án.</p>
+            </div>
+        </div>
+        <div class="mb-4">
+            <h5>Ngôn ngữ sử dụng:</h5>
+            <p>C#</p>
+        </div>
+        <div class="mb-4">
+            <h5>Công cụ hỗ trợ:</h5>
+            <p></p>
+        </div>
+    </div>*@

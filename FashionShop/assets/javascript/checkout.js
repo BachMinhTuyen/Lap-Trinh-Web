@@ -103,6 +103,7 @@ var deliveryMethods = document.querySelectorAll('input[name="delivery-method"]')
 // Set phí vận chuyển và tổng tiền cần thanh toán
 // ban đầu dựa trên thành phố ban đầu được chọn
 document.getElementById('delivery_fee').textContent = '25,000đ';
+document.getElementById('delivery_name').textContent = "Giao Hàng Nhanh";
 updateTotalAmount();
 deliveryMethods.forEach(function (radio) {
     radio.addEventListener('change', function () {
@@ -155,7 +156,6 @@ function updateDeliveryFee() {
     if (selectedProvinceCity == 1 || selectedProvinceCity == 48 || selectedProvinceCity == 79) {
         var element = document.querySelector('.delivery-method .form-group')
         element.style.backgroundColor = '#fff';
-        element.style.color = '#333';
         document.getElementById('delivery-method--first').removeAttribute('disabled');
 
         deliveryFeeFirstElement.textContent = '75,000đ';
@@ -195,33 +195,35 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function submitForm() {
-    console.log('Vào hàm submitForm thành công')
-    var form = document.getElementById('checkout-form');
-    form.addEventListener('submit', function (event) {
-        // Ngăn chặn việc submit mặc định của form
-        event.preventDefault();
+//function submitForm() {
+//    console.log('Vào hàm submitForm thành công')
 
-        var data = {
-            tongTienThanhToan: document.getElementById('total_amount').textContent.replace('đ', '').replaceAll(',', ''),
-            GhiChu: document.getElementById('note').textContent,
-            phuongThucThanhToan: document.getElementById('payment_name').textContent,
-            phuongThucVanChuyen: document.getElementById('delivery_name').textContent
-        }
-
-        var actionLink = '/Cart/Order?tongTienThanhToan=' + data.tongTienThanhToan + '&GhiChu=' + data.GhiChu + '&phuongThucThanhToan=' + data.phuongThucThanhToan + '&phuongThucVanChuyen=' + data.phuongThucVanChuyen;
-        console.log(actionLink)
-        form.setAttribute('action', actionLink)
-        console.log(form)
-        form.submit();
-    })
     //var quanHuyen = document.querySelector('#select-district').options[document.querySelector('#select-district').selectedIndex].text
     //var tinhThanhPho = document.querySelector('#select-province-city').options[document.querySelector('#select-province-city').selectedIndex].text
     //var diaChi = document.querySelector('#checkout-form input[name="dia-chi"]').value + ' - ' + quanHuyen + ' - ' + tinhThanhPho;
 
-}
+//}
+// Sự kiện submit form
+var form = document.getElementById('checkout-form');
+form.addEventListener('submit', function (event) {
+    // Ngăn chặn việc submit mặc định của form
+    event.preventDefault();
 
-function sendMail() {
-    console.log('Click thành công')
-    submitForm();
-}
+    var data = {
+        tongTienThanhToan: document.getElementById('total_amount').textContent.replace('đ', '').replaceAll(',', ''),
+        GhiChu: document.getElementById('note').textContent,
+        phuongThucThanhToan: document.getElementById('payment_name').textContent,
+        phuongThucVanChuyen: document.getElementById('delivery_name').textContent,
+        phiVanChuyen: document.getElementById('delivery_fee').textContent.replace('đ', '').replaceAll(',', '')
+    }
+
+    var actionLink = '/Cart/Order?tongTienThanhToan=' + data.tongTienThanhToan + '&GhiChu=' + data.GhiChu + '&phuongThucThanhToan=' + data.phuongThucThanhToan + '&phuongThucVanChuyen=' + data.phuongThucVanChuyen + '&phiVanChuyen=' + data.phiVanChuyen;
+    console.log(actionLink)
+    form.setAttribute('action', actionLink)
+    console.log(form)
+    form.submit();
+})
+//function sendMail() {
+//    console.log('Click thành công')
+//    submitForm();
+//}

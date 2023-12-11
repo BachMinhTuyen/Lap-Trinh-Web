@@ -1,7 +1,55 @@
-﻿
+﻿@model FashionShop.Models.TaiKhoan
 @{
     ViewBag.Title = "Đặt hàng thành công";
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
 }
 
-<h2 style="margin: 25px auto;">Đặt hàng thành công</h2>
+@section LibraryCSS{
+    <style>
+        .container {
+            margin: 50px 0;
+        }
+
+        .redirect-method {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        h2.title {
+            text-align: center;
+            margin: 12px 0;
+            font-size: 25px;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 12px 24px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin: 12px;
+            color: var(--primary-color);
+        }
+
+            .btn:hover {
+                border-radius: 5px;
+                background-color: var(--primary-color);
+                color: #fff;
+            }
+
+        .active {
+            background-color: var(--primary-color);
+            color: #fff;
+            opacity: 0.8;
+        }
+    </style>
+}
+<div class="container">
+    <h2 class="title">Đặt hàng thành công</h2>
+    <div class="redirect-method">
+        <div onclick="window.location.href ='@Url.Action("Index", "Home")'" class="btn">Trang chủ</div>
+        <div onclick="window.location.href ='@Url.Action("ViewBills", "Bill", new { UserName = Model.UserName})'" class="btn">Đơn Hàng</div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model List<FashionShop.Models.ThuongHieu>
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage_Admin.cshtml";
+    var loai = ViewBag.LoaiSanPham as List<FashionShop.Models.LoaiSanPham>;
+}
+
+<form action="@Url.Action("CreateProduct", "Product")" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Tên sản phẩm</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_TenSanPham">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Giá sản phẩm</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_GiaSanPham">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Khuyến Mãi - %</label>
+        <input type="text" class="form-control" id="" name="Inputtxt_KhuyenMai" placeholder="Từ 10 tới 50 %">
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Tải lên hình ảnh</label>
+        <input class="form-control" type="file" id="formFile" name="Inputtxt_FileImage">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Thương Hiệu</label>
+        <select class="form-select" aria-label="Default select example" name="select_ThuongHieu">
+            @foreach (var item in Model)
+            {
+                <option value="@item.MaThuongHieu">@item.TenThuongHieu</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Loại Sản Phẩm</label>
+        <select class="form-select" aria-label="Default select example" name="select_LoaiSanPham">
+            @foreach (var item in loai)
+            {
+                <option value="@item.MaLoai">@item.TenLoai</option>
+            }
+        </select>
+    </div>
+    
+    <div class="input-group">
+        <span class="input-group-text">Mô tả sản phẩm</span>
+        <textarea class="form-control" aria-label="With textarea" name="Inputtxt_MoTa"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Tạo</button>
+</form>
+

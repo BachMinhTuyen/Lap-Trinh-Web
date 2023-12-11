@@ -82,7 +82,14 @@
                                                  style="
                                                       background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');
                                                     "></div>
-                                            <h4 class="product-item__name">@item.TenSanPham</h4>
+                                            @if (item.TenSanPham.Length > 25)
+                                            {
+                                                <h4 class="product-item__name">@item.TenSanPham.Substring(0, 20)...</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="product-item__name">@item.TenSanPham</h4>
+                                            }
                                             <div class="product-item__price">
                                                 <span class="product-item__price-old">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
                                                 @if (item.KhuyenMai != 0)
