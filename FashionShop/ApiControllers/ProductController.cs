@@ -20,6 +20,8 @@ namespace FashionShop.ApiControllers
         [HttpGet]
         public SanPham GetProductByID(string maSanPham)
         {
+            if (db.SanPham.Any(s => s.MaSanPham == maSanPham) == false)
+                return null;
             SanPham sanPham = db.SanPham.First(s => s.MaSanPham == maSanPham);
             return sanPham;
         }
@@ -58,8 +60,15 @@ namespace FashionShop.ApiControllers
             sanPhamCu.KhuyenMai = sanPham.KhuyenMai;
             sanPhamCu.GiaSanPham = sanPham.GiaSanPham;
             sanPhamCu.AnhDaiDien = sanPham.AnhDaiDien;
-            sanPhamCu.ThuongHieu = sanPham.ThuongHieu;
-            sanPhamCu.LoaiSanPham = sanPham.LoaiSanPham;
+            sanPhamCu.MoTaSanPham = sanPham.MoTaSanPham;
+
+            string maThuongHieu = sanPham.ThuongHieu.MaThuongHieu;
+            ThuongHieu th = db.ThuongHieu.First(x => x.MaThuongHieu == maThuongHieu);
+            sanPhamCu.ThuongHieu = th;
+
+            string loaiSanPham = sanPham.LoaiSanPham.MaLoai;
+            LoaiSanPham loaiSP = db.LoaiSanPham.First(x => x.MaLoai == loaiSanPham);
+            sanPhamCu.LoaiSanPham = loaiSP;
 
             db.SaveChanges();
         }

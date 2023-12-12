@@ -95,7 +95,7 @@ namespace FashionShop.Controllers
                 return View(taiKhoan);
             }    
         }
-        [HttpPut]
+        [HttpPost]
         public new ActionResult Profile(FormCollection form)
         {
             TaiKhoan tk = Session["User"] as TaiKhoan;
@@ -106,7 +106,8 @@ namespace FashionShop.Controllers
             taiKhoan.Email = form["Email"];
             taiKhoan.SoDienThoai = form["SoDienThoai"];
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            Session["User"] = taiKhoan;
+            return RedirectToAction("Profile", "Account");
         }
         public ActionResult ChangePassword(FormCollection form)
         {
