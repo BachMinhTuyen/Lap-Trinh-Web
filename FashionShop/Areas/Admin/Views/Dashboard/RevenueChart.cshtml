@@ -1,0 +1,70 @@
+﻿@using System.Globalization;
+@{
+    ViewBag.Title = "Revenue Chart";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage_Admin.cshtml";
+}
+
+<form method="get" action="@Url.Action("RevenueChart", "Dashboard")">
+    Từ Ngày:
+    <input type="date" id="fromDate" name="fromDate" value="" />
+
+    Đến Ngày:
+    <input type="date" id="toDate" name="toDate" value="" />
+
+    <input type="submit" value="Xem Thống Kê" id="btn-dashboard-filter" />
+
+</form>
+
+@if (ViewBag.DoanhThuTheoNgay != null && ViewBag.DoanhThuTheoNgay is IEnumerable<dynamic> && (ViewBag.DoanhThuTheoNgay as IEnumerable<dynamic>).Any())
+{
+    <canvas id="doanhThuNgayChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var doanhThuNgayData = @Html.Raw(Json.Encode(ViewBag.DoanhThuTheoNgay));
+
+        var days = doanhThuNgayData.map(function (item) {
+            return item.Ngay;
+        });
+
+        var revenuesByDay = doanhThuNgayData.map(function (item) {
+            return item.TongTien;
+        });
+
+        var ctxNgay = document.getElementById('doanhThuNgayChart').getContext('2d');
+        var myChartNgay = new Chart(ctxNgay, {
+            type: 'bar',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'Doanh Thu',
+                    data: revenuesByDay,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Ngày'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Doanh Thu'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+else
+{
+    <p>Không có dữ liệu doanh thu cho thời gian đã chọn.</p>
+}

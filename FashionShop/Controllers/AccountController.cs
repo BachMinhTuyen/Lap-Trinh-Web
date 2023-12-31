@@ -71,7 +71,7 @@ namespace FashionShop.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("AboutUs", "Home");
+                            return RedirectToAction("AccessDenied", "Home");
                         }
                     }
                 }

@@ -31,6 +31,7 @@
     <link href="~/Areas/Admin/Assets/build/css/custom.min.css" rel="stylesheet">
 
     @RenderSection("LibraryCSS", required: false)
+    @RenderSection("scripts", required: false)
 </head>
 
 <body class="nav-md">
@@ -59,6 +60,7 @@
                                     <a><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="@Url.Action("Index", "Dashboard")">Bảng điều khiển</a></li>
+                                        <li><a href="@Url.Action("RevenueChart", "Dashboard")">Thống kê</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -120,11 +122,13 @@
     <script src="~/Areas/Admin/Assets/vendors/jszip/dist/jszip.min.js"></script>
     <script src="~/Areas/Admin/Assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="~/Areas/Admin/Assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="~/Areas/Admin/Assets/build/js/custom.min.js"></script>
 
-    @RenderSection("LibraryJS", required: false)
 
+    @RenderSection("LibraryJS", required: false)
 </body>
 </html>

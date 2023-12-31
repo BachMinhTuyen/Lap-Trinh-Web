@@ -5,6 +5,7 @@
 
     var BienThe = ViewBag.BienThe as List<FashionShop.Models.BienTheSanPham>;
     var HinhAnh = ViewBag.HinhAnh as List<FashionShop.Models.HinhAnh>;
+    var YeuThich = ViewBag.YeuThich as FashionShop.Models.YeuThich;
 }
 @section LibraryCSS {
     <link href="~/assets/css/detail.css" rel="stylesheet" />
@@ -35,6 +36,28 @@
             });
         })
     </script>
+    @if (YeuThich != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            // Sự kiện click yêu thích sản phẩm
+            document.querySelector('.icon-liked').addEventListener('click', () => {
+                window.location.href = '/Product/NOTFavouriteProduct?maSanPham=@Model.MaSanPham'
+            })
+        });
+        </script>
+    }
+    else
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            // Sự kiện click yêu thích sản phẩm
+            document.querySelector('.no-liked').addEventListener('click', () => {
+                window.location.href = '/Product/FavouriteProduct?maSanPham=@Model.MaSanPham'
+            })
+        });
+        </script>
+    }
 }
 <div class="grid wide">
     <section class="row">
@@ -71,7 +94,7 @@
                 <div class="product-info__name">
                     <h2>@Model.TenSanPham</h2>
                 </div>
-                <div id="product-ID" >Mã sản phẩm: <span style=" font-weight: bold; ">@Model.MaSanPham</span></div>
+                <div id="product-ID">Mã sản phẩm: <span style=" font-weight: bold; ">@Model.MaSanPham</span></div>
                 <div class="product-info__price">
                     @if (Model.KhuyenMai != 0)
                     {
@@ -122,8 +145,14 @@
                             <a id="to-order" class="btn-to-cart" href="">Mua ngay</a>
                         </div>
                         <div class="product-info__favourite">
-                            <i class="fa-regular fa-heart no-liked"></i>
-                            <i class="fa-solid fa-heart icon-liked"></i>
+                            @if (YeuThich != null)
+                            {
+                                <i class="fa-solid fa-heart icon-liked"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-heart no-liked"></i>
+                            }
                         </div>
                     </div>
                 </div>

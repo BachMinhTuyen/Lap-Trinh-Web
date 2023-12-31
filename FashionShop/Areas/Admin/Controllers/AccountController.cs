@@ -1,5 +1,7 @@
-﻿using FashionShop.Models;
+﻿using FashionShop.Filters;
+using FashionShop.Models;
 using FashionShop.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ using WindowsFormsApplication2.Utilities;
 
 namespace FashionShop.Areas.Admin.Controllers
 {
+    [AdminAuthorization]
     public class AccountController : Controller
     {
         FashionShopDBContext db = new FashionShopDBContext();
@@ -27,6 +30,15 @@ namespace FashionShop.Areas.Admin.Controllers
         public ActionResult CreateAccount()
         {
             return View();
+        }
+        public ActionResult DeleteAccount(string username)
+        {
+            
+                TaiKhoan tk = db.TaiKhoan.First(x=>x.UserName == username);
+                tk.VaiTro = "undefined";
+                db.SaveChanges();
+                return RedirectToAction("GetAllAccount", "Account");
+
         }
         [HttpPost]
         public ActionResult Register(RegisterVM register)

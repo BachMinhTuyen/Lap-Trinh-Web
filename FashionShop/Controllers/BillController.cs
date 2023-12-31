@@ -13,6 +13,7 @@ namespace FashionShop.Controllers
         // GET: Bill
         public ActionResult ViewBills(string UserName)
         {
+            ViewBag.UserName = UserName;
             List<HoaDon> lst = db.HoaDon.Where(h =>h.TaiKhoan.UserName == UserName).ToList();
             return View(lst);
         }
@@ -22,6 +23,20 @@ namespace FashionShop.Controllers
             ViewBag.UserName = taiKhoan.UserName;
             List<ChiTietHoaDon> lst = db.ChiTietHoaDon.Where(h => h.HoaDon.MaHoaDon == maHoaDon).ToList();
             return View(lst);
+        }
+        public ActionResult ConfirmBill(string maHoaDon, string UserName)
+        {
+            HoaDon hoaDon = db.HoaDon.First(x => x.MaHoaDon == maHoaDon);
+            hoaDon.TrangThaiDonHang = "Đang vận chuyển";
+            db.SaveChanges();
+            return RedirectToAction("ViewBills", "Bill", new { UserName = UserName });
+        }
+        public ActionResult CancelBill(string maHoaDon, string UserName)
+        {
+            HoaDon hoaDon = db.HoaDon.First(x => x.MaHoaDon == maHoaDon);
+            hoaDon.TrangThaiDonHang = "Đơn hàng bị huỷ";
+            db.SaveChanges();
+            return RedirectToAction("ViewBills", "Bill", new { UserName = UserName });
         }
     }
 }
