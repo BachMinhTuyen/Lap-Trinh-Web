@@ -16,6 +16,7 @@ namespace FashionShop.Models
         public DateTime NgayDatMuaHang { get; set; }
         public string PhuongThucThanhToan { get; set; }
         public string PhuongThucVanChuyen { get; set; }
+        public string TrangThaiDonHang { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

@@ -5918,6 +5918,7 @@
     <Content Include="assets\javascript\cart.js" />
     <Content Include="assets\javascript\checkout.js" />
     <Content Include="assets\javascript\details.js" />
+    <Content Include="assets\javascript\email.min.js" />
     <Content Include="assets\javascript\main.js" />
     <Content Include="assets\javascript\validator.js" />
     <Content Include="Global.asax" />
@@ -6981,6 +6982,8 @@
     <Content Include="Areas\Admin\Views\Account\GetAllAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Account\CreateAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Bill\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\RevenueChart.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistical\GetStatistics.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -7002,6 +7005,7 @@
     <Compile Include="Areas\Admin\Controllers\BillController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
@@ -7114,6 +7118,7 @@
     <Content Include="Views\Bill\ViewBills.cshtml" />
     <Content Include="Views\Bill\Details.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Product\FavouriteProductList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

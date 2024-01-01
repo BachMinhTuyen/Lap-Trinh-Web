@@ -208,7 +208,7 @@ var form = document.getElementById('checkout-form');
 form.addEventListener('submit', function (event) {
     // Ngăn chặn việc submit mặc định của form
     event.preventDefault();
-
+    console.log("Send mail success")
     var data = {
         tongTienThanhToan: document.getElementById('total_amount').textContent.replace('đ', '').replaceAll(',', ''),
         GhiChu: document.getElementById('note').textContent,
@@ -221,9 +221,29 @@ form.addEventListener('submit', function (event) {
     console.log(actionLink)
     form.setAttribute('action', actionLink)
     console.log(form)
-    form.submit();
+    sendMail()
+    //form.submit();
 })
-//function sendMail() {
-//    console.log('Click thành công')
-//    submitForm();
-//}
+function sendMail() {
+    var params = {
+        customer_name: document.getElementById('customer_name').value,
+        customer_email: document.getElementById('customer_email').value,
+        product_name: document.getElementById('product_name').innerText,
+        product_info: document.getElementById('product_info').innerText,
+        product_quantity: document.getElementById('product_quantity').innerText,
+        delivery_fee: document.getElementById('delivery_fee').innerText,
+        delivery_name: document.getElementById('delivery_name').innerText,
+        payment_name: document.getElementById('payment_name').innerText,
+        total: document.getElementById('total_amount').innerText
+    }
+    emailjs.send('service_kecfp56', 'template_xjcnu87', params)
+        .then(function (response) {
+            console.log('Email sent successfully:', response);
+            alert('Đặt hàng thành công!' + response.status);
+            var form = document.getElementById('checkout-form');
+            form.submit();
+        }, function (error) {
+            console.log('Error sending email:', error);
+            alert('Đặt hàng thất bại!' + error.status);
+        });
+}

@@ -1,4 +1,5 @@
-﻿using FashionShop.Models;
+﻿using FashionShop.Filters;
+using FashionShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace FashionShop.Areas.Admin.Controllers
 {
+    [AdminAuthorization]
     public class BillController : Controller
     {
         FashionShopDBContext db = new FashionShopDBContext();
@@ -28,6 +30,20 @@ namespace FashionShop.Areas.Admin.Controllers
             HoaDon hd = db.HoaDon.First(h => h.MaHoaDon == maHoaDon);
             ViewBag.TongThanhToan = double.Parse(hd.TongTien.ToString());
             return View(lst);
+        }
+        public ActionResult ConfirmBill (string maHoaDon)
+        {
+            HoaDon hoaDon = db.HoaDon.First(x => x.MaHoaDon == maHoaDon);
+            hoaDon.TrangThaiDonHang = "Đang vận chuyển";
+            db.SaveChanges();
+            return RedirectToAction("GetAllBill", "Bill");
+        }
+        public ActionResult CancelBill(string maHoaDon)
+        {
+            HoaDon hoaDon = db.HoaDon.First(x => x.MaHoaDon == maHoaDon);
+            hoaDon.TrangThaiDonHang = "Đơn hàng bị huỷ";
+            db.SaveChanges();
+            return RedirectToAction("GetAllBill", "Bill");
         }
     }
 }

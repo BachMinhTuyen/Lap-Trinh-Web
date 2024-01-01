@@ -58,11 +58,12 @@
                             <tr>
                                 <th style="width: 5%">#</th>
                                 <th style="width: 15%">Người Đặt Hàng</th>
-                                <th style="width: 12%">Phí Vận Chuyển</th>
-                                <th style="width: 12%">Tổng Tiền</th>
-                                <th style="width: 12%">Ngày Đặt Hàng</th>
-                                <th style="width: 12%">Phương Thức Vận Chuyển</th>
-                                <th style="width: 12%">Phương Thức Thanh Toán</th>
+                                <th style="width: 10%">Phí Vận Chuyển</th>
+                                <th style="width: 10%">Tổng Tiền</th>
+                                <th style="width: 10%">Ngày Đặt Hàng</th>
+                                <th style="width: 10%">Phương Thức Vận Chuyển</th>
+                                <th style="width: 10%">Phương Thức Thanh Toán</th>
+                                <th style="width: 10%">Trạng Thái Đơn Hàng</th>
                                 <th style="width: 20%">#Edit</th>
                             </tr>
                         </thead>
@@ -92,9 +93,29 @@
                                             @item.PhuongThucThanhToan
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("Details", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                            @*<a href="@Url.Action("DeleteBill", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>*@
+                                            @item.TrangThaiDonHang
                                         </td>
+                                        @if (item.TrangThaiDonHang == "Đang chờ xác nhận")
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("Details", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-secondary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                <a href="@Url.Action("ConfirmBill", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-primary btn-xs"><i class="fa-solid fa-check"></i> Confirm </a>
+                                                <a href="@Url.Action("CancelBill", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-danger btn-xs"><i class="fa-solid fa-ban"></i> Cancel </a>
+                                            </td>
+                                        }
+                                        else if (item.TrangThaiDonHang == "Đang vận chuyển")
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("Details", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-secondary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                <a href="@Url.Action("CancelBill", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-danger btn-xs disabled"><i class="fa-solid fa-ban"></i> Cancel </a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <a href="@Url.Action("Details", "Bill", new { maHoaDon = item.MaHoaDon})" class="btn btn-secondary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             }

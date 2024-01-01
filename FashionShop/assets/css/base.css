@@ -415,3 +415,135 @@ ul.breadcrumb li a:hover {
     text-align: center;
     color: #737373;
 }
+
+/*---Button---*/
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 8px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: opacity .2s linear;
+}
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    .btn + .btn {
+        margin-left: 16px;
+    }
+
+.btn--success {
+    background-color: #71be34;
+}
+
+.btn--info {
+    background-color: #2f86eb;
+}
+
+.btn--error {
+    background-color: #ff623b;
+}
+
+/*---Toast messenger---*/
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 999;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 20px 0;
+    border-radius: 2px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear .3s;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.toast + .toast {
+    margin-top: 20px;
+}
+
+.toast--success {
+    border-color: #47d864;
+}
+
+    .toast--success .toast__icon {
+        color: #47d864;
+    }
+
+.toast--info {
+    border-color: #2f86eb;
+}
+
+    .toast--info .toast__icon {
+        color: #2f86eb;
+    }
+
+.toast--error {
+    border-color: #ff623b;
+}
+
+    .toast--error .toast__icon {
+        color: #ff623b;
+    }
+
+.toast__icon {
+    font-size: 24px;
+}
+
+.toast__icon,
+.toast__close {
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.toast__body {
+    flex-grow: 1;
+}
+
+.toast__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+
+.toast__msg {
+    font-size: 14px;
+    color: #333;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.toast__close {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.3);
+}

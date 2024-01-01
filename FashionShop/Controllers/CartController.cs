@@ -146,8 +146,17 @@ namespace FashionShop.Controllers
         }
         public ActionResult Order(double tongTienThanhToan, string GhiChu, string phuongThucThanhToan,string phuongThucVanChuyen, double phiVanChuyen)
         {
-            int count = db.HoaDon.Count();
-            string maHoaDon = "HD" + (count + 1).ToString();
+            List<HoaDon> danhSachHoaDon = db.HoaDon.ToList();
+            int i = 0;
+            foreach (var item in danhSachHoaDon)
+            {
+                int iNew = int.Parse(item.MaHoaDon.Substring(2, item.MaHoaDon.Length - 2));
+                if (iNew > i)
+                    i = iNew;
+            }
+
+            int maHD = i + 1;
+            string maHoaDon = "HD" + maHD;
 
             // Khởi tạo thông tin hoá đơn
             HoaDon hd = new HoaDon();
@@ -158,24 +167,35 @@ namespace FashionShop.Controllers
             hd.GhiChu = GhiChu;
             hd.PhuongThucThanhToan = phuongThucThanhToan;
             hd.PhuongThucVanChuyen = phuongThucVanChuyen;
+            hd.TrangThaiDonHang = "Đang chờ xác nhận";
 
             TaiKhoan tk = Session["User"] as TaiKhoan;
-            TaiKhoan TaiKhoan = db.TaiKhoan.FirstOrDefault(t => t.TenNguoiDung == tk.TenNguoiDung);
+            TaiKhoan TaiKhoan = db.TaiKhoan.FirstOrDefault(t => t.UserName == tk.UserName);
             hd.TaiKhoan = TaiKhoan;
 
             db.HoaDon.Add(hd);
             db.SaveChanges();
 
+
+            List<ChiTietHoaDon> danhSachChiTiet = db.ChiTietHoaDon.ToList();
+            int x = 0;
+            foreach (var item in danhSachChiTiet)
+            {
+                int iNew = int.Parse(item.MaChiTietHoaDon.Substring(4, item.MaChiTietHoaDon.Length - 4));
+                if (iNew > x)
+                    x = iNew;
+            }
+
+            int maCTHD = x + 1;
+
+
             // Lấy thông tin sản phẩm trong giỏ hàng
             List<CartVM> lst = GetCart();
-            
-            List<ChiTietHoaDon> danhSachChiTiet = db.ChiTietHoaDon.ToList();
-            int index = danhSachChiTiet.Count();
 
             foreach (var item in  lst)
             {
                 ChiTietHoaDon chiTiet = new ChiTietHoaDon();
-                chiTiet.MaChiTietHoaDon = "CTHD" + index;
+                chiTiet.MaChiTietHoaDon = "CTHD" + maCTHD;
                 chiTiet.HoaDon = hd;
                 chiTiet.SoLuongSanPhamDaDat = item.iSoLuong;
                 chiTiet.ThanhTien = item.dThanhTien;
@@ -186,7 +206,7 @@ namespace FashionShop.Controllers
                 SanPham sanPham = db.SanPham.FirstOrDefault(s => s.MaSanPham == item.sMaSanPham);
 
                 db.ChiTietHoaDon.Add(chiTiet);
-                index++;
+                maCTHD++;
             }
             db.SaveChanges();
 

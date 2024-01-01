@@ -52,6 +52,37 @@
     <script src="~/Scripts/jquery-3.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
 
+        $(document).ready(function () {
+
+            $("center a[href='http://somee.com']").parent().css("display", "none");
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 200);
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 500);
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 1000);
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 1500);
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 2000);
+
+            setTimeout(function () {
+                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
+            }, 3000);
+        });
+
+    </script>
 </body>
 </html>

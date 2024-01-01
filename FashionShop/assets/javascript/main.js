@@ -31,29 +31,29 @@ preNextItem('.product--new')
 preNextItem('.product--feature')
 
 // Chờ tài liệu HTML được tải xong
-document.addEventListener('DOMContentLoaded', function () {
-    // Lấy thẻ <li> có lớp 'toggleable'
-    var toggleableItems = document.querySelectorAll('.toggleable');
-    // Lấy thẻ <li> có lớp 'more'
-    var moreItem = document.querySelector('.more');
+//document.addEventListener('DOMContentLoaded', function () {
+//    // Lấy thẻ <li> có lớp 'toggleable'
+//    var toggleableItems = document.querySelectorAll('.toggleable');
+//    // Lấy thẻ <li> có lớp 'more'
+//    var moreItem = document.querySelector('.more');
 
-    // Lấy thẻ <a> trong thẻ <li> 'more'
-    var moreLink = moreItem.querySelector('a');
-    var label = moreItem.querySelector('label');
+//    // Lấy thẻ <a> trong thẻ <li> 'more'
+//    var moreLink = moreItem.querySelector('a');
+//    var label = moreItem.querySelector('label');
 
-    // Thêm sự kiện click cho thẻ <a> 'Xem thêm ...'
-    moreLink.addEventListener('click', function () {
-        toggleableItems.forEach((item) => {
-            // Kiểm tra nếu thẻ toggleable đang ẩn
-            if (item.style.display === 'none') {
-                // Hiển thị thẻ toggleable
-                item.style.display = 'block';
-                label.innerHTML = 'Ẩn bớt ...';
-            } else {
-                // Nếu đang hiển thị, ẩn đi
-                item.style.display = 'none';
-                label.innerHTML = 'Xem thêm ...';
-            }
-        });
-    });
-});
+//    // Thêm sự kiện click cho thẻ <a> 'Xem thêm ...'
+//    moreLink.addEventListener('click', function () {
+//        toggleableItems.forEach((item) => {
+//            // Kiểm tra nếu thẻ toggleable đang ẩn
+//            if (item.style.display === 'none') {
+//                // Hiển thị thẻ toggleable
+//                item.style.display = 'block';
+//                label.innerHTML = 'Ẩn bớt ...';
+//            } else {
+//                // Nếu đang hiển thị, ẩn đi
+//                item.style.display = 'none';
+//                label.innerHTML = 'Xem thêm ...';
+//            }
+//        });
+//    });
+//});
