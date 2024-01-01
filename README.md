@@ -10,7 +10,7 @@
 4. :triangular_flag_on_post: Sử dụng **[ChartJS](https://www.chartjs.org/)** để thống kê doanh thu theo biểu đồ :heavy_check_mark:
 5.  :triangular_flag_on_post: Sử dụng **[API Open Province](https://provinces.open-api.vn/) 63 tỉnh thành phố ở Việt Nam** :heavy_check_mark:
 6. :triangular_flag_on_post: Có chức năng **đăng nhập cơ bản**. Xác minh danh tính **(verify identity)** và phân quyền **user - admin** :heavy_check_mark:
-7. :triangular_flag_on_post: Các **trang html** được xây dựng ::heavy_check_mark:
+7. :triangular_flag_on_post: Các **trang html** được xây dựng :heavy_check_mark:
 
 - **Trang web dành cho User**
   - :palm_tree: Trang Chủ :partly_sunny:
