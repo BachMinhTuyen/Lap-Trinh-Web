@@ -85,8 +85,7 @@ Trong đó:
 
 > [!WARNING]
 > Hiện tại trang admin vẫn chưa hoàn thiện
-> **Tài khoản:** admin
-> **Mật khẩu:** 123456
+> **Tài khoản và mật khẩu lưu trữ tại /SQL/FashionShopDB.sql**
 
 - **Trang web dành cho Admin** 
   - :palm_tree: Trang Tổng Quan :partly_sunny:
