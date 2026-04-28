@@ -1,0 +1,266 @@
+@import "../style.scss";
+
+// Banner
+.banner {
+	width: 100%;
+	height: $banner-height;
+	background-color: #eee;
+	user-select: none;
+
+	.swiper-slide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		width: 45px;
+		height: 45px;
+		background-color: rgba(211, 47, 47, 0.6);
+		border-radius: 4px;
+
+		&::after {
+			font-size: 1.2rem;
+			font-weight: bold;
+		}
+
+		&:hover {
+			background-color: rgba(211, 47, 47, 0.9);
+		}
+	}
+
+	.swiper-pagination-bullet {
+		background-color: rgba(211, 47, 47, 0.9);
+	}
+}
+
+@media (max-width: 768px) {
+	.banner {
+		height: $banner-height-mobile;
+	}
+}
+
+// Swiper Customization
+.swiper-button {
+	&-next,
+	&-prev {
+		color: $white;
+		background: rgba($primary-red, 0.5);
+		padding: 30px 20px;
+
+		&:after {
+			font-size: 1.5rem;
+		}
+
+		&:hover {
+			background: rgba($primary-red, 0.8);
+		}
+	}
+}
+
+// Product Cards
+.product-card {
+	background: $white;
+	transition: $transition-base;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding-bottom: 15px !important;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+		.stretched-link {
+			z-index: 10;
+		}
+
+		.product-img-wrapper img {
+			transform: scale(1.08);
+		}
+
+		.favorite-badge {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	.badge,
+	.favorite-badge {
+		z-index: 12;
+	}
+
+	.favorite-badge {
+		position: absolute;
+		top: 45px;
+		right: 8px;
+		width: 32px;
+		height: 32px;
+		background: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		color: #ccc;
+		font-size: 0.9rem;
+		transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		opacity: 0.9;
+
+		&:hover,
+		&.active {
+			color: $white;
+			background: $primary-red;
+			border-color: $primary-red;
+			opacity: 1;
+			transform: scale(1.1);
+
+			i {
+				font-weight: 900;
+			}
+		}
+
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+
+	.product-img-wrapper {
+		position: relative;
+		z-index: 1;
+		flex-shrink: 0;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fcfcfc;
+		overflow: hidden;
+		margin-bottom: 12px;
+
+		img {
+			width: 90%;
+			height: 90%;
+			object-fit: contain;
+			transition: transform 0.5s ease;
+			z-index: 1;
+		}
+	}
+
+	.product-info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+
+		h6 {
+			font-size: 0.95rem;
+			font-weight: 500;
+			color: #333;
+		}
+
+		.rating-sold {
+			font-size: 0.75rem;
+			margin-top: 4px;
+
+			i {
+				font-size: 0.7rem;
+			}
+		}
+	}
+}
+
+.btn-view-more {
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+	border-width: 2px;
+	transition: all 0.3s ease;
+
+	&:hover {
+		background-color: $primary-red;
+		color: $white;
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba($primary-red, 0.3);
+
+		i {
+			animation: bounce 0.5s infinite alternate;
+		}
+	}
+}
+
+@keyframes bounce {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(3px);
+	}
+}
+
+// Sidebar List
+aside {
+	.card {
+		border: none;
+		box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+		border-radius: 0.5rem;
+		overflow: hidden;
+
+		.card-header {
+			background-color: $primary-red;
+			padding: 1rem;
+		}
+	}
+
+	.list-group-item {
+		transition: $transition-base;
+		border-left: 3px solid transparent;
+
+		&:hover {
+			background-color: $light-gray;
+			border-left-color: $primary-red;
+			color: $primary-red !important;
+
+			i.fa-chevron-right {
+				color: $primary-red !important;
+			}
+		}
+	}
+
+	.btn-light {
+		background-color: transparent;
+		color: #6c757d;
+		font-size: 0.85rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+		&:hover {
+			background-color: $light-gray;
+			color: $primary-red;
+		}
+
+		i {
+			transition: $transition-base;
+		}
+
+		&[aria-expanded="true"] {
+			i {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+// Utilities
+.badge {
+	border-radius: 2px;
+}

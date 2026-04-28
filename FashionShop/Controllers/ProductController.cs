@@ -12,27 +12,14 @@ namespace FashionShop.Controllers
     public class ProductController : Controller
     {
         FashionShopDBContext db = new FashionShopDBContext();
-        // GET: Product
-        public ActionResult GetAllProduct(int page = 1)
+
+        [Route("danh-sach-san-pham")]
+        public ActionResult List(int page = 1)
         {
             List<SanPham> lst = db.SanPham.ToList();
 
             //Paging
-            int NoOfRecordPerPage = 15;
-            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(lst.Count) / Convert.ToDouble(NoOfRecordPerPage)));
-            int NoOfRecordSkip = (page - 1) * NoOfRecordPerPage;
-            ViewBag.Page = page;
-            ViewBag.NoOfPages = NoOfPages;
-            lst = lst.Skip(NoOfRecordSkip).Take(NoOfRecordPerPage).ToList();
-
-            return View(lst);
-        }
-        public ActionResult GetAllProduct_List(int page = 1)
-        {
-            List<SanPham> lst = db.SanPham.ToList();
-
-            //Paging
-            int NoOfRecordPerPage = 5;
+            int NoOfRecordPerPage = 12;
             int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(lst.Count) / Convert.ToDouble(NoOfRecordPerPage)));
             int NoOfRecordSkip = (page - 1) * NoOfRecordPerPage;
             ViewBag.Page = page;
@@ -46,7 +33,7 @@ namespace FashionShop.Controllers
             List<SanPham> lst = db.SanPham.ToList();
 
             //Paging
-            int NoOfRecordPerPage = 15;
+            int NoOfRecordPerPage = 12;
             int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(lst.Count) / Convert.ToDouble(NoOfRecordPerPage)));
             int NoOfRecordSkip = (page - 1) * NoOfRecordPerPage;
             ViewBag.Page = page;
@@ -55,12 +42,12 @@ namespace FashionShop.Controllers
 
             return View(lst);
         }
-        public ActionResult SearchProduct(string txtBox_SearchInput, int page = 1)
+        public ActionResult SearchProduct(string search, int page = 1)
         {
-            List<SanPham> lst = db.SanPham.Where(s => s.TenSanPham.Contains(txtBox_SearchInput)).ToList();
+            List<SanPham> lst = db.SanPham.Where(s => s.TenSanPham.Contains(search)).ToList();
 
             //Paging
-            int NoOfRecordPerPage = 15;
+            int NoOfRecordPerPage = 12;
             int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(lst.Count) / Convert.ToDouble(NoOfRecordPerPage)));
             int NoOfRecordSkip = (page - 1) * NoOfRecordPerPage;
             ViewBag.Page = page;
@@ -69,7 +56,8 @@ namespace FashionShop.Controllers
 
             return View(lst);
         }
-        public ActionResult GetProductDetails(string maSanPham)
+        [Route("thong-tin-san-pham")]
+        public ActionResult Details(string maSanPham)
         {
             SanPham sanPham = db.SanPham.FirstOrDefault(s => s.MaSanPham == maSanPham);   
             List<BienTheSanPham> bienThe = db.BienTheSanPham.Where(s => s.SanPham.MaSanPham == maSanPham).ToList();
@@ -101,16 +89,18 @@ namespace FashionShop.Controllers
                     return false; //đã tồn tại
             return true;// không tồn tại
         }
+        
         public ActionResult FavouriteProduct(string maSanPham)
         {
             TaiKhoan tk = Session["User"] as TaiKhoan;
             TaiKhoan taiKhoan = db.TaiKhoan.FirstOrDefault(t => t.UserName == tk.UserName);
+            ViewBag.UserName = taiKhoan.UserName;
 
             SanPham sanPham = db.SanPham.First(x => x.MaSanPham == maSanPham);
 
             if (tk == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Auth");
             }
             List<YeuThich> lst = db.YeuThich.ToList();
             int maYT = 0;
@@ -123,7 +113,7 @@ namespace FashionShop.Controllers
 
                 db.YeuThich.Add(yeuThich);
                 db.SaveChanges();
-                return RedirectToAction("GetProductDetails", "Product", new { maSanPham = maSanPham });
+                return RedirectToAction("Details", "Product", new { maSanPham = maSanPham });
             }
 
             foreach (var item in lst)
@@ -138,7 +128,7 @@ namespace FashionShop.Controllers
 
                     db.YeuThich.Add(yeuThich);
                     db.SaveChanges();
-                    return RedirectToAction("GetProductDetails", "Product", new { maSanPham = maSanPham });
+                    return RedirectToAction("Details", "Product", new { maSanPham = maSanPham });
                     //break;
                 }
                 maYT++;
@@ -160,7 +150,7 @@ namespace FashionShop.Controllers
             db.YeuThich.Add(y);
             db.SaveChanges();
 
-            return RedirectToAction("GetProductDetails", "Product", new { maSanPham = maSanPham });
+            return RedirectToAction("Details", "Product", new { maSanPham = maSanPham });
         }
         public ActionResult NotFavouriteProduct(string maSanPham)
         {
@@ -168,20 +158,22 @@ namespace FashionShop.Controllers
             SanPham sanPham = db.SanPham.First(x => x.MaSanPham == maSanPham);
             if (taiKhoan == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Auth");
             }
             YeuThich yeuThich = db.YeuThich.FirstOrDefault(s => s.SanPham.MaSanPham == sanPham.MaSanPham && s.TaiKhoan.UserName == taiKhoan.UserName);
 
             db.YeuThich.Remove(yeuThich);
             db.SaveChanges();
-            return RedirectToAction("GetProductDetails", "Product", new { maSanPham = maSanPham });
+            return RedirectToAction("Details", "Product", new { maSanPham = maSanPham });
         }
+
+        [Route("danh-sach-san-pham-yeu-thich")]
         public ActionResult FavouriteProductList(int page = 1)
         {
             TaiKhoan taiKhoan = Session["User"] as TaiKhoan;
             if (taiKhoan == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Auth");
             }
             List<YeuThich> lst = db.YeuThich.Where(x => x.TaiKhoan.UserName == taiKhoan.UserName).ToList();
 

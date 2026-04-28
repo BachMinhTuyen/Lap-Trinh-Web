@@ -1,0 +1,81 @@
+// Footer
+.footer {
+	background-color: $footer-bg;
+	border-top: 5px solid $primary-red;
+	color: $text-footer;
+
+	.footer-title {
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		margin-bottom: 1.25rem;
+		color: #333;
+		letter-spacing: 0.5px;
+	}
+
+	.footer-list {
+		list-style: none;
+		padding: 0;
+
+		li {
+			margin-bottom: 0.75rem;
+
+			a {
+				text-decoration: none;
+				color: $text-footer;
+				font-size: 0.85rem;
+				transition: all 0.2s ease;
+
+				&:hover {
+					color: $primary-red;
+					padding-left: 5px;
+				}
+			}
+		}
+	}
+
+	.payment-methods {
+		display: flex;
+		gap: 15px;
+		font-size: 1.8rem;
+
+		i {
+			transition: transform 0.3s ease;
+			cursor: pointer;
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+	}
+
+	.fb-color {
+		color: #1877f2;
+	}
+	.ins-color {
+		color: #e4405f;
+	}
+
+	hr {
+		border-color: #ddd;
+	}
+
+	.footer-bottom {
+		strong {
+			color: #333;
+		}
+	}
+}
+
+@media (max-width: 767.98px) {
+	.footer {
+		text-align: center;
+
+		.footer-list li a:hover {
+			padding-left: 0;
+		}
+
+		.payment-methods {
+			justify-content: center;
+		}
+	}
+}

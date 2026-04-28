@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Fashion Shop - Thế giới thời trang của bạn</title>
+		<link rel="icon" type="image/x-icon" href="/assets/icons/icon16.ico" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="/assets/css/pages/register.css" />
+	</head>
+
+	<body>
+		<div class="top-bar py-1 border-bottom d-none d-md-block">
+			<div class="container d-flex justify-content-between align-items-center">
+				<small class="text-muted">Chào mừng bạn đã đến với Fashion Shop!</small>
+				<div class="social-links">
+					<a href="#" class="text-muted me-2"><i class="fab fa-facebook"></i></a>
+					<a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<header class="py-3 bg-white border-bottom shadow-sm">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-2 col-6">
+						<a href="./index.html" class="logo d-block">
+							<img
+								src="/assets/images/fashion-shop-logo.jpg"
+								class="img-fluid custom-logo"
+								alt="Fashion Shop"
+							/>
+						</a>
+					</div>
+
+					<div class="col-lg-5 d-none d-lg-block">
+						<form action="/search" method="get" class="search-form">
+							<div class="input-group border rounded-pill overflow-hidden">
+								<input
+									type="text"
+									class="form-control border-0 px-3"
+									placeholder="Bạn tìm gì hôm nay..."
+								/>
+								<button class="btn btn-danger px-4" type="submit">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-lg-5 col-6">
+						<div
+							class="header-actions d-flex justify-content-end align-items-center gap-3 gap-md-4"
+						>
+							<a
+								href="./login.html"
+								class="d-flex align-items-center text-decoration-none user-action hover-red"
+							>
+								<i class="fa-regular fa-user fs-4 text-dark me-3"></i>
+
+								<div class="small d-none d-md-block">
+									<span class="text-dark fw-medium d-block">Đăng nhập</span>
+									<div class="text-muted" style="font-size: 11px">Tài khoản</div>
+								</div>
+							</a>
+							<!-- <div class="d-flex align-items-center gap-3">
+								<a href="./profile.html" class="d-flex align-items-center text-decoration-none">
+									<div class="user-icon-wrap me-2">
+										<i class="fa-regular fa-user fs-4 text-dark"></i>
+									</div>
+									<div class="small d-none d-xl-block text-dark">
+										<span class="fw-bold d-block hover-red text-truncate" style="max-width: 100px"
+											>User</span
+										>
+										<span class="text-muted" style="font-size: 11px">Thành viên</span>
+									</div>
+								</a>
+
+								<a
+									href="./login.html"
+									class="btn btn-outline-danger btn-sm border-0 px-2 py-1 shadow-none"
+									title="Đăng xuất"
+								>
+									<i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 14px"></i>
+								</a>
+							</div> -->
+
+							<a
+								href="./notifications.html"
+								class="notification-action position-relative d-flex align-items-center text-decoration-none"
+							>
+								<div class="notification-icon-wrap position-relative me-2">
+									<i class="fa-regular fa-bell fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										5
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Thông báo</span>
+									<span class="text-muted" style="font-size: 11px">Mới nhất</span>
+								</div>
+							</a>
+
+							<a
+								href="./cart.html"
+								class="cart-action position-relative d-flex align-items-center text-decoration-none border-start ps-3 ps-md-4"
+							>
+								<div class="cart-icon-wrap position-relative me-2">
+									<i class="fa-solid fa-bag-shopping fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										2
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Giỏ hàng</span>
+									<span class="text-muted" style="font-size: 11px">16,196,000₫</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top p-0">
+			<div class="container">
+				<button
+					class="navbar-toggler border-0 my-2"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#mainNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mainNav">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 active" href="./index.html"
+								><i class="fa-solid fa-house me-1"></i> Trang chủ</a
+							>
+						</li>
+						<li class="nav-item dropdown custom-dropdown border-end-light">
+							<a class="nav-link px-3 dropdown-toggle text-white" href="./products.html"
+								>Sản Phẩm</a
+							>
+							<ul class="dropdown-menu shadow">
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Quần áo <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
+										<li><a class="dropdown-item" href="#">Quần tây</a></li>
+									</ul>
+								</li>
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Giày dép <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Giày công sở</a></li>
+										<li><a class="dropdown-item" href="#">Giày du lịch</a></li>
+									</ul>
+								</li>
+								<li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+							</ul>
+						</li>
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 text-white" href="./about.html">Về chúng tôi</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-3 text-white" href="./contact.html">Liên hệ</a>
+						</li>
+					</ul>
+					<div class="hotline-nav text-white fw-bold py-2">
+						<i class="fa-solid fa-headset me-2"></i> 1900 0000
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="container my-4 main-content">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-10 col-lg-6">
+					<div class="auth-card shadow-sm border rounded bg-white p-4 p-md-5">
+						<h2 class="auth-header text-center mb-4 text-uppercase fw-bold">Đăng Ký</h2>
+
+						<form id="registerForm" class="row g-3">
+							<div class="col-md-12">
+								<label for="fullName" class="form-label"
+									>Họ Và Tên <span class="text-danger">*</span></label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="fullName"
+									placeholder="Nguyễn Văn A"
+									required
+								/>
+							</div>
+
+							<div class="col-md-6">
+								<label for="userName" class="form-label"
+									>Tên Người Dùng - UserName <span class="text-danger">*</span></label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="userName"
+									placeholder="nguyenvana123"
+									required
+								/>
+							</div>
+
+							<div class="col-md-6">
+								<label for="phone" class="form-label"
+									>Số điện thoại <span class="text-danger">*</span></label
+								>
+								<input
+									type="tel"
+									class="form-control"
+									id="phone"
+									placeholder="0123 456 789"
+									required
+								/>
+							</div>
+
+							<div class="col-md-12">
+								<label for="email" class="form-label"
+									>Email <span class="text-danger">*</span></label
+								>
+								<input
+									type="email"
+									class="form-control"
+									id="email"
+									placeholder="example@domain.com"
+									required
+								/>
+							</div>
+
+							<div class="col-md-6">
+								<label class="form-label small fw-bold"
+									>Tỉnh / Thành phố <span class="text-danger">*</span></label
+								>
+								<select class="form-select py-2" id="citySelect" required>
+									<option value="" selected disabled>Chọn tỉnh thành</option>
+								</select>
+							</div>
+
+							<div class="col-md-6">
+								<label class="form-label small fw-bold"
+									>Phường / Xã <span class="text-danger">*</span></label
+								>
+								<select class="form-select py-2" id="wardSelect" required>
+									<option value="" selected disabled>Chọn phường xã</option>
+								</select>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label small fw-bold"
+									>Địa chỉ chi tiết <span class="text-danger">*</span></label
+								>
+								<input
+									type="text"
+									class="form-control py-2"
+									value="140 Lê Trọng Tấn"
+									placeholder="Số nhà, tên đường..."
+									required
+								/>
+							</div>
+
+							<div class="col-md-6">
+								<label for="password" class="form-label"
+									>Mật khẩu <span class="text-danger">*</span></label
+								>
+								<input
+									type="password"
+									class="form-control"
+									id="password"
+									placeholder="Nhập mật khẩu"
+									required
+								/>
+							</div>
+
+							<div class="col-md-6">
+								<label for="confirmPassword" class="form-label"
+									>Xác Minh Mật Khẩu <span class="text-danger">*</span></label
+								>
+								<input
+									type="password"
+									class="form-control"
+									id="confirmPassword"
+									placeholder="Nhập lại mật khẩu"
+									required
+								/>
+							</div>
+
+							<div class="col-12 mt-4 text-center">
+								<button type="submit" class="btn btn-auth w-100 text-uppercase fw-bold py-2 mb-3">
+									Đăng Ký
+								</button>
+								<div class="mt-2">
+									<a
+										href="./login.html"
+										class="btn btn-outline-secondary w-100 text-uppercase btn-sm py-2"
+									>
+										Quay Lại Đăng Nhập
+									</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer class="footer pt-5 pb-3">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-md-3 col-sm-6">
+						<h6 class="footer-title">Chăm sóc khách hàng</h6>
+						<ul class="footer-list">
+							<li><a href="#">Trung tâm trợ giúp</a></li>
+							<li><a href="#">Fashion Shop</a></li>
+							<li><a href="#">Hướng dẫn mua hàng</a></li>
+							<li><a href="#">Chính sách vận chuyển</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Giới thiệu</h6>
+						<ul class="footer-list">
+							<li><a href="#">Giới thiệu về Shop</a></li>
+							<li><a href="#">Tuyển dụng</a></li>
+							<li><a href="#">Điều khoản sử dụng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Danh mục</h6>
+						<ul class="footer-list">
+							<li><a href="#">Quần áo Nam</a></li>
+							<li><a href="#">Giày dép</a></li>
+							<li><a href="#">Phụ kiện thời trang</a></li>
+							<li><a href="#">Hàng mới về</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Theo dõi chúng tôi</h6>
+						<ul class="footer-list">
+							<li>
+								<a href="#"><i class="fab fa-facebook me-2 fb-color"></i>Facebook</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-instagram me-2 ins-color"></i>Instagram</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-tiktok me-2"></i>Tiktok</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h6 class="footer-title">Hỗ trợ thanh toán</h6>
+						<div class="payment-methods">
+							<i class="fab fa-cc-visa text-primary" title="Visa"></i>
+							<i class="fab fa-cc-mastercard text-danger" title="Mastercard"></i>
+							<i class="fa-solid fa-credit-card text-success" title="NAPAS"></i>
+							<i class="fa-brands fa-cc-apple-pay text-dark" title="Apple Pay"></i>
+						</div>
+						<h6 class="footer-title mt-4">Đơn vị vận chuyển</h6>
+						<div class="delivery-methods">
+							<span class="badge bg-white text-dark border p-2">Giao Hàng Nhanh</span>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4 opacity-10" />
+
+				<div
+					class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center"
+				>
+					<p class="small text-muted mb-md-0">
+						Copyright © 2023 - 2026 <strong>FashionShop</strong>. All rights reserved.
+					</p>
+					<div class="footer-lang small text-muted">Quốc gia: Việt Nam</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

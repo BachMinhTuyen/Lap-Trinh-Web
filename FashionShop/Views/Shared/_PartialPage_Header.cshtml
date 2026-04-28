@@ -1,69 +1,107 @@
-﻿<header class="header">
-    <div class="grid wide">
-        <div class="top-bar row">
-            <div class="col col-xl-10 col-lg-10">
-                <div class="top-bar__welcome">
-                    Chào mừng bạn đã đến với Fashion Shop!
-                </div>
-            </div>
-            <div class="col col-xl-2 col-lg-2">
-                <ul class="top-bar__social-media">
-                    <!-- <li><i class="fa-brands fa-facebook"></i></li>
-                                <li><i class="fa-brands fa-instagram"></i></li> -->
-                    <li onclick="window.location = 'https://www.facebook.com/'"><iconify-icon icon="bi:facebook"></iconify-icon></li>
-                    <li onclick="window.location = 'https://www.instagram.com/'"><iconify-icon icon="bi:instagram"></iconify-icon></li>
-                </ul>
-            </div>
+﻿@using FashionShop.Models;
+@{
+    var currentUser = Session["User"] as TaiKhoan;
+}
+
+<div class="top-bar py-1 border-bottom d-none d-md-block">
+    <div class="container d-flex justify-content-between align-items-center">
+        <small class="text-muted">Chào mừng bạn đã đến với Fashion Shop!</small>
+        <div class="social-links">
+            <a href="https://www.facebook.com/" class="text-muted me-2"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" class="text-muted"><i class="fab fa-instagram"></i></a>
         </div>
+    </div>
+</div>
 
-        <div class="main-header row">
-            <div class="col col-xl-3 col-lg-3">
-                <div class="logo">
-                    <a class="logo__link" href="@Url.Action("Index", "Home")">
-                        <img class="logo__img"
-                             src="@Url.Content("~/assets/img/fashion-shop-logo.jpg")"
-                             alt="Fashion Shop Logo" />
-                    </a>
-                </div>
+<header class="py-3 bg-white border-bottom shadow-sm">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-6">
+                <a href="@Url.Action("Index", "Home")" class="logo d-block">
+                    <img src="@Url.Content("~/assets/images/fashion-shop-logo.jpg")"
+                         class="img-fluid custom-logo"
+                         alt="Fashion Shop" />
+                </a>
             </div>
 
-            <div class="col col-xl-6 col-lg-6">
-                <div class="search">
-                    <form action="@Url.Action("SearchProduct", "Product")" method="post">
-                        <div class="search-form">
-                            <input name="txtBox_SearchInput" type="text" placeholder="Tìm kiếm ..." />
-                            <input type="submit" value="Tìm kiếm" />
-                        </div>
-                    </form>
-                </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <form action="@Url.Action("SearchProduct", "Product")" method="get" class="search-form">
+                    <div class="input-group border rounded-pill overflow-hidden">
+                        <input type="text"
+                               name="search"
+                               class="form-control border-0 px-3"
+                               placeholder="Bạn tìm gì hôm nay..." />
+                        <button class="btn btn-danger px-4" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
-            <div class="col col-xl-1 col-lg-1">
-                @Html.Action("CartPartial", "Cart")
-            </div>
-
-            <div class="col col-xl-2 col-lg-2">
-                <div class="user">
-                    @if (Session["User"] == null)
+            <div class="col-lg-5 col-6">
+                <div class="header-actions d-flex justify-content-end align-items-center gap-3 gap-md-4">
+                    @if (currentUser == null)
                     {
-                        <div class="user__icon" onclick="window.location.href = '@Url.Action("Login", "Account")'">
-                            <iconify-icon icon="codicon:account"></iconify-icon>
-                        </div>
-                        <ul class="user-account">
-                            <li><a href="@Url.Action("Register", "Account")">Đăng ký</a></li>
-                            <li>/</li>
-                            <li><a style="color: var(--primary-color);" href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
-                        </ul>
+                        <a href="@Url.Action("Login", "Auth")"
+                           class="d-flex align-items-center text-decoration-none user-action hover-red">
+                            <i class="fa-regular fa-user fs-4 text-dark me-3"></i>
+
+                            <div class="small d-none d-md-block">
+                                <span class="text-dark fw-medium d-block">Đăng nhập</span>
+                                <div class="text-muted" style="font-size: 11px">Tài khoản</div>
+                            </div>
+                        </a>
                     }
                     else
                     {
-                        <div class="user__icon" style=" border: 1.5px solid; border-radius: 50%; margin: 0px 65px; color: #00f;" onclick="window.location.href = '@Url.Action("Profile", "Account")'">
-                            <iconify-icon icon="mdi:account-tie" style="color: blue;"></iconify-icon>
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="@Url.Action("Profile", "User")" class="d-flex align-items-center text-decoration-none">
+                                <div class="user-icon-wrap me-2">
+                                    <i class="fa-regular fa-user fs-4 text-dark"></i>
+                                </div>
+                                <div class="small d-none d-xl-block text-dark">
+                                    <span class="fw-bold d-block hover-red text-truncate" style="max-width: 100px">@(currentUser.TenNguoiDung ?? "Người dùng")</span>
+                                    <span class="text-muted" style="font-size: 11px">Thành viên</span>
+                                </div>
+                            </a>
+
+                            <a href="@Url.Action("Logout", "Auth")"
+                               class="btn btn-outline-danger btn-sm border-0 px-2 py-1 shadow-none"
+                               title="Đăng xuất">
+                                <i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 14px"></i>
+                            </a>
                         </div>
-                        <ul class="user-account">
-                            <li><a href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
-                        </ul>
                     }
+
+                    <a href="#"
+                       class="notification-action position-relative d-flex align-items-center text-decoration-none">
+                        <div class="notification-icon-wrap position-relative me-2">
+                            <i class="fa-regular fa-bell fs-4 text-dark"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+                                  style="font-size: 9px; padding: 3px 5px">
+                                2
+                            </span>
+                        </div>
+                        <div class="small d-none d-xl-block text-dark ms-2">
+                            <span class="d-block fw-medium">Thông báo</span>
+                            <span class="text-muted" style="font-size: 11px">Mới nhất</span>
+                        </div>
+                    </a>
+
+                    <a href="@Url.Action("Index", "Cart")"
+                       class="cart-action position-relative d-flex align-items-center text-decoration-none border-start ps-3 ps-md-4">
+                        <div class="cart-icon-wrap position-relative me-2">
+                            <i class="fa-solid fa-bag-shopping fs-4 text-dark"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+                                  style="font-size: 9px; padding: 3px 5px">
+                                @ViewBag.TongSoLuong
+                            </span>
+                        </div>
+                        <div class="small d-none d-xl-block text-dark ms-2">
+                            <span class="d-block fw-medium">Giỏ hàng</span>
+                            <span class="text-muted" style="font-size: 11px">@string.Format("{0:#,##0đ}đ", ViewBag.TongTienGioHang)</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

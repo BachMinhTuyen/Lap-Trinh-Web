@@ -2,80 +2,187 @@
 @{
     ViewBag.Title = "Chi Tiết Hoá Đơn";
     Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+
+    var hoaDon = ViewBag.HoaDon as FashionShop.Models.HoaDon;
 }
 
 
 @section LibraryCSS {
-    <style>
-        .bill__table {
-            width: 100%;
-            text-align: center;
-            font-size: 1.3rem;
-            padding: 12px 8px;
-        }
-
-        .bill__col {
-            padding: 12px 4px;
-            border: 1px solid #333;
-        }
-
-        .bill__details-link {
-            display: block;
-            margin: 0 auto;
-            padding: 8px;
-            text-decoration: none;
-            width: fit-content;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 5px;
-            color: #fff;
-            background-color: var(--primary-color);
-        }
-    </style>
+    <link href="@Url.Content("~/assets/css/pages/order-details.css")" rel="stylesheet" />
 }
 @section LibraryJS {
 
 }
 
-<div style="background-color: #fff;" class="grid wide">
-    <section class="row">
-        <div class="col">
-            <ul class="breadcrumb">
-                <li><a href="@Url.Action("Profile", "Account")">Hồ sơ người dùng</a></li>
-                <li><a href="@Url.Action("ViewBills", "Bill", new { UserName = ViewBag.UserName})">Hoá đơn</a></li>
-                <li>Chi tiết hoá đơn</li>
-            </ul>
-        </div>
-    </section>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb small">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")" class="text-decoration-none text-muted">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("ViewBills", "Bill", new { UserName = ViewBag.UserName})" class="text-decoration-none text-muted">Đơn hàng của tôi</a>
+        </li>
+        <li class="breadcrumb-item active text-danger fw-bold" aria-current="page">
+            Chi tiết đơn hàng #@hoaDon.MaHoaDon
+        </li>
+    </ol>
+</nav>
 
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            <table class="bill__table">
-                <thead>
-                    <tr>
-                        <th width="10%" class="bill__col">Mã Chi Tiết Hoá Đơn</th>
-                        <th width="15%" class="bill__col">Tên Sản Phẩm</th>
-                        <th width="10%" class="bill__col">Tên Màu</th>
-                        <th width="10%" class="bill__col">Tên Size</th>
-                        <th width="15%" class="bill__col">Giá Sản Phẩm</th>
-                        <th width="15%" class="bill__col">Số Lượng</th>
-                        <th width="15%" class="bill__col">Thành Tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+<div class="row g-4">
+    <div class="col-12 col-lg-8">
+        <div class="card border-0 shadow-sm rounded-3 mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0">
+                        Trạng thái: <span class="text-success">@hoaDon.TrangThaiDonHang</span>
+                    </h5>
+                    <span class="small text-muted text-uppercase">Mã đơn: #@hoaDon.MaHoaDon</span>
+                </div>
+                @{
+                    int progressWidth = 0;
+                    if (hoaDon.TrangThaiDonHang == FashionShop.Models.HoaDon.OrderStatus.Confirmed)
                     {
-                        <tr>
-                            <td class="bill__col">@item.MaChiTietHoaDon</td>
-                            <td class="bill__col">@item.BienTheSanPham.SanPham.TenSanPham</td>
-                            <td class="bill__col">@item.BienTheSanPham.TenMau</td>
-                            <td class="bill__col">@item.BienTheSanPham.TenSize</td>
-                            <td class="bill__col">@string.Format("{0:#,##0}đ", @item.BienTheSanPham.SanPham.GiaSanPham)</td>
-                            <td class="bill__col">@item.SoLuongSanPhamDaDat</td>
-                            <td class="bill__col">@item.ThanhTien</td>
-                        </tr>
+                        progressWidth = 25;
                     }
-                </tbody>
-            </table>
+                    if (hoaDon.TrangThaiDonHang == FashionShop.Models.HoaDon.OrderStatus.Processing)
+                    {
+                        progressWidth = 50;
+                    }
+                    else if (hoaDon.TrangThaiDonHang == FashionShop.Models.HoaDon.OrderStatus.Shipping)
+                    {
+                        progressWidth = 75;
+                    }
+                    else if (hoaDon.TrangThaiDonHang == FashionShop.Models.HoaDon.OrderStatus.Completed)
+                    {
+                        progressWidth = 100;
+                    }
+                }
+                <div class="position-relative m-4">
+                    <div class="progress" style="height: 2px">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: @progressWidth%"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between position-absolute top-0 start-0 w-100 mt-n2"
+                         style="transform: translateY(-50%)">
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow @(progressWidth >= 0 ? "bg-danger text-white" : "bg-white border text-muted")"
+                             style="width: 32px; height: 32px">
+                            <i class="fa-solid fa-file-invoice small"></i>
+                        </div>
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow @(progressWidth >= 25 ? "bg-danger text-white" : "bg-white border text-muted")"
+                             style="width: 32px; height: 32px">
+                            <i class="fa-solid fa-clipboard-check small"></i>
+                        </div>
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow @(progressWidth >= 50 ? "bg-danger text-white" : "bg-white border text-muted")"
+                             style="width: 32px; height: 32px">
+                            <i class="fa-solid fa-box-open small"></i>
+                        </div>
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow @(progressWidth >= 75 ? "bg-danger text-white" : "bg-white border text-muted")"
+                             style="width: 32px; height: 32px">
+                            <i class="fa-solid fa-truck-fast small"></i>
+                        </div>
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow @(progressWidth >= 100 ? "bg-danger text-white" : "bg-white border text-muted")"
+                             style="width: 32px; height: 32px">
+                            <i class="fa-solid fa-house-chimney small"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between small text-muted px-0 mt-3 text-center">
+                    <div style="width: 89px" class="@(progressWidth == 0 ? "text-danger fw-bold" : "")">Chờ xác nhận</div>
+                    <div style="width: 82px " class="@(progressWidth == 25 ? "text-danger fw-bold" : "")">Đã xác nhận</div>
+                    <div style="width: 82px" class="@(progressWidth == 50 ? "text-danger fw-bold" : "")">Đã chuẩn bị</div>
+                    <div style="width: 82px" class="@(progressWidth == 75 ? "text-danger fw-bold" : "")">Đang giao</div>
+                    <div style="width: 82px" class="@(progressWidth == 100 ? "text-danger fw-bold" : "")">Đã nhận</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h6 class="fw-bold mb-0">Sản phẩm đơn hàng</h6>
+            </div>
+            <div class="card-body p-0">
+                @foreach (var item in Model)
+                {
+                    <div class="d-flex align-items-center p-3 border-bottom product-item">
+                        <div class="product-img-wrapper me-3">
+                            <img src="@Url.Content("~/assets/img/")@item.BienTheSanPham.SanPham.AnhDaiDien" class="product-img" alt="@item.BienTheSanPham.SanPham.TenSanPham" />
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 fw-bold small text-truncate">@item.BienTheSanPham.SanPham.TenSanPham</h6>
+                            <div class="small text-muted">Size: @item.BienTheSanPham.TenSize | Màu: @item.BienTheSanPham.TenMau</div>
+
+                            <div class="unit-price text-muted">
+                                <span class="label">Đơn giá:</span> @string.Format("{0:#,##0}đ", @item.BienTheSanPham.SanPham.GiaSanPham)
+                            </div>
+
+                            <div class="small fw-bold mt-1">x(@item.SoLuongSanPhamDaDat)</div>
+                        </div>
+
+                        <div class="text-end">
+                            <div class="small text-muted mb-1">Thành tiền</div>
+                            <div class="fw-bold text-danger price-total">@string.Format("{0:#,##0}đ", @item.ThanhTien)</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div class="card border-0 shadow-sm rounded-3 mb-4">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-3 border-bottom pb-2 text-uppercase small">
+                    Địa chỉ nhận hàng
+                </h6>
+                <div class="fw-bold mb-1">@hoaDon.TaiKhoan.TenNguoiDung</div>
+                <div class="small text-muted mb-1">@hoaDon.TaiKhoan.SoDienThoai</div>
+                <div class="small text-muted">
+                    @hoaDon.TaiKhoan.DiaChi
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4">
+                <h6 class="fw-bold mb-3 border-bottom pb-2 text-uppercase small">
+                    Tổng kết đơn hàng
+                </h6>
+                <div class="d-flex justify-content-between mb-2 small">
+                    <span>Tạm tính</span>
+                    <span>@string.Format("{0:#,##0}đ", Model.Sum(x => x.ThanhTien))</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2 small">
+                    <span>Phí vận chuyển (Giao hàng nhanh)</span>
+                    <span>@string.Format("{0:#,##0}đ", hoaDon.PhiVanChuyen)</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3 small text-success fw-bold">
+                    <span>Giảm giá</span>
+                    <span>0₫</span>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">Tổng thanh toán</span>
+                    <span class="text-danger fs-5 fw-bold">@string.Format("{0:#,##0}đ", hoaDon.TongTien)</span>
+                </div>
+                <div class="mt-3 py-2 px-3 bg-light rounded small text-muted border-start border-danger border-4">
+                    <i class="fa-solid fa-credit-card me-2"></i>@hoaDon.PhuongThucThanhToan
+                </div>
+                <button class="btn btn-danger w-100 fw-bold py-2 mt-4 shadow-sm">
+                    MUA LẠI ĐƠN HÀNG
+                </button>
+                <a href="@Url.Action("ViewBills", "Bill", new { UserName = ViewBag.UserName})"
+                   class="btn btn-link text-muted w-100 text-decoration-none small mt-2">
+                    Quay lại danh sách
+                </a>
+            </div>
         </div>
     </div>
 </div>
+

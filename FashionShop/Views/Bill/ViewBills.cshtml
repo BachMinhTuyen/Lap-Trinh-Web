@@ -5,123 +5,83 @@
 }
 
 @section LibraryCSS {
-    <style>
-        .no-item iconify-icon {
-            font-size: 20rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .no-item p {
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .bill__table {
-            width: 100%;
-            text-align: center;
-            font-size: 1.3rem;
-            padding: 12px 8px;
-        }
-        .bill__col {
-            padding: 12px 4px;
-            border: 1px solid #333;
-        }
-        .bill__details-link {
-            display: block;
-            min-width: 120px;
-            margin: 8px auto;
-            padding: 8px;
-            text-decoration: none;
-            width: fit-content;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 5px;
-            color: #fff;
-            background-color: var(--primary-color);
-        }
-    </style>
+    <link href="@Url.Content("~/assets/css/pages/order-history.css")" rel="stylesheet" />
 }
 @section LibraryJS {
-   
+
 }
 
-<div style="background-color: #fff;" class="grid wide">
-    <section class="row">
-        <div class="col">
-            <ul class="breadcrumb">
-                <li><a href="@Url.Action("Profile", "Account")">Hồ sơ người dùng</a></li>
-                <li>Hoá đơn</li>
-            </ul>
-        </div>
-    </section>
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb small">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")" class="text-decoration-none text-muted">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active text-danger fw-bold">Lịch sử đơn hàng</li>
+    </ol>
+</nav>
 
-    <div class="row">
-        <div class="col col-xl-12 col-lg-12">
-            @if (Model.Count == 0)
+<div class="row g-4">
+    <div class="col-12 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="list-group list-group-flush rounded-3 overflow-hidden">
+                <a href="@Url.Action("Profile", "User")"
+                   class="list-group-item list-group-item-action py-3 border-bottom">
+                    <i class="fa-solid fa-user me-2 text-muted"></i> Hồ sơ người dùng
+                </a>
+                <div class="list-group-item bg-danger text-white py-3 border-0 fw-bold">
+                    <i class="fa-solid fa-file-invoice me-2"></i> Hoá Đơn Của Bạn
+                </div>
+                <a href="@Url.Action("FavouriteProductList", "Product")"
+                   class="list-group-item list-group-item-action py-3 border-0">
+                    <i class="fa-solid fa-heart me-2 text-muted"></i> Sản Phẩm Yêu Thích
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0">Đơn hàng của tôi</h4>
+            <span class="badge bg-light text-dark border">4 đơn hàng</span>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="no-item">
+                <iconify-icon style="color: var(--primary-color);" icon="lets-icons:order-light"></iconify-icon>
+                <p>Không có đơn hàng nào</p>
+            </div>
+        }
+        else
+        {
+            foreach (var item in Model)
             {
-                <div class="no-item">
-                    <iconify-icon style="color: var(--primary-color);" icon="lets-icons:order-light"></iconify-icon>
-                    <p>Không có đơn hàng nào</p>
+                <div class="card border-0 shadow-lg rounded-3 mb-3">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                            <div class="d-flex gap-3">
+                                <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center"
+                                     style="width: 60px; height: 60px">
+                                    <i class="fa-solid fa-box text-danger fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Mã đơn hàng: #@item.MaHoaDon</h6>
+                                    <p class="small text-muted mb-0 text-uppercase">Ngày đặt: @item.NgayDatMuaHang.ToShortDateString()</p>
+                                </div>
+                            </div>
+                            <div class="text-md-end">
+                                <span class="badge rounded-pill bg-secondary-subtle text-secondary border border-secondary mb-2 px-3 py-2">@item.TrangThaiDonHang</span>
+                                <div class="fw-bold text-danger fs-5">@string.Format("{0:#,##0}đ", item.TongTien)</div>
+                            </div>
+                        </div>
+                        <hr class="my-3 opacity-50" />
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <span class="small text-muted"><i class="fa-solid fa-credit-card me-1"></i> @item.PhuongThucThanhToan</span>
+                            <a href="@Url.Action("Details", "Bill", new {maHoaDon = item.MaHoaDon})" class="btn btn-outline-danger btn-sm px-4 fw-bold">Xem chi tiết</a>
+                        </div>
+                    </div>
                 </div>
             }
-            else
-            {
-                <table class="bill__table">
-                    <thead>
-                        <tr>
-                            @*<th width="8%" class="bill__col">Mã Hoá Đơn</th>*@
-                            @*<th width="12%" class="bill__col">Họ Và Tên</th>*@
-                            <th width="10%" class="bill__col">Ngày Đặt Hàng</th>
-                            <th width="15%" class="bill__col">Phương Thức Thanh Toán</th>
-                            <th width="15%" class="bill__col">Phương Thức Vận Chuyển</th>
-                            <th width="12%" class="bill__col">Ghi Chú</th>
-                            <th width="10%" class="bill__col">Phí Vận Chuyển</th>
-                            <th width="10%" class="bill__col">Tổng Tiền</th>
-                            <th width="15%" class="bill__col">Trạng thái</th>
-                            <th width="13%" class="bill__col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                @*<td class="bill__col">@item.MaHoaDon</td>*@
-                                @*<td class="bill__col">@item.TaiKhoan.TenNguoiDung</td>*@
-                                @*<td class="bill__col">@item.NgayDatMuaHang.ToShortDateString()</td>*@
-                                <td class="bill__col">@item.NgayDatMuaHang</td>
-                                <td class="bill__col">@item.PhuongThucThanhToan</td>
-                                <td class="bill__col">@item.PhuongThucVanChuyen</td>
-                                <td class="bill__col">@item.GhiChu</td>
-                                <td class="bill__col">@string.Format("{0:#,##0}đ", item.PhiVanChuyen)</td>
-                                <td class="bill__col">@string.Format("{0:#,##0}đ", item.TongTien)</td>
-                                <td class="bill__col" style="color: var(--primary-color);">@item.TrangThaiDonHang</td>
-                                @if (item.TrangThaiDonHang == "Đang vận chuyển")
-                                {
-                                    <td class="bill__col">
-                                        <a class="bill__details-link" href="@Url.Action("Details", "Bill", new {maHoaDon = item.MaHoaDon})">Xem chi tiết</a>
-                                        <a class="bill__details-link" href="@Url.Action("ConfirmBill", "Bill", new {maHoaDon = item.MaHoaDon, UserName = ViewBag.UserName})">Đã nhận hàng</a>
-                                        <a class="bill__details-link" href="@Url.Action("CancelBill", "Bill", new {maHoaDon = item.MaHoaDon, UserName = ViewBag.UserName})">Huỷ đơn hàng</a>
-                                    </td>
-                                }
-                                else if (item.TrangThaiDonHang == "Đang chờ xác nhận")
-                                {
-                                    <td class="bill__col">
-                                        <a class="bill__details-link" href="@Url.Action("Details", "Bill", new {maHoaDon = item.MaHoaDon})">Xem chi tiết</a>
-                                        <a class="bill__details-link" href="@Url.Action("CancelBill", "Bill", new {maHoaDon = item.MaHoaDon, UserName = ViewBag.UserName})">Huỷ đơn hàng</a>
-                                    </td>
-
-                                }
-                                else
-                                {
-                                    <td class="bill__col">
-                                        <a class="bill__details-link" href="@Url.Action("Details", "Bill", new {maHoaDon = item.MaHoaDon})">Xem chi tiết</a>
-                                    </td>
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-        </div>
+        }
     </div>
 </div>

@@ -1,0 +1,132 @@
+﻿@model FashionShop.Models.TaiKhoan
+@{
+    ViewBag.Title = "Hồ sơ người dùng";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link href="@Url.Content("~/assets/css/pages/profile.css")" rel="stylesheet" />
+}
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb small">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")" class="text-decoration-none text-muted">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active text-danger fw-bold" aria-current="page">
+            Hồ sơ người dùng
+        </li>
+    </ol>
+</nav>
+
+<div class="row g-4">
+    <div class="col-12 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="list-group list-group-flush rounded-3 overflow-hidden">
+                <div class="list-group-item bg-danger text-white py-3 border-0 fw-bold">
+                    <i class="fa-solid fa-bars me-2"></i> Hồ sơ người dùng
+                </div>
+                <a href="@Url.Action("ViewBills", "Bill", new { UserName = Model.UserName})"
+                   class="list-group-item list-group-item-action py-3 border-start-0 border-end-0 border-bottom">
+                    <i class="fa-solid fa-file-invoice me-2 text-muted"></i> Hoá Đơn Của Bạn
+                </a>
+                <a href="@Url.Action("FavouriteProductList", "Product")"
+                   class="list-group-item list-group-item-action py-3 border-0">
+                    <i class="fa-solid fa-heart me-2 text-muted"></i> Sản Phẩm Yêu Thích
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-9">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-4 p-md-5">
+                <h4 class="fw-bold mb-4 border-bottom pb-3">Thông tin người dùng</h4>
+
+                <form action="@Url.Action("Profile", "Account")" method="POST">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="fullName" class="form-label small fw-bold">Họ Và Tên <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.TenNguoiDung, new
+                            {
+                                @class = "form-control py-2",
+                                type = "text",
+                                name = "TenNguoiDung",
+                                id = "fullName",
+                                value = Model.TenNguoiDung,
+                                placeholder = "Nguyen Van A"
+                            })
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Tên Người Dùng - UserName <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control py-2" value="@Model.UserName" readonly />
+                            <div class="form-text x-small">Tên đăng nhập không thể thay đổi.</div>
+                        </div>
+
+                        @*<div class="col-md-6">
+                            <label class="form-label small fw-bold">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                            <select class="form-select py-2" id="citySelect" required>
+                                <option value="" selected disabled>Chọn tỉnh thành</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Phường / Xã <span class="text-danger">*</span></label>
+                            <select class="form-select py-2" id="wardSelect" required>
+                                <option value="" selected disabled>Chọn phường xã</option>
+                            </select>
+                        </div>*@
+
+                        <div class="col-12">
+                            <label for="address" class="form-label small fw-bold">Địa chỉ chi tiết <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.DiaChi, new
+                            {
+                                @class = "form-control py-2",
+                                type = "text",
+                                name = "DiaChi",
+                                id = "address",
+                                value = Model.DiaChi,
+                                placeholder = "Số Nhà, Tên Đường..."
+                            })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label small fw-bold">Email <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.Email, new
+                            {
+                                @class = "form-control py-2",
+                                type = "email",
+                                name = "Email",
+                                id = "email",
+                                value = Model.Email
+                            })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="phoneNumber" class="form-label small fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.SoDienThoai, new
+                            {
+                                @class = "form-control py-2",
+                                type = "tel",
+                                name = "SoDienThoai",
+                                id = "phoneNumber",
+                                value = Model.SoDienThoai
+                            })
+                        </div>
+
+                        <div class="col-12 mt-4 pt-3 border-top text-center">
+                            <button type="submit" class="btn btn-danger px-5 py-2 fw-bold shadow-sm mb-3">
+                                LƯU THAY ĐỔI
+                            </button>
+                            <div>
+                                <a href="@Url.Action("Index", "Home")" class="btn btn-link text-muted text-decoration-none small">
+                                    <i class="fa-solid fa-arrow-left me-1"></i> Quay Lại Trang Chủ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

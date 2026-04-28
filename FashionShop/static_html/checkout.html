@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Thanh toán đơn hàng – Fashion Shop" />
+<title>Thanh toán – Fashion Shop</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="stylesheet" href="../assets/css/main.min.css" />
+</head>
+<body>
+<div class="l-app">
+<div class="l-grid l-grid--wide">
+<form class="c-checkout-form" id="checkout-form" novalidate>
+<div class="l-row">
+
+  <!-- ===== RECEIVER INFO ===== -->
+  <div class="l-col l-col-xl-4">
+    <h1 class="c-checkout-form__store-title"><a class="c-checkout-form__store-title-link" href="index.html">Fashionshop</a></h1>
+
+    <div class="c-checkout-form__receiver-info">
+      <h2 class="c-checkout-form__section-title">Thông tin nhận hàng</h2>
+
+      <div class="c-form-group">
+        <label class="c-form-group__label" for="customer-name">Họ và tên <span class="c-form-group__label-required">*</span></label>
+        <input class="c-form-group__input" type="text" id="customer-name" name="ho-ten" value="Nguyễn Văn An" />
+      </div>
+      <div class="c-form-group">
+        <label class="c-form-group__label" for="customer-phone">Số điện thoại <span class="c-form-group__label-required">*</span></label>
+        <input class="c-form-group__input" type="tel" id="customer-phone" name="so-dien-thoai" value="0901 234 567" />
+      </div>
+      <div class="c-form-group">
+        <label class="c-form-group__label" for="customer-email">Email <span class="c-form-group__label-required">*</span></label>
+        <input class="c-form-group__input" type="email" id="customer-email" name="email" value="nguyenvanan@email.com" />
+      </div>
+
+      <div class="c-checkout-form__address-group">
+        <div class="c-form-group">
+          <h3 class="c-checkout-form__section-title">Địa chỉ</h3>
+          <label class="c-form-group__label" for="select-province">Tỉnh / Thành phố <span class="c-form-group__label-required">*</span></label>
+          <select class="c-form-group__input" id="select-province">
+            <option selected>TP. Hồ Chí Minh</option>
+            <option>Hà Nội</option>
+            <option>Đà Nẵng</option>
+          </select>
+          <label class="c-form-group__label" for="select-district">Quận / Huyện <span class="c-form-group__label-required">*</span></label>
+          <select class="c-form-group__input" id="select-district">
+            <option selected>Quận 1</option>
+            <option>Quận 3</option>
+            <option>Bình Thạnh</option>
+          </select>
+        </div>
+        <div class="c-form-group">
+          <label class="c-form-group__label" for="street-address">Địa chỉ cụ thể <span class="c-form-group__label-required">*</span></label>
+          <input class="c-form-group__input" type="text" id="street-address" name="dia-chi" placeholder="Số nhà / Đường / Ấp / Xóm" value="123 Đường Lê Lợi" />
+        </div>
+      </div>
+
+      <div class="c-form-group">
+        <label class="c-form-group__label" for="order-note">Ghi chú</label>
+        <textarea class="c-form-group__input c-form-group__input--textarea" id="order-note" cols="30" rows="4" placeholder="Ghi chú thêm cho đơn hàng..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DELIVERY & PAYMENT ===== -->
+  <div class="l-col l-col-xl-3">
+    <fieldset class="c-checkout-form__delivery-methods" style="border:none;padding:0;margin-top:85px;">
+      <legend class="c-checkout-form__section-title">Phương thức vận chuyển</legend>
+
+      <div class="c-checkout-form__option-group c-checkout-form__option-group--delivery">
+        <div><input type="radio" name="delivery" id="delivery-express" value="express" /><label class="c-checkout-form__option-group-label" for="delivery-express">Giao Hàng Hoả Tốc</label></div>
+        <div>45,000đ</div>
+      </div>
+      <div class="c-checkout-form__option-group c-checkout-form__option-group--delivery">
+        <div><input type="radio" name="delivery" id="delivery-fast" value="fast" checked /><label class="c-checkout-form__option-group-label" for="delivery-fast">Giao Hàng Nhanh</label></div>
+        <div>30,000đ</div>
+      </div>
+      <div class="c-checkout-form__option-group c-checkout-form__option-group--delivery">
+        <div><input type="radio" name="delivery" id="delivery-economy" value="economy" /><label class="c-checkout-form__option-group-label" for="delivery-economy">Giao Hàng Tiết Kiệm</label></div>
+        <div>15,000đ</div>
+      </div>
+    </fieldset>
+
+    <fieldset style="border:none;padding:0;margin-top:20px;">
+      <legend class="c-checkout-form__section-title">Thanh toán</legend>
+      <div class="c-checkout-form__option-group">
+        <input type="radio" name="payment" id="payment-cod" value="cod" checked />
+        <label class="c-checkout-form__option-group-label" for="payment-cod">Thanh toán khi nhận hàng (COD)</label>
+      </div>
+      <div class="c-checkout-form__option-group">
+        <input type="radio" name="payment" id="payment-online" value="online" />
+        <label class="c-checkout-form__option-group-label" for="payment-online">Thanh toán trực tuyến</label>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- ===== ORDER SUMMARY ===== -->
+  <div class="c-order-summary l-col l-col-xl-5">
+    <h2 class="c-checkout-form__section-title">Đơn hàng (3 sản phẩm)</h2>
+
+    <div class="c-order-summary__product-list">
+      <!-- Row 1 -->
+      <div class="c-order-summary__product-row">
+        <div class="c-order-summary__product-thumbnail">
+          <img class="c-order-summary__product-image" src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=70&h=70&fit=crop" alt="Versace Silk Dress" />
+          <span class="c-order-summary__product-quantity-badge">1</span>
+        </div>
+        <div class="c-order-summary__product-details"><div>Versace Medusa Baroque Silk Dress</div><div>Size M / Đen</div></div>
+        <div class="c-order-summary__product-price">12,480,000đ</div>
+      </div>
+      <!-- Row 2 -->
+      <div class="c-order-summary__product-row">
+        <div class="c-order-summary__product-thumbnail">
+          <img class="c-order-summary__product-image" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=70&h=70&fit=crop" alt="Gucci Blazer" />
+          <span class="c-order-summary__product-quantity-badge">2</span>
+        </div>
+        <div class="c-order-summary__product-details"><div>Gucci Bamboo Jacquard Blazer</div><div>Size L / Kem</div></div>
+        <div class="c-order-summary__product-price">19,550,000đ</div>
+      </div>
+    </div>
+
+    <!-- VOUCHER -->
+    <div class="c-order-summary__voucher" style="display:flex;margin:12px 0;">
+      <input class="c-order-summary__voucher-input" type="text" placeholder="Mã giảm giá" id="voucher-input" />
+      <button class="c-order-summary__voucher-btn" type="button" id="btn-apply-voucher">Sử dụng</button>
+    </div>
+
+    <!-- PRICE ROWS -->
+    <div class="c-order-summary__price-rows">
+      <div class="c-order-summary__price-row"><div>Tạm tính</div><span>32,030,000đ</span></div>
+      <div class="c-order-summary__price-row"><div>Phí vận chuyển</div><span id="delivery-fee-display">30,000đ</span></div>
+      <div class="c-order-summary__price-row"><div>Phương thức vận chuyển</div><span id="delivery-name-display">Giao Hàng Nhanh</span></div>
+      <div class="c-order-summary__price-row"><div>Phương thức thanh toán</div><span id="payment-name-display">COD</span></div>
+    </div>
+
+    <!-- GRAND TOTAL -->
+    <div class="c-order-summary__grand-total">
+      <span>Tổng tiền</span>
+      <div class="c-order-summary__grand-total-amount">VND <span id="total-amount-display">32,060,000</span>đ</div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="c-order-summary__actions">
+      <a class="c-order-summary__actions-back" href="cart.html" id="btn-back-to-cart">Quay lại giỏ hàng</a>
+      <button class="c-order-summary__actions-submit" type="submit" id="btn-place-order">Đặt hàng</button>
+    </div>
+  </div>
+
+</div><!-- /.l-row -->
+</form>
+</div><!-- /.l-grid -->
+</div>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+</html>

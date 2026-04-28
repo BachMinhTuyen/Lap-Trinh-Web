@@ -1,0 +1,143 @@
+﻿@model List<FashionShop.ViewModel.CartVM>
+@{
+    ViewBag.Title = "Thông tin giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+
+    var BienThe = ViewBag.BienThe as List<FashionShop.Models.BienTheSanPham>;
+    var sizeName = @ViewBag.TenSize;
+}
+
+@section LibraryCSS {
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/pages/cart.css")">
+}
+@section LibraryJS {
+    <script src="@Url.Content("~/assets/javascript/cart.js")"></script>
+}
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Home")" class="text-decoration-none text-muted">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active text-danger" aria-current="page">Giỏ hàng</li>
+    </ol>
+</nav>
+@if (Session["Cart"] == null)
+{
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="empty-cart-icon mb-4">
+                <div class="icon-wrapper bg-light d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 120px; height: 120px;">
+                    <i class="fa-solid fa-cart-shopping text-muted opacity-25" style="font-size: 50px;"></i>
+                    <i class="fa-solid fa-xmark position-absolute text-danger" style="font-size: 24px; margin-top: -30px; margin-right: -40px;"></i>
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark">Giỏ hàng của bạn đang trống</h3>
+            <p class="text-muted mb-4">Có vẻ như bạn chưa thêm sản phẩm nào vào giỏ hàng. <br> Hãy khám phá hàng ngàn sản phẩm thời trang mới nhất nhé!</p>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-danger px-4 py-2 rounded-pill fw-bold shadow-sm">
+                    <i class="fa-solid fa-house me-2"></i> QUAY LẠI TRANG CHỦ
+                </a>
+                <a href="@Url.Action("List", "Product")" class="btn btn-outline-dark px-4 py-2 rounded-pill fw-bold">
+                    XEM DANH SÁCH SẢN PHẨM
+                </a>
+            </div>
+
+            <div class="mt-5 pt-4 border-top">
+                <p class="small text-muted">Cần hỗ trợ? Gọi ngay <span class="text-danger fw-bold">1900 0000</span></p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        <div class="col-12 col-lg-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-0">
+                    <div class="d-none d-md-flex bg-light p-3 fw-bold border-bottom">
+                        <div style="width: 45%">Sản phẩm</div>
+                        <div style="width: 20%" class="text-center">Đơn giá</div>
+                        <div style="width: 20%" class="text-center">Số lượng</div>
+                        <div style="width: 15%" class="text-end">Thành tiền</div>
+                    </div>
+
+                     @foreach (var item in Model)
+                     {
+                        <div class="p-3 border-bottom d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="d-flex align-items-center cart-item-info">
+                                <div class="cart-img-wrapper border rounded bg-light me-3">
+                                    <img src="@Url.Content("~/assets/img/")@item.sAnhDaiDien"
+                                         alt="@item.sTenSanPham"
+                                         class="img-fluid cart-product-img" />
+                                </div>
+                                <div id="cart-item-@item.iCartItem" class="cart-item-row mb-3 p-2 border-bottom">
+                                    <h6 class="mb-1 fw-bold">@item.sTenSanPham</h6>
+                                    <p class="small text-muted mb-0">Size: @item.sTenSize | Màu: @item.sTenMau</p>
+                                    <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none mt-2"
+                                            onclick="CartApp.removeItem(@item.iCartItem)"
+                                            title="Xóa sản phẩm">
+                                        <i class="fa-regular fa-trash-can me-1"></i>Xóa
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center d-md-block d-none" style="width: 20%">
+                                <span class="fw-bold">@string.Format("{0:#,##0}đ", item.dDonGia)</span>
+                            </div>
+                            <div style="width: 20%" class="d-flex justify-content-center">
+                                <div class="input-group input-group-sm" style="width: 100px">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="CartApp.changeQty('input-@item.iCartItem', @item.iCartItem, -1)">-</button>
+                                    <input type="text" class="form-control text-center" id="input-@item.iCartItem" value="@item.iSoLuong" />
+                                    <button class="btn btn-outline-secondary" type="button" onclick="CartApp.changeQty('input-@item.iCartItem', @item.iCartItem, 1)">+</button>
+                                </div>
+                            </div>
+                            <div style="width: 15%" class="text-end fw-bold text-danger">@string.Format("{0:#,##0}đ", item.dThanhTien)</div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-3 border-0 shadow-sm d-flex align-items-center"
+                 role="alert">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                <span class="small">Miễn phí vận chuyển cho đơn hàng từ 399K. Chào mừng bạn đến với Fashion Shop!</span>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-4 border-bottom pb-2">Tổng cộng</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Tạm tính:</span>
+                        <span class="fw-bold">@string.Format("{0:#,##0}đ", @ViewBag.TongThanhTien)</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Phí vận chuyển:</span>
+                        <span class="text-success">Miễn phí</span>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fw-bold fs-5">Tổng tiền:</span>
+                        <span class="fw-bold fs-4 text-danger">@string.Format("{0:#,##0}đ", @ViewBag.TongThanhTien)</span>
+                    </div>
+                    <button class="btn btn-danger w-100 py-3 fw-bold shadow-sm" onclick="CartApp.proceedToCheckout()">
+                        TIẾN HÀNH ĐẶT HÀNG
+                    </button>
+
+                    <div class="mt-4 text-center">
+                        <p class="small text-muted mb-2">Hỗ trợ các phương thức thanh toán</p>
+                        <div class="d-flex justify-content-center gap-2 fs-3">
+                            <i class="fab fa-cc-visa text-primary" title="Visa"></i>
+                            <i class="fab fa-cc-mastercard text-danger" title="Mastercard"></i>
+                            <i class="fa-solid fa-credit-card text-success" title="NAPAS"></i>
+                            <i class="fa-brands fa-cc-apple-pay text-dark" title="Apple Pay"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -5,7 +5,6 @@ window.onload = function() {
     
     setTimeout(() => {
         console.log("Chào mừng tới website shop thời trang")
-        document.querySelectorAll('script + div')[0].style.display = 'none'
     }, 1500);
 }
 

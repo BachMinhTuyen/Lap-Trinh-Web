@@ -45,14 +45,14 @@ namespace FashionShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!db.TaiKhoan.Any(r => r.UserName == register.UserName))
+                if (!db.TaiKhoan.Any(r => r.UserName == register.TenNguoiDung))
                 {
-                    string passwordHash = Password.Create_SHA256(register.ConfirmPassword);
+                    string passwordHash = Password.Create_SHA256(register.MatKhau);
                     var user = new TaiKhoan()
                     {
-                        UserName = register.UserName,
+                        UserName = register.TenNguoiDung,
                         Password = passwordHash,
-                        TenNguoiDung = register.TenNguoiDung,
+                        TenNguoiDung = register.HoTen,
                         DiaChi = register.DiaChi,
                         Email = register.Email,
                         SoDienThoai = register.SoDienThoai,

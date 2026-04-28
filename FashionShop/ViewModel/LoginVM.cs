@@ -9,11 +9,11 @@ namespace FashionShop.ViewModel
     public class LoginVM
     {
         [Required(ErrorMessage = "Bắt buộc nhập UserName!")]
-        public string UserName { get; set; }
+        public string TenNguoiDung { get; set; }
 
         [Required(ErrorMessage = "Bắt buộc nhập Password!")]
         [StringLength(255, ErrorMessage = "Phải nhập từ 5 tới 255 ký tự", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string MatKhau { get; set; }
     }
 }

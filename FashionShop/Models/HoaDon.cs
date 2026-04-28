@@ -18,5 +18,15 @@ namespace FashionShop.Models
         public string PhuongThucVanChuyen { get; set; }
         public string TrangThaiDonHang { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
+
+        public static class OrderStatus
+        {
+            public const string Pending = "Chờ xác nhận";
+            public const string Confirmed = "Đã xác nhận";
+            public const string Processing = "Đã chuẩn bị";
+            public const string Shipping = "Đang giao";
+            public const string Completed = "Đã nhận";
+            public const string Cancelled = "Đã hủy";
+        }
     }
 }

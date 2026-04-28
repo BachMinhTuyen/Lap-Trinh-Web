@@ -1,0 +1,68 @@
+@import "../style.scss";
+
+.main-content {
+	.login-card {
+		background-color: $light-gray;
+
+		.login-header {
+			font-weight: 700;
+			font-size: 1.75rem;
+			color: #000;
+		}
+
+		.form-label {
+			font-size: 0.85rem;
+			font-weight: 500;
+			color: #333;
+		}
+
+		.form-control {
+			padding: 0.6rem 0.75rem;
+			border-color: #ccc;
+			font-size: 0.9rem;
+
+			&:focus {
+				border-color: $primary-red;
+				box-shadow: 0 0 0 0.2rem rgba($primary-red, 0.15);
+			}
+		}
+
+		.btn-login {
+			background-color: $primary-red;
+			border: none;
+			color: #fff;
+			padding: 12px;
+			transition: all 0.3s ease;
+
+			&:hover {
+				background-color: darken($primary-red, 10%);
+				transform: translateY(-1px);
+			}
+		}
+
+		.social-divider {
+			&::before {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background-color: $border-color;
+				z-index: 1;
+			}
+			span {
+				position: relative;
+				z-index: 2;
+				font-weight: 400;
+			}
+		}
+
+		.btn-outline-light {
+			&:hover {
+				background-color: #f8f9fa;
+				border-color: #bbb;
+			}
+		}
+	}
+}

@@ -1,0 +1,223 @@
+:root {
+  --bs-danger: #d32f2f;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.hover-red:hover {
+  color: #d32f2f !important;
+}
+
+.main-content {
+  min-height: 8vh;
+}
+
+.header-actions .user-action,
+.header-actions .cart-action {
+  cursor: pointer;
+}
+.header-actions .user-action:hover i,
+.header-actions .cart-action:hover i {
+  color: #d32f2f !important;
+}
+.header-actions .cart-action .badge {
+  font-size: 0.65rem;
+  padding: 0.35em 0.5em;
+}
+
+.logo {
+  width: 250px;
+}
+.logo h1 {
+  font-size: 2rem;
+  line-height: 1;
+  color: #d32f2f;
+}
+.logo .custom-logo {
+  width: 100%;
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.navbar {
+  min-height: 48px;
+}
+.navbar .nav-item.border-end-light {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+.navbar .nav-link {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 48px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  transition: all 0.2s ease-in-out;
+}
+.navbar .nav-link:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.navbar .custom-dropdown {
+  position: relative;
+}
+.navbar .custom-dropdown .dropdown-item {
+  padding: 8px 12px;
+}
+.navbar .custom-dropdown > .dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  padding: 0;
+  border: none;
+}
+.navbar .custom-dropdown:hover > .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.navbar .custom-dropdown .dropdown-item {
+  position: relative;
+  background-color: #fff;
+  z-index: 1;
+}
+.navbar .custom-dropdown .dropdown-item:hover {
+  background-color: #eee;
+  color: #d32f2f;
+}
+.navbar .custom-dropdown .dropend {
+  position: relative;
+}
+.navbar .custom-dropdown .dropend > .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-top: 0;
+  padding: 0;
+  background-color: #fff;
+  z-index: 1001;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  border: 0;
+  border-radius: unset;
+}
+.navbar .custom-dropdown .dropend:hover > .dropdown-menu {
+  display: block;
+  background-color: #eee;
+}
+
+.hotline-nav {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    padding: 15px 0;
+  }
+  .navbar-nav .nav-item {
+    border: none !important;
+  }
+  .navbar-nav .nav-link {
+    line-height: 40px;
+  }
+  .navbar-nav .custom-dropdown .dropdown-menu {
+    position: static !important;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .navbar-nav .custom-dropdown .dropdown-menu.show {
+    display: block;
+  }
+  .navbar-nav .custom-dropdown .dropdown-menu .dropend > .dropdown-menu {
+    position: static !important;
+    margin-left: 15px;
+  }
+}
+.footer {
+  background-color: #fbfbfb;
+  border-top: 5px solid #d32f2f;
+  color: #555;
+}
+.footer .footer-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+.footer .footer-list {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-list li {
+  margin-bottom: 0.75rem;
+}
+.footer .footer-list li a {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.footer .footer-list li a:hover {
+  color: #d32f2f;
+  padding-left: 5px;
+}
+.footer .payment-methods {
+  display: flex;
+  gap: 15px;
+  font-size: 1.8rem;
+}
+.footer .payment-methods i {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.footer .payment-methods i:hover {
+  transform: scale(1.1);
+}
+.footer .fb-color {
+  color: #1877f2;
+}
+.footer .ins-color {
+  color: #e4405f;
+}
+.footer hr {
+  border-color: #ddd;
+}
+.footer .footer-bottom strong {
+  color: #333;
+}
+
+@media (max-width: 767.98px) {
+  .footer {
+    text-align: center;
+  }
+  .footer .footer-list li a:hover {
+    padding-left: 0;
+  }
+  .footer .payment-methods {
+    justify-content: center;
+  }
+}/*# sourceMappingURL=order-history.css.map */

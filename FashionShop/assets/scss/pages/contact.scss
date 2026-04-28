@@ -1,0 +1,48 @@
+@import "../style.scss";
+
+.main-contact {
+	h2 {
+		letter-spacing: 1px;
+		position: relative;
+		padding-bottom: 10px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 50px;
+			height: 3px;
+			background-color: $primary-red;
+		}
+	}
+
+	.form-control {
+		border-radius: 2px;
+		padding: 12px;
+		border: 1px solid #ced4da;
+
+		&:focus {
+			box-shadow: none;
+			border-color: $primary-red;
+		}
+	}
+
+	.map-container {
+		height: 100%;
+		min-height: 450px;
+
+		iframe {
+			display: block;
+		}
+	}
+}
+
+@media (max-width: 767.98px) {
+	.main-contact {
+		.map-container {
+			margin-top: 2rem;
+			height: 350px;
+		}
+	}
+}

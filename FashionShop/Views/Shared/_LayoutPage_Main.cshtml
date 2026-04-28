@@ -1,89 +1,102 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fashion Shop</title>
-    <!-- Swiper CSS -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <!-- Reset Layout HTML -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-          href="~/assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css" />
-    <link rel="stylesheet" href="~/assets/css/grid.css" />
-    <link rel="stylesheet" href="~/assets/css/base.css" />
-    <link rel="stylesheet" href="~/assets/css/header.css" />
-    <link rel="stylesheet" href="~/assets/css/home.css" />
-    <link rel="stylesheet" href="~/assets/css/product.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-          rel="stylesheet" />
+    <title>Fashion Shop - Thế giới thời trang của bạn</title>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/assets/icons/icon16.ico")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/font-awesome/css/all.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/swiper/swiper-bundle.min.css")" />
+
     @RenderSection("LibraryCSS", required: false)
+
 </head>
 <body>
-    <div class="app">
-        @{
-            Html.RenderPartial("_PartialPage_Header");
-        }
+    @Html.Action("Header", "Common")
 
-        @{
-            Html.RenderPartial("_PartialPage_MenuNavigation");
-        }
+    @{
+        Html.RenderPartial("_PartialPage_MenuNavigation");
+    }
 
-        @RenderSection("Banner", required: false)
+    @RenderSection("Banner", required: false)
 
-        <div class="app__container">
-            <div class="grid wide">
-                @RenderBody()
+    <main class="container my-4 main-content">
+        @RenderBody()
+    </main>
+
+    @{
+        Html.RenderPartial("_PartialPage_Footer");
+    }
+
+    <div class="modal fade"
+         id="disclaimerModal"
+         tabindex="-1"
+         aria-labelledby="disclaimerModalLabel"
+         aria-hidden="true"
+         data-bs-backdrop="static"
+         data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-warning text-dark border-0 justify-content-center">
+                    <h5 class="modal-title fw-bold text-center" id="disclaimerModalLabel">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>THÔNG BÁO QUAN TRỌNG
+                    </h5>
+                </div>
+                <div class="modal-body p-4">
+                    <p>Chào mừng bạn đến với <strong>Fashion Shop</strong>.</p>
+                    <p class="mb-3 text-justify">
+                        Đây là một <strong>dự án cá nhân phục vụ mục đích học tập</strong> và nghiên cứu về
+                        lập trình web.
+                    </p>
+                    <ul class="small text-muted mb-4">
+                        <li>Tất cả hình ảnh và thông tin sản phẩm đều mang tính chất minh họa.</li>
+                        <li>
+                            Chúng tôi <strong>không kinh doanh, không giao dịch</strong> và không thu thập thanh
+                            toán thực tế trên website này.
+                        </li>
+                        <li>Website không thuộc quản lý của bất kỳ doanh nghiệp thương mại nào.</li>
+                    </ul>
+                    <div class="alert alert-light border-start border-warning border-4 py-2 small text-center">
+                        Việc bạn tiếp tục sử dụng website đồng nghĩa với việc bạn xác nhận đã hiểu rõ mục đích
+                        phi thương mại của dự án này.
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button"
+                            class="btn btn-danger w-100 fw-bold py-2"
+                            id="btnAcceptDisclaimer">
+                        TÔI ĐÃ HIỂU VÀ XÁC NHẬN
+                    </button>
+                </div>
             </div>
         </div>
-
-        @{
-            Html.RenderPartial("_PartialPage_Footer");
-        }
     </div>
-    @RenderSection("LibraryJS", required: false)
-    <!-- Iconify-->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="~/assets/javascript/base.js"></script>
+
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/swiper/swiper-bundle.min.js")"></script>
+
     <script src="~/Scripts/jquery-3.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/assets/javascript/base.js"></script>
+
+    @RenderSection("LibraryJS", required: false)
+
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const hasAccepted = sessionStorage.getItem("disclaimerAccepted");
 
-        $(document).ready(function () {
+            if (!hasAccepted) {
+                var myModal = new bootstrap.Modal(document.getElementById("disclaimerModal"));
+                myModal.show();
 
-            $("center a[href='http://somee.com']").parent().css("display", "none");
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 200);
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 500);
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 1000);
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 1500);
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 2000);
-
-            setTimeout(function () {
-                $("center a[href='http://somee.com']").parent().nextAll("div").css("display", "none");
-            }, 3000);
+                document.getElementById("btnAcceptDisclaimer").addEventListener("click", function () {
+                    sessionStorage.setItem("disclaimerAccepted", "true");
+                    myModal.hide();
+                });
+            }
         });
-
     </script>
 </body>
 </html>

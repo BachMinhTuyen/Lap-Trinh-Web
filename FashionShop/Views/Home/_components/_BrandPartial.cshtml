@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<FashionShop.Models.ThuongHieu>
+@{
+    var SkipItems = ViewBag.SkipItems as List<FashionShop.Models.ThuongHieu>;
+}
+<div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+    <div class="card-header bg-danger text-white fw-bold py-2">
+        <i class="fa-solid fa-tag me-2"></i> Thương Hiệu
+    </div>
+    <div class="card-body p-0">
+        <div class="list-group list-group-flush border-top-0" id="brandList">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("GetInfoAboutBrand", "Brands", new { maThuongHieu = item.MaThuongHieu })"
+                   class="list-group-item list-group-item-action border-0 border-bottom py-2">
+                    @item.TenThuongHieu
+                </a>
+            }
+
+            @if (Model != null && Model.Count() >= 10)
+            {
+                <div class="collapse" id="moreBrands">
+                    @foreach (var item in SkipItems)
+                    {
+                        <a href="@Url.Action("GetInfoAboutBrand", "Brands", new { maThuongHieu = item.MaThuongHieu })"
+                           class="list-group-item list-group-item-action border-0 border-bottom py-2">
+                            @item.TenThuongHieu
+                        </a>
+                    }
+                </div>
+
+                <button class="btn btn-light w-100 py-2 small text-muted fw-bold border-0 rounded-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#moreBrands"
+                        aria-expanded="false">
+                    XEM THÊM <i class="fa-solid fa-caret-down ms-1"></i>
+                </button>
+            }
+        </div>
+    </div>
+</div>

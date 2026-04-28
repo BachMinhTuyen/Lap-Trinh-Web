@@ -1,0 +1,106 @@
+﻿@model FashionShop.ViewModel.LoginVM
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/pages/login.css")" />
+}
+@section LibraryJS {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var showPasswordCheckbox = document.getElementById('showPass');
+            var passwordInput = document.getElementById('password');
+
+            showPasswordCheckbox.addEventListener('change', function () {
+                passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+            });
+        });
+    </script>
+}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+        <div class="login-card shadow-sm border rounded bg-white p-4 p-md-5">
+            <h2 class="login-header text-center mb-4">Đăng nhập</h2>
+
+            <form id="loginForm" action="@Url.Action("Login", "Auth")" method="post">
+                <div class="mb-3">
+                    <label for="userName" class="form-label">
+                        Tên Người Dùng - UserName <span class="text-danger">*</span>
+                    </label>
+                    @Html.TextBoxFor(model => model.TenNguoiDung, new
+                   {
+                       @class = "form-control",
+                       type = "text",
+                       name = "UserName",
+                       id = "userName",
+                       placeholder = "nguyenvana123"
+                   })
+                    @Html.ValidationMessageFor(model => model.TenNguoiDung, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        Mật khẩu <span class="text-danger">*</span>
+                    </label>
+                    @Html.TextBoxFor(model => model.MatKhau, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "password",
+                        id = "Password",
+                        placeholder = "Mật khẩu của bạn"
+                    })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="showPass" />
+                    <label class="form-check-label small" for="showPass">Hiện Mật khẩu</label>
+                </div>
+
+                <button type="submit" class="btn btn-login w-100 text-uppercase fw-bold mb-3">
+                    Đăng nhập
+                </button>
+
+                <div class="text-center mb-3">
+                    <a href="#" class="text-decoration-none small">Quên mật khẩu?</a>
+                </div>
+
+                <div class="social-divider position-relative text-center mb-1">
+                    <span class="bg-white px-3 small text-muted">Hoặc đăng nhập bằng</span>
+                </div>
+
+                <div class="row g-2">
+                    <div class="col-6">
+                        <a href="#"
+                           class="btn btn-outline-light border rounded text-dark d-flex align-items-center justify-content-center gap-2 py-2">
+                            <i class="fa-brands fa-google text-danger fs-5"></i>
+                            <span class="small">Google</span>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#"
+                           class="btn btn-outline-light border rounded text-dark d-flex align-items-center justify-content-center gap-2 py-2">
+                            <i class="fa-brands fa-facebook text-primary fs-5"></i>
+                            <span class="small">Facebook</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3 pt-2">
+                    <p class="small mb-0">
+                        Bạn chưa có tài khoản
+                        <a href="@Url.Action("Register", "Auth")" class="text-decoration-none text-primary">Đăng ký ngay</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

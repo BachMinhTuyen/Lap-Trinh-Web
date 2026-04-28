@@ -1,0 +1,11 @@
+// Mixins
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin active-border {
+	border-color: $primary-red !important;
+	background-color: rgba($primary-red, 0.05);
+}

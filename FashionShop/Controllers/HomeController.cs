@@ -1,43 +1,48 @@
 ﻿using FashionShop.Models;
+using FashionShop.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using WindowsFormsApplication2.Utilities;
 
 namespace FashionShop.Controllers
 {
     public class HomeController : Controller
     {
         FashionShopDBContext db = new FashionShopDBContext();
-        // GET: Home
+
+        [Route("")]
         public ActionResult Index() 
         {
-            if (!db.TaiKhoan.Any(a => a.UserName == "admin" && a.VaiTro == "Admin"))
-            {
-                TaiKhoan taiKhoan = new TaiKhoan();
-                taiKhoan.TenNguoiDung = "Người Quản Trị";
-                taiKhoan.UserName = "admin";
-                taiKhoan.Password = Password.Create_SHA256("123456");
-                taiKhoan.VaiTro = "Admin";
-                taiKhoan.Email = "admin123@gmail.com";
-                taiKhoan.DiaChi = "Thành Phố Hồ Chí Minh";
-                taiKhoan.SoDienThoai = "0123456789";
-                db.TaiKhoan.Add(taiKhoan); db.SaveChanges();
-            }
             List<SanPham> lst = db.SanPham.ToList();
             return View(lst);
         }
+
+        [ChildActionOnly]
+        public ActionResult BrandPartial()
+        {
+            var brands = db.ThuongHieu.ToList();
+            return PartialView("_components/_BrandPartial", brands);
+        }
+
+        [ChildActionOnly]
+        public ActionResult CategoryPartial()
+        {
+            var categories = db.LoaiSanPham.ToList();
+            return PartialView("_components/_CategoryPartial", categories);
+        }
+
+        [Route("ve-chung-toi")]
         public ActionResult AboutUs()
         {
             return View();
         }
+        [Route("lien-he")]
         public ActionResult ContactUs()
         {
             return View();
         }
+        [Route("tu-choi-quyen-truy-cap")]
         public ActionResult AccessDenied()
         {
             return View();

@@ -11,7 +11,7 @@
         var nextPage = currentPage + 1;
 
         if (nextPage > 0 && nextPage <= @ViewBag.NoOfPages) {
-            var link = '@Url.Action("GetAllProduct", "Product")?page=' + nextPage;
+            var link = '@Url.Action("List", "Product")?page=' + nextPage;
             document.getElementById('nextPage').setAttribute('href', link)
         }
     })
@@ -20,7 +20,7 @@
          var prevPage = currentPage - 1;
 
          if (prevPage > 0 && prevPage <= @ViewBag.NoOfPages) {
-             var link = '@Url.Action("GetAllProduct", "Product")?page=' + prevPage;
+             var link = '@Url.Action("List", "Product")?page=' + prevPage;
              document.getElementById('prevPage').setAttribute('href', link)
          }
     })
@@ -65,7 +65,7 @@
                             </select>
                             <div class="select-view">
                                 <a class="active" href="#"><iconify-icon icon="bxs:grid"></iconify-icon></a>
-                                <a href="@Url.Action("GetAllProduct_List", "Product")"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
+                                <a href="@Url.Action("List", "Product")"><iconify-icon icon="ic:baseline-list"></iconify-icon></a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                                 if (item.KhuyenMai != 0)
                                 {
                                     <div class="product-container col col-xl-2-4 col-lg-2-4">
-                                        <div class="product-item" onclick="window.location = '@Url.Action("GetProductDetails", "Product", new { maSanPham = item.MaSanPham})'">
+                                        <div class="product-item" onclick="window.location = '@Url.Action("Details", "Product", new { maSanPham = item.MaSanPham})'">
                                             <div class="product-item__img"
                                                  style="
                                                       background-image: url('@Url.Content("~/assets/img/")@item.AnhDaiDien');

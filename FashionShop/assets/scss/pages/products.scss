@@ -1,0 +1,263 @@
+@import "../style.scss";
+
+// Product Cards
+.product-card {
+	background: $white;
+	transition: $transition-base;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding-bottom: 15px !important;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+		.product-img-wrapper img {
+			transform: scale(1.08);
+		}
+
+		.stretched-link {
+			z-index: 10;
+		}
+
+		.favorite-badge {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	.badge,
+	.favorite-badge {
+		z-index: 12;
+	}
+
+	.favorite-badge {
+		position: absolute;
+		top: 45px;
+		right: 8px;
+		width: 32px;
+		height: 32px;
+		background: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		color: #ccc;
+		font-size: 0.9rem;
+		transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		opacity: 0.9;
+
+		&:hover,
+		&.active {
+			color: $white;
+			background: $primary-red;
+			border-color: $primary-red;
+			opacity: 1;
+			transform: scale(1.1);
+
+			i {
+				font-weight: 900;
+			}
+		}
+
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+
+	.product-img-wrapper {
+		position: relative;
+		z-index: 1;
+		flex-shrink: 0;
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fcfcfc;
+		overflow: hidden;
+		margin-bottom: 12px;
+
+		img {
+			width: 90%;
+			height: 90%;
+			object-fit: contain;
+			transition: transform 0.5s ease;
+			z-index: 1;
+		}
+	}
+
+	.product-info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+
+		h6 {
+			font-size: 0.95rem;
+			font-weight: 500;
+			color: #333;
+		}
+
+		.rating-sold {
+			font-size: 0.75rem;
+			margin-top: 4px;
+
+			i {
+				font-size: 0.7rem;
+			}
+		}
+	}
+}
+
+// LIST VIEW
+#productWrapper.list-view {
+	.product-item {
+		width: 100% !important;
+		max-width: 100%;
+	}
+
+	.product-card {
+		flex-direction: row;
+		text-align: left !important;
+		align-items: center;
+		padding: 20px !important;
+
+		.product-img-wrapper {
+			width: 250px;
+			height: 250px;
+			margin-bottom: 0;
+			margin-right: 20px;
+			flex-shrink: 0;
+		}
+
+		.product-info {
+			flex-grow: 1;
+			margin-top: 0 !important;
+			text-align: start !important;
+
+			h6 {
+				font-size: 1.2rem;
+				white-space: normal;
+			}
+
+			.product-description {
+				display: block !important;
+				margin: 10px 0;
+			}
+
+			.rating-sold {
+				justify-content: start !important;
+			}
+
+			.btn-buy-wrapper {
+				display: block !important;
+				width: fit-content;
+			}
+		}
+
+		.badge {
+			top: 10px;
+		}
+		.favorite-badge {
+			top: auto;
+			bottom: 20px;
+			right: 20px;
+		}
+	}
+}
+
+@media (max-width: 767.98px) {
+	#productWrapper.list-view .product-card {
+		.product-img-box {
+			width: 120px !important;
+		}
+
+		.product-info {
+			padding: 10px;
+
+			h6 {
+				font-size: 0.9rem;
+			}
+			.product-desc {
+				display: none !important;
+			}
+
+			.btn {
+				padding: 0.25rem 0.5rem;
+				span {
+					display: none;
+				}
+			}
+		}
+
+		.badge {
+			font-size: 0.6rem;
+			padding: 0.2rem 0.4rem;
+		}
+	}
+}
+
+// Responsive cho Mobile
+@media (max-width: 576px) {
+	#productWrapper.list-view .product-card {
+		flex-direction: column; // Quay về dọc trên mobile để tránh vỡ khung
+		.product-img-wrapper {
+			width: 100%;
+			margin-right: 0;
+		}
+	}
+}
+
+.filter-section {
+	transition: transform 0.2s ease;
+
+	.filter-title {
+		color: #333;
+		position: relative;
+		padding-bottom: 8px;
+
+		// Đường kẻ đỏ tinh tế bên dưới title
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 40px;
+			height: 2px;
+			background: $primary-red;
+		}
+	}
+
+	.list-group-item {
+		transition: background 0.2s ease;
+		&:hover {
+			background-color: #f8f9fa;
+			a {
+				color: $primary-red !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 767.98px) {
+	#productWrapper.list-view .product-card {
+		height: auto !important;
+
+		.product-img-box {
+			width: 140px;
+		}
+
+		.product-desc {
+			display: none !important;
+		}
+
+		.btn span {
+			display: none;
+		}
+	}
+}

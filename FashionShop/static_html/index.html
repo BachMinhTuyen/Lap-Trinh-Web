@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Fashion Shop - Thế giới thời trang của bạn</title>
+		<link rel="icon" type="image/x-icon" href="/assets/icons/icon16.ico" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="/assets/css/pages/home.css" />
+	</head>
+
+	<body>
+		<div class="top-bar py-1 border-bottom d-none d-md-block">
+			<div class="container d-flex justify-content-between align-items-center">
+				<small class="text-muted">Chào mừng bạn đã đến với Fashion Shop!</small>
+				<div class="social-links">
+					<a href="#" class="text-muted me-2"><i class="fab fa-facebook"></i></a>
+					<a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<header class="py-3 bg-white border-bottom shadow-sm">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-2 col-6">
+						<a href="./index.html" class="logo d-block">
+							<img
+								src="/assets/images/fashion-shop-logo.jpg"
+								class="img-fluid custom-logo"
+								alt="Fashion Shop"
+							/>
+						</a>
+					</div>
+
+					<div class="col-lg-5 d-none d-lg-block">
+						<form action="/search" method="get" class="search-form">
+							<div class="input-group border rounded-pill overflow-hidden">
+								<input
+									type="text"
+									class="form-control border-0 px-3"
+									placeholder="Bạn tìm gì hôm nay..."
+								/>
+								<button class="btn btn-danger px-4" type="submit">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-lg-5 col-6">
+						<div
+							class="header-actions d-flex justify-content-end align-items-center gap-3 gap-md-4"
+						>
+							<a
+								href="./login.html"
+								class="d-flex align-items-center text-decoration-none user-action hover-red"
+							>
+								<i class="fa-regular fa-user fs-4 text-dark me-3"></i>
+
+								<div class="small d-none d-md-block">
+									<span class="text-dark fw-medium d-block">Đăng nhập</span>
+									<div class="text-muted" style="font-size: 11px">Tài khoản</div>
+								</div>
+							</a>
+							<!-- <div class="d-flex align-items-center gap-3">
+								<a href="./profile.html" class="d-flex align-items-center text-decoration-none">
+									<div class="user-icon-wrap me-2">
+										<i class="fa-regular fa-user fs-4 text-dark"></i>
+									</div>
+									<div class="small d-none d-xl-block text-dark">
+										<span class="fw-bold d-block hover-red text-truncate" style="max-width: 100px"
+											>User</span
+										>
+										<span class="text-muted" style="font-size: 11px">Thành viên</span>
+									</div>
+								</a>
+
+								<a
+									href="./login.html"
+									class="btn btn-outline-danger btn-sm border-0 px-2 py-1 shadow-none"
+									title="Đăng xuất"
+								>
+									<i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 14px"></i>
+								</a>
+							</div> -->
+
+							<a
+								href="./notifications.html"
+								class="notification-action position-relative d-flex align-items-center text-decoration-none"
+							>
+								<div class="notification-icon-wrap position-relative me-2">
+									<i class="fa-regular fa-bell fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										5
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Thông báo</span>
+									<span class="text-muted" style="font-size: 11px">Mới nhất</span>
+								</div>
+							</a>
+
+							<a
+								href="./cart.html"
+								class="cart-action position-relative d-flex align-items-center text-decoration-none border-start ps-3 ps-md-4"
+							>
+								<div class="cart-icon-wrap position-relative me-2">
+									<i class="fa-solid fa-bag-shopping fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										2
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Giỏ hàng</span>
+									<span class="text-muted" style="font-size: 11px">16,196,000₫</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top p-0">
+			<div class="container">
+				<button
+					class="navbar-toggler border-0 my-2"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#mainNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mainNav">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 active" href="./index.html"
+								><i class="fa-solid fa-house me-1"></i> Trang chủ</a
+							>
+						</li>
+						<li class="nav-item dropdown custom-dropdown border-end-light">
+							<a class="nav-link px-3 dropdown-toggle text-white" href="./products.html"
+								>Sản Phẩm</a
+							>
+							<ul class="dropdown-menu shadow">
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Quần áo <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
+										<li><a class="dropdown-item" href="#">Quần tây</a></li>
+									</ul>
+								</li>
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Giày dép <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Giày công sở</a></li>
+										<li><a class="dropdown-item" href="#">Giày du lịch</a></li>
+									</ul>
+								</li>
+								<li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+							</ul>
+						</li>
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 text-white" href="./about.html">Về chúng tôi</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-3 text-white" href="./contact.html">Liên hệ</a>
+						</li>
+					</ul>
+					<div class="hotline-nav text-white fw-bold py-2">
+						<i class="fa-solid fa-headset me-2"></i> 1900 0000
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="container my-4 main-content">
+			<div class="swiper banner mb-4">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img
+							src="http://fashionshop.somee.com/assets/img/banner-thoi-trang-nam-1.jpg"
+							class="img-fluid w-100 align-content-center"
+							alt="Banner"
+						/>
+					</div>
+					<div class="swiper-slide">
+						<img
+							src="http://fashionshop.somee.com/assets/img/banner-thoi-trang-nu.png"
+							class="img-fluid w-100"
+							alt="Banner"
+						/>
+					</div>
+					<div class="swiper-slide">
+						<img
+							src="http://fashionshop.somee.com/assets/img/banner-thoi-trang-nam-1.jpg"
+							class="img-fluid w-100"
+							alt="Banner"
+						/>
+					</div>
+					<div class="swiper-slide">
+						<img
+							src="http://fashionshop.somee.com/assets/img/banner-thoi-trang-nu.png"
+							class="img-fluid w-100"
+							alt="Banner"
+						/>
+					</div>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-pagination"></div>
+			</div>
+
+			<div class="row">
+				<aside class="col-lg-3 d-none d-lg-block">
+					<div class="card border-0 shadow-sm mb-4 rounded-3 overflow-hidden">
+						<div class="card-header bg-danger text-white fw-bold py-2">
+							<i class="fa-solid fa-bars me-2"></i> Danh mục sản phẩm
+						</div>
+						<div class="list-group list-group-flush border-top-0" id="categoryList">
+							<a
+								href="/category/1"
+								class="list-group-item list-group-item-action border-0 border-bottom d-flex justify-content-between align-items-center py-2"
+							>
+								<span>Sản phẩm mới</span>
+								<i class="fa-solid fa-chevron-right small text-muted" style="font-size: 10px"></i>
+							</a>
+
+							<div class="collapse" id="moreCategories">
+								<a
+									href="#"
+									class="list-group-item list-group-item-action border-0 border-bottom d-flex justify-content-between align-items-center py-2"
+								>
+									<span>Phụ kiện khác</span>
+									<i class="fa-solid fa-chevron-right small text-muted" style="font-size: 10px"></i>
+								</a>
+							</div>
+							<button
+								class="btn btn-light w-100 py-2 small text-muted fw-bold border-0"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#moreCategories"
+								aria-expanded="false"
+							>
+								XEM THÊM <i class="fa-solid fa-caret-down ms-1"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+						<div class="card-header bg-danger text-white fw-bold py-2">
+							<i class="fa-solid fa-tag me-2"></i> Thương Hiệu
+						</div>
+						<div class="card-body p-0">
+							<div class="list-group list-group-flush border-top-0" id="brandList">
+								<a
+									href="/brand/lv"
+									class="list-group-item list-group-item-action border-0 border-bottom py-2"
+								>
+									Louis Vuitton
+								</a>
+
+								<div class="collapse" id="moreBrands">
+									<a
+										href="/brand/hermes"
+										class="list-group-item list-group-item-action border-0 border-bottom py-2"
+									>
+										Hermès
+									</a>
+									<a
+										href="/brand/gucci"
+										class="list-group-item list-group-item-action border-0 border-bottom py-2"
+									>
+										Gucci
+									</a>
+								</div>
+
+								<button
+									class="btn btn-light w-100 py-2 small text-muted fw-bold border-0 rounded-0"
+									type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#moreBrands"
+									aria-expanded="false"
+								>
+									XEM THÊM <i class="fa-solid fa-caret-down ms-1"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</aside>
+
+				<div class="col-lg-9">
+					<section class="mb-3">
+						<div
+							class="d-flex justify-content-between align-items-center border-bottom border-2 border-danger mb-3"
+						>
+							<h5 class="bg-danger text-white px-3 py-2 m-0 rounded-top">Sản Phẩm Nổi Bật</h5>
+						</div>
+						<div class="row g-3">
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mb-3">
+						<div
+							class="d-flex justify-content-between align-items-center border-bottom border-2 border-danger mb-3"
+						>
+							<h5 class="bg-danger text-white px-3 py-2 m-0 rounded-top">Sản Phẩm Khuyến Mãi</h5>
+						</div>
+						<div class="row g-3">
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="mb-3">
+						<div
+							class="d-flex justify-content-between align-items-center border-bottom border-2 border-danger mb-3"
+						>
+							<h5 class="bg-danger text-white px-3 py-2 m-0 rounded-top">Sản Phẩm</h5>
+						</div>
+						<div class="row g-3">
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-4 col-lg-3">
+								<div class="product-card border p-2 text-center h-100">
+									<span class="badge bg-danger position-absolute top-0 start-0 m-2">New</span>
+									<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+										>-12%</span
+									>
+
+									<div class="favorite-badge">
+										<i class="fa-regular fa-heart"></i>
+									</div>
+
+									<a
+										href="./product-detail.html"
+										class="stretched-link text-decoration-none text-dark"
+									></a>
+
+									<div class="product-img-wrapper">
+										<img src="https://placehold.co/400" alt="Product Name" />
+									</div>
+
+									<div class="product-info mt-auto">
+										<h6 class="text-truncate px-1 mb-1">Áo Polo Louis Vuitton</h6>
+
+										<div class="price-box mb-1">
+											<span class="text-decoration-line-through text-muted small me-2"
+												>15,700,000₫</span
+											>
+											<div class="text-danger fw-bold">13,816,000₫</div>
+										</div>
+
+										<div class="rating-sold d-flex align-items-center justify-content-center small">
+											<div class="text-warning me-2">
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-solid fa-star"></i>
+												<i class="fa-regular fa-star"></i>
+											</div>
+											<span class="text-muted border-start ps-2">Đã bán 0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-4">
+							<div class="col-12 text-center">
+								<a
+									href="./products.html"
+									class="btn btn-outline-danger px-5 py-2 fw-bold btn-view-more"
+								>
+									Xem thêm <i class="fa-solid fa-angles-down ms-1"></i>
+								</a>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</main>
+
+		<footer class="footer pt-5 pb-3">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-md-3 col-sm-6">
+						<h6 class="footer-title">Chăm sóc khách hàng</h6>
+						<ul class="footer-list">
+							<li><a href="#">Trung tâm trợ giúp</a></li>
+							<li><a href="#">Fashion Shop</a></li>
+							<li><a href="#">Hướng dẫn mua hàng</a></li>
+							<li><a href="#">Chính sách vận chuyển</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Giới thiệu</h6>
+						<ul class="footer-list">
+							<li><a href="#">Giới thiệu về Shop</a></li>
+							<li><a href="#">Tuyển dụng</a></li>
+							<li><a href="#">Điều khoản sử dụng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Danh mục</h6>
+						<ul class="footer-list">
+							<li><a href="#">Quần áo Nam</a></li>
+							<li><a href="#">Giày dép</a></li>
+							<li><a href="#">Phụ kiện thời trang</a></li>
+							<li><a href="#">Hàng mới về</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Theo dõi chúng tôi</h6>
+						<ul class="footer-list">
+							<li>
+								<a href="#"><i class="fab fa-facebook me-2 fb-color"></i>Facebook</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-instagram me-2 ins-color"></i>Instagram</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-tiktok me-2"></i>Tiktok</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h6 class="footer-title">Hỗ trợ thanh toán</h6>
+						<div class="payment-methods">
+							<i class="fab fa-cc-visa text-primary" title="Visa"></i>
+							<i class="fab fa-cc-mastercard text-danger" title="Mastercard"></i>
+							<i class="fa-solid fa-credit-card text-success" title="NAPAS"></i>
+							<i class="fa-brands fa-cc-apple-pay text-dark" title="Apple Pay"></i>
+						</div>
+						<h6 class="footer-title mt-4">Đơn vị vận chuyển</h6>
+						<div class="delivery-methods">
+							<span class="badge bg-white text-dark border p-2">Giao Hàng Nhanh</span>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4 opacity-10" />
+
+				<div
+					class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center"
+				>
+					<div class="text-center text-md-start">
+						<p class="small text-muted mb-1">
+							Copyright © 2023 - 2026 <strong>FashionShop</strong>. All rights reserved.
+						</p>
+						<p class="small text-danger fw-bold mb-md-0" style="font-size: 11px">
+							PROJECT FOR EDUCATION ONLY - NOT FOR COMMERCIAL USE
+						</p>
+					</div>
+					<div class="footer-lang small text-muted mt-2 mt-md-0">
+						<span class="me-3">Địa điểm: TP. Hồ Chí Minh</span>
+						<span>Quốc gia: Việt Nam</span>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<div
+			class="modal fade"
+			id="disclaimerModal"
+			tabindex="-1"
+			aria-labelledby="disclaimerModalLabel"
+			aria-hidden="true"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+		>
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content border-0 shadow">
+					<div class="modal-header bg-warning text-dark border-0 justify-content-center">
+						<h5 class="modal-title fw-bold text-center" id="disclaimerModalLabel">
+							<i class="fa-solid fa-triangle-exclamation me-2"></i>THÔNG BÁO QUAN TRỌNG
+						</h5>
+					</div>
+					<div class="modal-body p-4">
+						<p>Chào mừng bạn đến với <strong>Fashion Shop</strong>.</p>
+						<p class="mb-3 text-justify">
+							Đây là một <strong>dự án cá nhân phục vụ mục đích học tập</strong> và nghiên cứu về
+							lập trình web.
+						</p>
+						<ul class="small text-muted mb-4">
+							<li>Tất cả hình ảnh và thông tin sản phẩm đều mang tính chất minh họa.</li>
+							<li>
+								Chúng tôi <strong>không kinh doanh, không giao dịch</strong> và không thu thập thanh
+								toán thực tế trên website này.
+							</li>
+							<li>Website không thuộc quản lý của bất kỳ doanh nghiệp thương mại nào.</li>
+						</ul>
+						<div
+							class="alert alert-light border-start border-warning border-4 py-2 small text-center"
+						>
+							Việc bạn tiếp tục sử dụng website đồng nghĩa với việc bạn xác nhận đã hiểu rõ mục đích
+							phi thương mại của dự án này.
+						</div>
+					</div>
+					<div class="modal-footer border-0 pt-0">
+						<button
+							type="button"
+							class="btn btn-danger w-100 fw-bold py-2"
+							id="btnAcceptDisclaimer"
+						>
+							TÔI ĐÃ HIỂU VÀ XÁC NHẬN
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const hasAccepted = sessionStorage.getItem("disclaimerAccepted");
+
+				if (!hasAccepted) {
+					var myModal = new bootstrap.Modal(document.getElementById("disclaimerModal"));
+					myModal.show();
+
+					document.getElementById("btnAcceptDisclaimer").addEventListener("click", function () {
+						sessionStorage.setItem("disclaimerAccepted", "true");
+						myModal.hide();
+					});
+				}
+			});
+		</script>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script>
+			const swiper = new Swiper(".banner", {
+				loop: true,
+				pagination: { el: ".swiper-pagination", clickable: true },
+				navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+				autoplay: { delay: 3000 },
+			});
+		</script>
+	</body>
+</html>

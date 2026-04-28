@@ -1,0 +1,17 @@
+// Base Styles
+:root {
+	--bs-danger: #{$primary-red};
+}
+
+body {
+	font-family: $font-main;
+	background-color: $light-gray;
+}
+
+.hover-red:hover {
+	color: $primary-red !important;
+}
+
+.main-content {
+	min-height: 8vh;
+}

@@ -1,0 +1,160 @@
+﻿@model FashionShop.ViewModel.RegisterVM
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = "~/Views/Shared/_LayoutPage_Main.cshtml";
+}
+@section LibraryCSS {
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/pages/register.css")" />
+}
+
+@section LibraryJS {
+
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-6">
+        <div class="auth-card shadow-sm border rounded bg-white p-4 p-md-5">
+            <h2 class="auth-header text-center mb-4 text-uppercase fw-bold">Đăng Ký</h2>
+
+            <form id="registerForm" action="@Url.Action("Register", "Auth")" method="post" class="row g-3">
+                <div class="col-md-12">
+                    <label for="fullName" class="form-label">Họ Và Tên <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.HoTen, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        name = "HoTen",
+                        id = "fullName",
+                        placeholder = "Nguyễn Văn A"
+                    })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-md-6">
+                    <label for="username" class="form-label">Tên Người Dùng - UserName <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.TenNguoiDung, new
+                    {
+                       @class = "form-control",
+                       type = "text",
+                       name = "TenNguoiDung",
+                       id = "username",
+                       placeholder = "nguyenvana123"
+                    })
+                    @Html.ValidationMessageFor(model => model.TenNguoiDung, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.SoDienThoai, new
+                    {
+                        @class = "form-control",
+                        type = "tel",
+                        name = "SoDienThoai",
+                        id = "phoneNumber",
+                        placeholder = "0123 456 789"
+                    })
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.Email, new
+                    {
+                        @class = "form-control",
+                        type = "email",
+                        name = "Email",
+                        id = "email",
+                        placeholder = "example@domain.com"
+                    })
+                    @Html.ValidationMessageFor(model => model.Email, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                @*<div class="col-md-6">
+                    <label for="citySelect" class="form-label small fw-bold">Tỉnh / Thành phố <span class="text-danger">*</span></label>
+                    <select class="form-select py-2" id="citySelect">
+                        <option value="" selected disabled>Chọn tỉnh thành</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="wardSelect" class="form-label small fw-bold">Phường / Xã <span class="text-danger">*</span></label>
+                    <select class="form-select py-2" id="wardSelect">
+                        <option value="" selected disabled>Chọn phường xã</option>
+                    </select>
+                </div>*@
+
+                <div class="col-12">
+                    <label for="address" class="form-label small fw-bold">Địa chỉ chi tiết <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.DiaChi, new
+                    {
+                        @class = "form-control",
+                        type = "text",
+                        name = "DiaChi",
+                        id = "address",
+                        placeholder = "Số nhà/Tên Đường - Ấp/Khu phố"
+                    })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.MatKhau, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "MatKhau",
+                        id = "password",
+                        placeholder = "Nhập mật khẩu"
+                    })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-md-6">
+                    <label for="confirmPassword" class="form-label">Xác Minh Mật Khẩu <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(model => model.NhapLaiMatKhau, new
+                    {
+                        @class = "form-control",
+                        type = "password",
+                        name = "NhapLaiMatKhau",
+                        id = "confirmPassword",
+                        placeholder = "Nhập lại mật khẩu"
+                    })
+                    @Html.ValidationMessageFor(model => model.NhapLaiMatKhau, "", new
+                    {
+                        style = "color: red;"
+                    })
+                </div>
+
+                <div class="col-12 mt-4 text-center">
+                    <button type="submit" class="btn btn-auth w-100 text-uppercase fw-bold py-2 mb-3">
+                        Đăng Ký
+                    </button>
+                    <div class="mt-2">
+                        <a href="@Url.Action("Login", "Auth")"
+                           class="btn btn-outline-secondary w-100 text-uppercase btn-sm py-2">
+                            Quay Lại Đăng Nhập
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Fashion Shop - Thế giới thời trang của bạn</title>
+		<link rel="icon" type="image/x-icon" href="/assets/icons/icon16.ico" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="/assets/css/pages/product-detail.css" />
+	</head>
+
+	<body>
+		<div class="top-bar py-1 border-bottom d-none d-md-block">
+			<div class="container d-flex justify-content-between align-items-center">
+				<small class="text-muted">Chào mừng bạn đã đến với Fashion Shop!</small>
+				<div class="social-links">
+					<a href="#" class="text-muted me-2"><i class="fab fa-facebook"></i></a>
+					<a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<header class="py-3 bg-white border-bottom shadow-sm">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-2 col-6">
+						<a href="./index.html" class="logo d-block">
+							<img
+								src="/assets/images/fashion-shop-logo.jpg"
+								class="img-fluid custom-logo"
+								alt="Fashion Shop"
+							/>
+						</a>
+					</div>
+
+					<div class="col-lg-5 d-none d-lg-block">
+						<form action="/search" method="get" class="search-form">
+							<div class="input-group border rounded-pill overflow-hidden">
+								<input
+									type="text"
+									class="form-control border-0 px-3"
+									placeholder="Bạn tìm gì hôm nay..."
+								/>
+								<button class="btn btn-danger px-4" type="submit">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-lg-5 col-6">
+						<div
+							class="header-actions d-flex justify-content-end align-items-center gap-3 gap-md-4"
+						>
+							<a
+								href="./login.html"
+								class="d-flex align-items-center text-decoration-none user-action hover-red"
+							>
+								<i class="fa-regular fa-user fs-4 text-dark me-3"></i>
+
+								<div class="small d-none d-md-block">
+									<span class="text-dark fw-medium d-block">Đăng nhập</span>
+									<div class="text-muted" style="font-size: 11px">Tài khoản</div>
+								</div>
+							</a>
+							<!-- <div class="d-flex align-items-center gap-3">
+								<a href="./profile.html" class="d-flex align-items-center text-decoration-none">
+									<div class="user-icon-wrap me-2">
+										<i class="fa-regular fa-user fs-4 text-dark"></i>
+									</div>
+									<div class="small d-none d-xl-block text-dark">
+										<span class="fw-bold d-block hover-red text-truncate" style="max-width: 100px"
+											>User</span
+										>
+										<span class="text-muted" style="font-size: 11px">Thành viên</span>
+									</div>
+								</a>
+
+								<a
+									href="./login.html"
+									class="btn btn-outline-danger btn-sm border-0 px-2 py-1 shadow-none"
+									title="Đăng xuất"
+								>
+									<i class="fa-solid fa-arrow-right-from-bracket" style="font-size: 14px"></i>
+								</a>
+							</div> -->
+
+							<a
+								href="./notifications.html"
+								class="notification-action position-relative d-flex align-items-center text-decoration-none"
+							>
+								<div class="notification-icon-wrap position-relative me-2">
+									<i class="fa-regular fa-bell fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										5
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Thông báo</span>
+									<span class="text-muted" style="font-size: 11px">Mới nhất</span>
+								</div>
+							</a>
+
+							<a
+								href="./cart.html"
+								class="cart-action position-relative d-flex align-items-center text-decoration-none border-start ps-3 ps-md-4"
+							>
+								<div class="cart-icon-wrap position-relative me-2">
+									<i class="fa-solid fa-bag-shopping fs-4 text-dark"></i>
+									<span
+										class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+										style="font-size: 9px; padding: 3px 5px"
+									>
+										2
+									</span>
+								</div>
+								<div class="small d-none d-xl-block text-dark ms-2">
+									<span class="d-block fw-medium">Giỏ hàng</span>
+									<span class="text-muted" style="font-size: 11px">16,196,000₫</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top p-0">
+			<div class="container">
+				<button
+					class="navbar-toggler border-0 my-2"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#mainNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mainNav">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 active" href="./index.html"
+								><i class="fa-solid fa-house me-1"></i> Trang chủ</a
+							>
+						</li>
+						<li class="nav-item dropdown custom-dropdown border-end-light">
+							<a class="nav-link px-3 dropdown-toggle text-white" href="./products.html"
+								>Sản Phẩm</a
+							>
+							<ul class="dropdown-menu shadow">
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Quần áo <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Áo sơ mi</a></li>
+										<li><a class="dropdown-item" href="#">Quần tây</a></li>
+									</ul>
+								</li>
+								<li class="dropend">
+									<a
+										class="dropdown-item d-flex justify-content-between align-items-center"
+										href="#"
+									>
+										Giày dép <i class="fa-solid fa-angle-right"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Giày công sở</a></li>
+										<li><a class="dropdown-item" href="#">Giày du lịch</a></li>
+									</ul>
+								</li>
+								<li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+							</ul>
+						</li>
+						<li class="nav-item border-end-light">
+							<a class="nav-link px-3 text-white" href="./about.html">Về chúng tôi</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link px-3 text-white" href="./contact.html">Liên hệ</a>
+						</li>
+					</ul>
+					<div class="hotline-nav text-white fw-bold py-2">
+						<i class="fa-solid fa-headset me-2"></i> 1900 0000
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="container my-4 main-content">
+			<nav aria-label="breadcrumb" class="mb-4">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="#" class="text-decoration-none text-muted">Trang chủ</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="#" class="text-decoration-none text-muted">Sản phẩm</a>
+					</li>
+					<li class="breadcrumb-item active text-danger" aria-current="page">Thông tin sản phẩm</li>
+				</ol>
+			</nav>
+
+			<div class="row g-4">
+				<div class="col-12 col-lg-6">
+					<div class="product-slider-container position-relative">
+						<div class="swiper productSwiper">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide bg-light rounded text-center py-4">
+									<img src="https://placehold.co/600x600" class="img-fluid" alt="Product 1" />
+								</div>
+								<div class="swiper-slide bg-light rounded text-center py-4">
+									<img src="https://placehold.co/600x600" class="img-fluid" alt="Product 2" />
+								</div>
+								<div class="swiper-slide bg-light rounded text-center py-4">
+									<img src="https://placehold.co/600x600" class="img-fluid" alt="Product 3" />
+								</div>
+							</div>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-lg-6">
+					<div class="product-details ps-lg-4">
+						<h2 class="fw-bold mb-2">Áo Polo Louis Vuitton</h2>
+						<p class="text-muted small mb-3">
+							Mã sản phẩm: <span class="fw-bold text-dark">SP1</span>
+						</p>
+
+						<div class="price-section mb-4">
+							<h3 class="text-danger fw-bold mb-1">13,816,000₫</h3>
+							<span class="text-muted text-decoration-line-through">15,700,000₫</span>
+						</div>
+
+						<div class="mb-3">
+							<p class="fw-bold mb-2">
+								Chọn màu sắc: <span class="text-muted fw-normal" id="selected-color">Cam</span>
+							</p>
+							<div class="d-flex flex-wrap gap-2">
+								<input type="radio" class="btn-check" name="color" id="cam" checked />
+								<label class="btn btn-outline-dark px-3" for="cam">Cam</label>
+								<input type="radio" class="btn-check" name="color" id="den" />
+								<label class="btn btn-outline-dark px-3" for="den">Đen</label>
+								<input type="radio" class="btn-check" name="color" id="trang" />
+								<label class="btn btn-outline-dark px-3" for="trang">Trắng</label>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<p class="fw-bold mb-2">
+								Chọn size: <span class="text-muted fw-normal" id="selected-size">2XL</span>
+							</p>
+							<div class="d-flex flex-wrap gap-2">
+								<input type="radio" class="btn-check" name="size" id="s2xl" checked />
+								<label class="btn btn-outline-dark px-3" for="s2xl">2XL</label>
+								<input type="radio" class="btn-check" name="size" id="xl" />
+								<label class="btn btn-outline-dark px-3" for="xl">XL</label>
+								<input type="radio" class="btn-check" name="size" id="l" />
+								<label class="btn btn-outline-dark px-3" for="l">L</label>
+								<input type="radio" class="btn-check" name="size" id="m" />
+								<label class="btn btn-outline-dark px-3" for="m">M</label>
+							</div>
+						</div>
+
+						<div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+							<div class="quantity-input input-group" style="width: 130px">
+								<button class="btn btn-outline-secondary" type="button">-</button>
+								<input type="text" class="form-control text-center" value="1" />
+								<button class="btn btn-outline-secondary" type="button">+</button>
+							</div>
+							<button class="btn btn-outline-dark px-4 flex-grow-1 py-2">Thêm vào giỏ hàng</button>
+							<button class="btn btn-danger px-4 flex-grow-1 py-2 fw-bold">Mua ngay</button>
+							<button class="btn btn-light border px-3 py-2 btn-wishlist">
+								<i class="fa-regular fa-heart"></i>
+							</button>
+						</div>
+						<div class="mb-4">
+							<p class="text-muted small">
+								Còn lại <span class="fw-bold text-dark">50</span> sản phẩm
+							</p>
+						</div>
+
+						<div class="row g-4 border-top pt-4 mt-2 mb-5">
+							<div class="col-12 col-md-4 d-flex align-items-start">
+								<i class="fa-regular fa-clock fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0">Giao hàng nhanh</h6>
+									<p class="small text-muted mb-0">Từ 2 - 5 ngày</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-4 d-flex align-items-start">
+								<i class="fa-solid fa-truck fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0">Miễn phí vận chuyển</h6>
+									<p class="small text-muted mb-0">Đơn hàng từ 399K</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-4 d-flex align-items-start">
+								<i class="fa-solid fa-magnifying-glass fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0 text-truncate">Theo dõi đơn hàng</h6>
+									<p class="small text-muted mb-0">Một cách dễ dàng</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-4 d-flex align-items-start mt-md-4">
+								<i class="fa-solid fa-box-archive fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0">Đổi trả linh hoạt</h6>
+									<p class="small text-muted mb-0">Với sản phẩm không áp dụng khuyến mãi</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-4 d-flex align-items-start mt-md-4">
+								<i class="fa-solid fa-wallet fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0">Thanh toán dễ dàng</h6>
+									<p class="small text-muted mb-0">Nhiều hình thức</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-4 d-flex align-items-start mt-md-4">
+								<i class="fa-solid fa-headset fs-4 me-3 text-dark mt-1"></i>
+								<div>
+									<h6 class="fw-bold mb-0">Hotline hỗ trợ</h6>
+									<p class="small text-muted mb-0">0123 456 789</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-3 border-top pt-4">
+				<h4 class="fw-bold mb-4">Mô Tả Sản Phẩm</h4>
+				<div class="description-content text-muted lh-lg">
+					<p>
+						Áo Polo Louis Vuitton là biểu tượng của sự tinh tế và phong cách hiện đại. Với chất liệu
+						vải cao cấp, áo không chỉ mang lại sự thoải mái mà còn phản ánh đẳng cấp và sự sang
+						trọng. Họa tiết LV tinh tế trên áo tạo nên điểm nhấn độc đáo, làm nổi bật phong cách cá
+						nhân của bạn. Thiết kế thoáng khí giúp áo luôn mát mẻ, phù hợp cho cả những buổi gặp gỡ
+						quan trọng hay những chuyến du lịch thoải mái.
+					</p>
+					<p>
+						Đến từ thương hiệu nổi tiếng Louis Vuitton, áo Polo không chỉ là bộ trang phục, mà còn
+						là biểu tượng của đẳng cấp và gu thời trang hàng đầu. Chọn Áo Polo Louis Vuitton, bạn
+						chọn lựa sự đẳng cấp và sự xuất sắc trong từng chi tiết.
+					</p>
+				</div>
+			</div>
+		</main>
+
+		<footer class="footer pt-5 pb-3">
+			<div class="container">
+				<div class="row g-4">
+					<div class="col-md-3 col-sm-6">
+						<h6 class="footer-title">Chăm sóc khách hàng</h6>
+						<ul class="footer-list">
+							<li><a href="#">Trung tâm trợ giúp</a></li>
+							<li><a href="#">Fashion Shop</a></li>
+							<li><a href="#">Hướng dẫn mua hàng</a></li>
+							<li><a href="#">Chính sách vận chuyển</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Giới thiệu</h6>
+						<ul class="footer-list">
+							<li><a href="#">Giới thiệu về Shop</a></li>
+							<li><a href="#">Tuyển dụng</a></li>
+							<li><a href="#">Điều khoản sử dụng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Danh mục</h6>
+						<ul class="footer-list">
+							<li><a href="#">Quần áo Nam</a></li>
+							<li><a href="#">Giày dép</a></li>
+							<li><a href="#">Phụ kiện thời trang</a></li>
+							<li><a href="#">Hàng mới về</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<h6 class="footer-title">Theo dõi chúng tôi</h6>
+						<ul class="footer-list">
+							<li>
+								<a href="#"><i class="fab fa-facebook me-2 fb-color"></i>Facebook</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-instagram me-2 ins-color"></i>Instagram</a>
+							</li>
+							<li>
+								<a href="#"><i class="fab fa-tiktok me-2"></i>Tiktok</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h6 class="footer-title">Hỗ trợ thanh toán</h6>
+						<div class="payment-methods">
+							<i class="fab fa-cc-visa text-primary" title="Visa"></i>
+							<i class="fab fa-cc-mastercard text-danger" title="Mastercard"></i>
+							<i class="fa-solid fa-credit-card text-success" title="NAPAS"></i>
+							<i class="fa-brands fa-cc-apple-pay text-dark" title="Apple Pay"></i>
+						</div>
+						<h6 class="footer-title mt-4">Đơn vị vận chuyển</h6>
+						<div class="delivery-methods">
+							<span class="badge bg-white text-dark border p-2">Giao Hàng Nhanh</span>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4 opacity-10" />
+
+				<div
+					class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center"
+				>
+					<p class="small text-muted mb-md-0">
+						Copyright © 2023 - 2026 <strong>FashionShop</strong>. All rights reserved.
+					</p>
+					<div class="footer-lang small text-muted">Quốc gia: Việt Nam</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const swiper = new Swiper(".productSwiper", {
+					loop: true,
+					pagination: {
+						el: ".swiper-pagination",
+						clickable: true,
+					},
+					navigation: {
+						nextEl: ".swiper-button-next",
+						prevEl: ".swiper-button-prev",
+					},
+					autoplay: {
+						delay: 3000,
+						disableOnInteraction: false,
+					},
+				});
+			});
+		</script>
+		<script>
+			document.querySelectorAll(".btn-wishlist").forEach((button) => {
+				button.addEventListener("click", function () {
+					this.classList.toggle("active");
+
+					const icon = this.querySelector("i");
+					if (this.classList.contains("active")) {
+						icon.classList.remove("fa-regular");
+						icon.classList.add("fa-solid");
+					} else {
+						icon.classList.remove("fa-solid");
+						icon.classList.add("fa-regular");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

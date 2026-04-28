@@ -1,0 +1,168 @@
+// Header & Logo
+.header-actions {
+	.user-action,
+	.cart-action {
+		cursor: pointer;
+		&:hover i {
+			color: $primary-red !important;
+		}
+	}
+
+	.cart-action {
+		.badge {
+			font-size: 0.65rem;
+			padding: 0.35em 0.5em;
+		}
+	}
+}
+
+.logo {
+	width: 250px;
+
+	h1 {
+		font-size: 2rem;
+		line-height: 1;
+		color: $primary-red;
+	}
+
+	.custom-logo {
+		width: 100%;
+		height: 100px;
+		object-fit: contain;
+		object-position: center;
+	}
+}
+
+// Navbar Standard
+.navbar {
+	min-height: 48px;
+
+	.nav-item {
+		&.border-end-light {
+			border-right: 1px solid rgba(255, 255, 255, 0.15);
+		}
+	}
+
+	.nav-link {
+		font-weight: 600;
+		letter-spacing: 0.5px;
+		line-height: 48px;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		transition: $transition-fast;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	// Dropdown Multi-level Logic
+	.custom-dropdown {
+		position: relative;
+
+		.dropdown-item {
+			padding: 8px 12px;
+		}
+
+		> .dropdown-menu {
+			display: none;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition: all 0.2s ease-in-out;
+
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1000;
+			background-color: #fff;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			min-width: 200px;
+			padding: 0;
+			border: none;
+		}
+
+		&:hover > .dropdown-menu {
+			display: block;
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		.dropdown-item {
+			position: relative;
+			background-color: #fff;
+			z-index: 1;
+
+			&:hover {
+				background-color: #eee;
+				color: $primary-red;
+			}
+		}
+
+		.dropend {
+			position: relative;
+
+			> .dropdown-menu {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 100%;
+				margin-top: 0;
+				padding: 0;
+				background-color: #fff;
+				z-index: 1001;
+				box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+				border: 0;
+				border-radius: unset;
+			}
+
+			&:hover > .dropdown-menu {
+				display: block;
+				background-color: #eee;
+			}
+		}
+	}
+}
+
+// Hotline
+.hotline-nav {
+	background: rgba(0, 0, 0, 0.2);
+	padding: 0 15px;
+	border-radius: 20px;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 991.98px) {
+	.navbar-nav {
+		padding: 15px 0;
+		.nav-item {
+			border: none !important;
+		}
+		.nav-link {
+			line-height: 40px;
+		}
+
+		.custom-dropdown {
+			.dropdown-menu {
+				position: static !important;
+				display: none;
+				opacity: 1;
+				visibility: visible;
+				transform: none;
+				box-shadow: none;
+				border: none;
+				background: rgba(0, 0, 0, 0.03);
+
+				&.show {
+					display: block;
+				}
+
+				.dropend > .dropdown-menu {
+					position: static !important;
+					margin-left: 15px;
+				}
+			}
+		}
+	}
+}

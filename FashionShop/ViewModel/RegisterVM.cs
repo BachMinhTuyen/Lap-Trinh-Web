@@ -9,21 +9,21 @@ namespace FashionShop.ViewModel
     public class RegisterVM
     {
         [Required(ErrorMessage = "Bắt buộc nhập UserName!")]
-        public string UserName { get; set; }
+        public string TenNguoiDung { get; set; }
 
         [Required(ErrorMessage = "Bắt buộc nhập Password!")]
         [StringLength(255, ErrorMessage = "Phải nhập từ 5 tới 255 ký tự", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string MatKhau { get; set; }
 
         [Required(ErrorMessage = "Bắt buộc nhập Password!")]
         [StringLength(255, ErrorMessage = "Phải nhập từ 5 tới 255 ký tự", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        [Compare("MatKhau")]
+        public string NhapLaiMatKhau { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập đầy đủ Họ Và Tên!")]
-        public string TenNguoiDung { get; set; }
+        public string HoTen { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập Địa Chỉ!")]
         public string DiaChi { get; set; }

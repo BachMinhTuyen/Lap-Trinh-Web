@@ -48,22 +48,17 @@ namespace FashionShop.ViewModel
         {
             iCartItem = id;
             sMaSanPham = maSanPham;
-            SanPham sanPham = db.SanPham.Single(s => s.MaSanPham == maSanPham);
-            sTenSanPham = sanPham.TenSanPham;
-            sAnhDaiDien = sanPham.AnhDaiDien;
             sTenMau = tenMau;
             sTenSize = tenSize;
-            double gia;
-            if (sanPham.KhuyenMai != 0)
-            {
-                gia = sanPham.GiaSanPham - (sanPham.GiaSanPham * sanPham.KhuyenMai);
-            }
-            else
-            {
-                gia = sanPham.GiaSanPham;
-            }
-            dDonGia = gia;
             iSoLuong = soLuong;
+
+            var sp = db.SanPham.FirstOrDefault(s => s.MaSanPham == maSanPham);
+            if (sp != null)
+            {
+                sTenSanPham = sp.TenSanPham;
+                sAnhDaiDien = sp.AnhDaiDien;
+                dDonGia = (sp.KhuyenMai > 0) ? sp.GiaSanPham * (1 - sp.KhuyenMai) : sp.GiaSanPham;
+            }
         }
     }
 }
