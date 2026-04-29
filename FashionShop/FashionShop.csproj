@@ -4965,6 +4965,8 @@
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="lib\swiper\swiper-bundle.min.css" />
     <Content Include="lib\swiper\swiper-bundle.min.js" />
+    <Content Include="lib\toastr.js\toastr.min.css" />
+    <Content Include="lib\toastr.js\toastr.min.js" />
     <Content Include="SQL\FashionShopDB.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -5042,6 +5044,7 @@
     <Content Include="Views\Product\FavouriteProductList.cshtml" />
     <Content Include="Views\Home\_components\_BrandPartial.cshtml" />
     <Content Include="Views\Home\_components\_CategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_PartialPage_Notifications.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

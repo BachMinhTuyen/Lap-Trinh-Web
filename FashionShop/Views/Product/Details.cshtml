@@ -8,13 +8,10 @@
     var YeuThich = ViewBag.YeuThich as FashionShop.Models.YeuThich;
 }
 @section LibraryCSS {
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="@Url.Content("~/assets/css/pages/product-detail.css")" rel="stylesheet" />
 }
 @section LibraryJS {
-    <script src="~/assets/javascript/details.js"></script>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="@Url.Content("~/assets/javascript/details.js")"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const swiper = new Swiper(".productSwiper", {

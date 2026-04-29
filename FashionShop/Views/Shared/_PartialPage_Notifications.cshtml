@@ -1,0 +1,34 @@
+﻿@if (TempData["Success"] != null)
+{
+    <script>
+            $(document).ready(function() {
+                showToast.success('@TempData["Success"]');
+            });
+    </script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script>
+            $(document).ready(function() {
+            showToast.error('@TempData["Error"]');
+            });
+    </script>
+}
+
+@if (TempData["Info"] != null)
+{
+    <script>
+            $(document).ready(function() {
+                showToast.info('@TempData["Info"]');
+            });
+    </script>
+}
+@if (TempData["Warning"] != null)
+{
+    <script>
+            $(document).ready(function() {
+            showToast.warning('@TempData["Warning"]');
+            });
+    </script>
+}

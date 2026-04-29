@@ -41,6 +41,7 @@ namespace FashionShop.Controllers
                     
                     db.TaiKhoan.Add(user);
                     db.SaveChanges();
+                    TempData["Success"] = "Đăng ký thành công!";
                     return RedirectToAction("Login", "Auth");
                 }
             }
@@ -68,10 +69,12 @@ namespace FashionShop.Controllers
 
                         if (nguoiDung.VaiTro == "User")
                         {
+                            TempData["Success"] = "Chào mừng bạn đã trở lại!";
                             return RedirectToAction("Index", "Home");
                         }
                         else if (nguoiDung.VaiTro == "Admin")
                         {
+                            TempData["Success"] = "Chào mừng bạn đã trở lại!";
                             return Redirect("/Admin/Dashboard/Index");
                         }
                         else

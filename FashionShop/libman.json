@@ -75,5 +75,24 @@
     "jquery.validate.min.js"
   ]
 }
+,
+{
+  "provider": "unpkg",
+  "library": "sonner@2.0.7",
+  "destination": "lib/sonner/",
+  "files": [
+    "dist/index.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "toastr.js@2.1.4",
+  "destination": "lib/toastr.js/",
+  "files": [
+    "toastr.min.js",
+    "toastr.min.css"
+  ]
+}
 ]
 }
