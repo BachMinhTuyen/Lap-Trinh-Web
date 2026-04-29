@@ -33,5 +33,47 @@
         "swiper-bundle.min.js"
       ]
     }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "jquery@3.7.1",
+  "destination": "lib/jquery/",
+  "files": [
+    "jquery.min.js"
   ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validate@1.21.0",
+  "destination": "lib/jquery-validate/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validation-unobtrusive@4.0.0",
+  "destination": "lib/jquery-validation-unobtrusive/",
+  "files": [
+    "jquery.validate.unobtrusive.min.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validate@1.21.0",
+  "destination": "lib/jquery-validate/",
+  "files": [
+    "jquery.validate.min.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validate@1.21.0",
+  "destination": "lib/jquery-validate/",
+  "files": [
+    "jquery.validate.min.js"
+  ]
+}
+]
 }

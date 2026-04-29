@@ -4957,21 +4957,14 @@
     <Content Include="assets\css\pages\register.css.map" />
     <Content Include="assets\css\pages\wishlist.css.map" />
     <Content Include="assets\css\style.css.map" />
-    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="lib\bootstrap\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="lib\font-awesome\css\all.min.css" />
+    <Content Include="lib\jquery-validate\jquery.validate.min.js" />
+    <Content Include="lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="lib\swiper\swiper-bundle.min.css" />
     <Content Include="lib\swiper\swiper-bundle.min.js" />
-    <Content Include="Scripts\jquery-3.7.1.js" />
-    <Content Include="Scripts\jquery-3.7.1.min.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="SQL\FashionShopDB.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -5037,12 +5030,9 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
-    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
-    <Content Include="Views\Cart\CheckoutWithOneProduct.cshtml" />
     <Content Include="Views\Cart\OrderSuccess.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Home\AccessDenied.cshtml" />

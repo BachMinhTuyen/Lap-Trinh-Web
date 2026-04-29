@@ -24,7 +24,7 @@ namespace FashionShop.Controllers
             ViewBag.TenMau = TempData["TenMau"];
             ViewBag.TenSize = TempData["TenSize"];
             ViewBag.BienThe = db.BienTheSanPham.ToList();
-            ViewBag.TongThanhTien = TotalMoney();
+            ViewBag.TongThanhTien = CartService.GetTotalPrice();
             return View(lst);
         }
         private List<CartVM> GetCart()
@@ -36,17 +36,6 @@ namespace FashionShop.Controllers
                 Session["Cart"] = lst;
             }
             return lst;
-        }
-
-        private double TotalMoney()
-        {
-            double sum = 0;
-            List<CartVM> lst = Session["Cart"] as List<CartVM>;
-            if (lst != null)
-            {
-                sum = lst.Sum(sp => sp.dThanhTien);
-            }
-            return sum;
         }
 
         [HttpPost]
