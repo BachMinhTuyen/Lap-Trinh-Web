@@ -1,0 +1,10 @@
+﻿body > center:has(a[href*="somee.com"]),
+body > div[style*="z-index: 2147483647"],
+body > div[style*="height: 65px"],
+body > div[style*="opacity: 0.9"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
