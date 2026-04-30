@@ -401,16 +401,15 @@
                                     <h6 class="text-truncate px-1 mb-1">@item.TenSanPham</h6>
 
                                     <div class="price-box mb-1">
-                                        <span class="text-decoration-line-through text-muted small me-2">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
                                         @if (item.KhuyenMai != 0)
                                         {
+                                            <span class="text-decoration-line-through text-muted small me-2">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
                                             <div class="text-danger fw-bold">@string.Format("{0:#,##0}đ", item.GiaSanPham - (item.GiaSanPham * item.KhuyenMai))</div>
                                         }
                                         else
                                         {
                                             <div class="text-danger fw-bold">@string.Format("{0:#,##0}đ", item.GiaSanPham)</div>
                                         }
-
                                     </div>
 
                                     <div class="rating-sold d-flex align-items-center justify-content-center small">

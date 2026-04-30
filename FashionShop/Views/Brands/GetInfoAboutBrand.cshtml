@@ -100,10 +100,14 @@
                                 </p>
 
                                 <div class="price-box mb-1 px-1">
-                                    <span class="text-decoration-line-through text-muted small me-2">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
                                     @if (item.KhuyenMai != 0)
                                     {
+                                        <span class="text-decoration-line-through text-muted small me-2">@string.Format("{0:#,##0}đ", item.GiaSanPham)</span>
                                         <div class="text-danger fw-bold">@string.Format("{0:#,##0}đ", item.GiaSanPham - (item.GiaSanPham * item.KhuyenMai))</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="text-danger fw-bold">@string.Format("{0:#,##0}đ", item.GiaSanPham)</div>
                                     }
                                 </div>
 
