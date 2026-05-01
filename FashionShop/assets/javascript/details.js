@@ -21,30 +21,6 @@
             soLuong: quantity
         };
     },
-
-    addToCart: async (data) => {
-        if (!data) return;
-
-        try {
-            const response = await fetch('/Cart/AddToCart', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            if (result.success) {
-                console.log(result.message);
-                showToast.success(result.message);
-                const cartBadge = document.querySelector('.cart-badge');
-                //console.log(cartBadge, cartBadge.value(), result.totalItems);
-                if (cartBadge) cartBadge.innerText = result.totalItems + cartBadge.value();
-            }
-        } catch (error) {
-            showToast.error("Sản phẩm đã hết hàng.");
-            console.error("Lỗi khi thêm giỏ hàng:", error);
-        }
-    },
     changeQuantity: (step) => {
         const input = document.getElementById('quantityInput');
         let newValue = parseInt(input.value) + step;
@@ -75,7 +51,9 @@
                 } else {
                     showToast.success(result.message);
                     const cartBadge = document.querySelector('.cart-badge');
-                    if (cartBadge) cartBadge.innerText = result.totalItems + cartBadge.value();
+                    const cartPriceDisplay = document.querySelector('.cart-price-display');
+                    if (cartBadge) cartBadge.innerText = result.totalQuantity;
+                    if (cartPriceDisplay) cartPriceDisplay.innerText = result.totalPrice;
                 }
             } else {
                 showToast.error(result.message);
