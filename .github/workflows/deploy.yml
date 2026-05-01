@@ -36,7 +36,10 @@ jobs:
     - name: Build and Publish
       run: |
         msbuild FashionShop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-      
+    
+    - name: List directory content
+      run: dir /s /b FashionShop\bin\
+
     - name: Deploy to Hosting via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
       with:
@@ -44,4 +47,4 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.SERVER_DIR }}
-        local-dir: bin/app.publish/
+        local-dir: FashionShop/bin/app.publish/
