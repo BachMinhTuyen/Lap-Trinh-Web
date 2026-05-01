@@ -7,8 +7,8 @@
     <div class="container d-flex justify-content-between align-items-center">
         <small class="text-muted">Chào mừng bạn đã đến với Fashion Shop!</small>
         <div class="social-links">
-            <a href="https://www.facebook.com/" class="text-muted me-2"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/" class="text-muted"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/" class="text-muted me-2" target="_blank" rel="noreferrer nofollow"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" class="text-muted" target="_blank" rel="noreferrer nofollow"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
 </div>
@@ -92,14 +92,14 @@
                        class="cart-action position-relative d-flex align-items-center text-decoration-none border-start ps-3 ps-md-4">
                         <div class="cart-icon-wrap position-relative me-2">
                             <i class="fa-solid fa-bag-shopping fs-4 text-dark"></i>
-                            <span class="cartBadge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
+                            <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white"
                                   style="font-size: 9px; padding: 3px 5px">
                                 @ViewBag.TongSoLuong
                             </span>
                         </div>
                         <div class="small d-none d-xl-block text-dark ms-2">
                             <span class="d-block fw-medium">Giỏ hàng</span>
-                            <span class="text-muted" style="font-size: 11px">@string.Format("{0:#,##0đ}", ViewBag.TongTienGioHang)</span>
+                            <span class="cart-price-display text-muted" style="font-size: 11px">@string.Format("{0:#,##0đ}", ViewBag.TongTienGioHang)</span>
                         </div>
                     </a>
                 </div>

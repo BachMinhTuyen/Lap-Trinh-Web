@@ -141,6 +141,7 @@
     <Content Include="assets\css\pages\profile.css" />
     <Content Include="assets\css\pages\register.css" />
     <Content Include="assets\css\pages\wishlist.css" />
+    <Content Include="assets\css\site.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\icons\icon128.ico" />
     <Content Include="assets\icons\icon128.png" />
@@ -262,9 +263,6 @@
     <Content Include="assets\javascript\cart.js" />
     <Content Include="assets\javascript\checkout.js" />
     <Content Include="assets\javascript\details.js" />
-    <Content Include="assets\javascript\email.min.js" />
-    <Content Include="assets\javascript\main.js" />
-    <Content Include="assets\javascript\validator.js" />
     <Content Include="assets\js\pages\products.js" />
     <Content Include="Global.asax" />
     <Content Include="libman.json" />
@@ -301,6 +299,7 @@
     <Content Include="lib\swiper\swiper-bundle.min.js" />
     <Content Include="lib\toastr.js\toastr.min.css" />
     <Content Include="lib\toastr.js\toastr.min.js" />
+    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
     <Content Include="SQL\FashionShopDB.sql" />
     <Content Include="static_html\about.html" />
     <Content Include="static_html\cart.html" />
@@ -389,6 +388,8 @@
     <Content Include="Views\Home\_components\_BrandPartial.cshtml" />
     <Content Include="Views\Home\_components\_CategoryPartial.cshtml" />
     <Content Include="Views\Shared\_PartialPage_Notifications.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

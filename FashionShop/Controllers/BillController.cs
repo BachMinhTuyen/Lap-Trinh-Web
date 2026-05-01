@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Web.WebPages;
 
 namespace FashionShop.Controllers
 {
@@ -15,8 +16,14 @@ namespace FashionShop.Controllers
         [Route("lich-su-don-hang")]
         public ActionResult ViewBills(string UserName)
         {
+            if (UserName.IsEmpty())
+            {
+                TempData["Error"] = "Không tìm thấy Username";
+                return RedirectToAction("Profile", "User");
+            }  
+            
             ViewBag.UserName = UserName;
-            List<HoaDon> lst = db.HoaDon.Where(h =>h.TaiKhoan.UserName == UserName).ToList();
+            List<HoaDon> lst = db.HoaDon.Include(h => h.TaiKhoan).Where(h =>h.TaiKhoan.UserName == UserName).ToList();
             return View(lst);
         }
         public ActionResult Details(string maHoaDon)

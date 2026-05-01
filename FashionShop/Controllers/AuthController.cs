@@ -79,16 +79,19 @@ namespace FashionShop.Controllers
                         }
                         else
                         {
+                            TempData["Warning"] = "Bạn không có quyền truy cập trang này";
                             return RedirectToAction("AccessDenied", "Home");
                         }
                     }
                 }
             }
+            TempData["Error"] = "Username không tồn tại";
             return RedirectToAction("Login", "Auth");
         }
         public ActionResult Logout()
         {
             Session["User"] = null;
+            TempData["Success"] = "Đăng xuất thành công!";
             return RedirectToAction("Index", "Home");
         }
 

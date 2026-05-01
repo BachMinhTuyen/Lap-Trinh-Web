@@ -67,7 +67,8 @@ namespace FashionShop.Controllers
                 return Json(new
                 {
                     success = true,
-                    totalItems = lst.Sum(x => x.iSoLuong),
+                    totalQuantity = CartService.GetTotalQuantity(),
+                    totalPrice = CartService.GetTotalPrice().ToString("#,##0đ"),
                     message = "Đã thêm sản phẩm vào giỏ hàng!"
                 });
             }

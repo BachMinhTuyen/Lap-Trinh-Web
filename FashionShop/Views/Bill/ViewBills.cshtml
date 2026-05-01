@@ -47,9 +47,16 @@
 
         @if (Model.Count == 0)
         {
-            <div class="no-item">
-                <iconify-icon style="color: var(--primary-color);" icon="lets-icons:order-light"></iconify-icon>
-                <p>Không có đơn hàng nào</p>
+            <div class="empty-state py-5 text-center">
+                <div class="empty-state-icon mb-3">
+                    <i class="fa-solid fa-clipboard-list text-primary"
+                       style="font-size: 3rem; opacity: 0.7"></i>
+                </div>
+                <h5 class="text-muted fw-bold">Chưa có đơn hàng nào</h5>
+                <p class="text-secondary small">Bạn vẫn chưa thực hiện đơn hàng nào gần đây.</p>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-danger mt-3 px-4">
+                    <i class="fa-solid fa-shopping-bag me-2"></i>Tiếp tục mua sắm
+                </a>
             </div>
         }
         else

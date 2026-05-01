@@ -66,14 +66,14 @@ else
 
                      @foreach (var item in Model)
                      {
-                        <div class="p-3 border-bottom d-flex align-items-center flex-wrap flex-md-nowrap">
+                        <div id="cart-item-@item.iCartItem" class="p-3 border-bottom d-flex align-items-center flex-wrap flex-md-nowrap">
                             <div class="d-flex align-items-center cart-item-info">
                                 <div class="cart-img-wrapper border rounded bg-light me-3">
                                     <img src="@Url.Content("~/assets/img/")@item.sAnhDaiDien"
                                          alt="@item.sTenSanPham"
                                          class="img-fluid cart-product-img" />
                                 </div>
-                                <div id="cart-item-@item.iCartItem" class="cart-item-row mb-3 p-2 border-bottom">
+                                <div class="cart-item-row mb-3 p-2 border-bottom">
                                     <h6 class="mb-1 fw-bold">@item.sTenSanPham</h6>
                                     <p class="small text-muted mb-0">Size: @item.sTenSize | Màu: @item.sTenMau</p>
                                     <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none mt-2"
