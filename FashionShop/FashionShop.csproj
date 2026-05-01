@@ -128,6 +128,7 @@
   <ItemGroup>
     <Content Include="assets\css\404page.css" />
     <Content Include="assets\css\pages\about.css" />
+    <Content Include="assets\css\pages\access-denied.css" />
     <Content Include="assets\css\pages\cart.css" />
     <Content Include="assets\css\pages\contact.css" />
     <Content Include="assets\css\pages\home.css" />
@@ -141,7 +142,6 @@
     <Content Include="assets\css\pages\profile.css" />
     <Content Include="assets\css\pages\register.css" />
     <Content Include="assets\css\pages\wishlist.css" />
-    <Content Include="assets\css\site.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\icons\icon128.ico" />
     <Content Include="assets\icons\icon128.png" />
@@ -263,6 +263,9 @@
     <Content Include="assets\javascript\cart.js" />
     <Content Include="assets\javascript\checkout.js" />
     <Content Include="assets\javascript\details.js" />
+    <Content Include="assets\javascript\email.min.js" />
+    <Content Include="assets\javascript\main.js" />
+    <Content Include="assets\javascript\validator.js" />
     <Content Include="assets\js\pages\products.js" />
     <Content Include="Global.asax" />
     <Content Include="libman.json" />
@@ -299,9 +302,9 @@
     <Content Include="lib\swiper\swiper-bundle.min.js" />
     <Content Include="lib\toastr.js\toastr.min.css" />
     <Content Include="lib\toastr.js\toastr.min.js" />
-    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
     <Content Include="SQL\FashionShopDB.sql" />
     <Content Include="static_html\about.html" />
+    <Content Include="static_html\access-denied.html" />
     <Content Include="static_html\cart.html" />
     <Content Include="static_html\checkout.html" />
     <Content Include="static_html\contact.html" />
@@ -361,6 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="assets\css\pages\access-denied.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPage_Main.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

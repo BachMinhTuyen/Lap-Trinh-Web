@@ -1,0 +1,47 @@
+name: Deploy ASP.NET MVC
+
+on:
+  push:
+    branches: [ "release" ]
+  pull_request:
+    branches: [ "release" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6.0.2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v4.0
+
+    - name: Restore NuGet packages
+      run: nuget restore FashionShop.sln
+
+    - name: Replace tokens in Web.Release.config
+      uses: cschleiden/replace-tokens@v1.4
+      with:
+        tokenPrefix: '${'
+        tokenSuffix: '}'
+        files: 'Web.Release.config'
+      env:
+        CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
+
+    - name: Build and Publish
+      run: |
+        msbuild FashionShop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      
+    - name: Deploy to Hosting via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.SERVER_DIR }}
+        local-dir: bin/app.publish/
