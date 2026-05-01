@@ -142,6 +142,7 @@
     <Content Include="assets\css\pages\profile.css" />
     <Content Include="assets\css\pages\register.css" />
     <Content Include="assets\css\pages\wishlist.css" />
+    <Content Include="assets\css\site.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\icons\icon128.ico" />
     <Content Include="assets\icons\icon128.png" />
@@ -263,9 +264,6 @@
     <Content Include="assets\javascript\cart.js" />
     <Content Include="assets\javascript\checkout.js" />
     <Content Include="assets\javascript\details.js" />
-    <Content Include="assets\javascript\email.min.js" />
-    <Content Include="assets\javascript\main.js" />
-    <Content Include="assets\javascript\validator.js" />
     <Content Include="assets\js\pages\products.js" />
     <Content Include="Global.asax" />
     <Content Include="libman.json" />
