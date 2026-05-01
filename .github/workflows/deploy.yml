@@ -38,6 +38,7 @@ jobs:
         msbuild FashionShop.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
     
     - name: List directory content
+      shell: cmd
       run: dir /s /b FashionShop\bin\
 
     - name: Deploy to Hosting via FTP
