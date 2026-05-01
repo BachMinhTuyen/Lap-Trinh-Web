@@ -25,7 +25,7 @@
 
             <form id="loginForm" action="@Url.Action("Login", "Auth")" method="post">
                 <div class="mb-3">
-                    <label for="userName" class="form-label">
+                    <label for="username" class="form-label">
                         Tên Người Dùng - UserName <span class="text-danger">*</span>
                     </label>
                     @Html.TextBoxFor(model => model.TenNguoiDung, new
@@ -33,7 +33,7 @@
                        @class = "form-control",
                        type = "text",
                        name = "UserName",
-                       id = "userName",
+                       id = "username",
                        placeholder = "nguyenvana123"
                    })
                     @Html.ValidationMessageFor(model => model.TenNguoiDung, "", new
@@ -51,7 +51,7 @@
                         @class = "form-control",
                         type = "password",
                         name = "password",
-                        id = "Password",
+                        id = "password",
                         placeholder = "Mật khẩu của bạn"
                     })
                     @Html.ValidationMessageFor(model => model.MatKhau, "", new

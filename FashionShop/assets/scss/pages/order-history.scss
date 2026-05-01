@@ -1,1 +1,26 @@
 @import "../style.scss";
+
+.empty-state {
+	background-color: $light-gray;
+	border: 2px dashed $border-color;
+	border-radius: 15px;
+	margin: 20px 0;
+	transition: all 0.3s ease;
+	padding: 3rem 1rem;
+
+	&:hover {
+		border-color: $primary-red !important;
+
+		.empty-state-icon i {
+			transform: translateY(-5px);
+			color: $primary-red !important;
+		}
+	}
+
+	&-icon {
+		i {
+			transition: transform 0.3s ease;
+			color: lighten($primary-red, 20%) !important;
+		}
+	}
+}

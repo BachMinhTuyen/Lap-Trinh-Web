@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Shop - Thế giới thời trang của bạn</title>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/assets/icons/icon16.ico")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/font-awesome/css/all.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/lib/toastr.js/toastr.min.css")" />
+
+    @RenderSection("LibraryCSS", required: false)
+
+</head>
+<body class="bg-light">
+    @RenderSection("Header", required: false)
+
+    @RenderBody()
+
+    @RenderSection("Footer", required: false);
+
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/lib/jquery-validate/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/lib/toastr.js/toastr.min.js")"></script>
+    <script src="~/assets/javascript/base.js"></script>
+    @Html.Partial("_PartialPage_Notifications")
+    @RenderSection("LibraryJS", required: false)
+</body>
+</html>

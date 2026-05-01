@@ -221,22 +221,27 @@ body {
     justify-content: center;
   }
 }
-.empty-state {
+.animate__shakeX {
+  animation: shakeX 1s;
+}
+
+@keyframes shakeX {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+.btn-danger {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+.btn-outline-secondary:hover {
   background-color: #f8f9fa;
-  border: 2px dashed #eee;
-  border-radius: 15px;
-  margin: 20px 0;
-  transition: all 0.3s ease;
-  padding: 3rem 1rem;
-}
-.empty-state:hover {
-  border-color: #d32f2f !important;
-}
-.empty-state:hover .empty-state-icon i {
-  transform: translateY(-5px);
-  color: #d32f2f !important;
-}
-.empty-state-icon i {
-  transition: transform 0.3s ease;
-  color: rgb(228.8095238095, 131.1904761905, 131.1904761905) !important;
-}/*# sourceMappingURL=order-history.css.map */
+  color: #6c757d;
+}/*# sourceMappingURL=access-denied.css.map */

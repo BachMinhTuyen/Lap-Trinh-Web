@@ -175,6 +175,8 @@ namespace FashionShop.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
+            ViewBag.UserName = taiKhoan.UserName;
+
             List<YeuThich> lst = db.YeuThich.Where(x => x.TaiKhoan.UserName == taiKhoan.UserName).ToList();
 
             //Paging

@@ -1,6 +1,6 @@
 ﻿@model FashionShop.Models.TaiKhoan
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
     var checkoutList = (List<FashionShop.ViewModel.CartVM>)ViewBag.CheckoutItems ?? new List<FashionShop.ViewModel.CartVM>();
     if (!checkoutList.Any())
     {
@@ -19,21 +19,10 @@
     <link rel="stylesheet" href="@Url.Content("~/assets/css/pages/order.css")" />
 }
 
-<!doctype html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fashion Shop - Thế giới thời trang của bạn</title>
-    <link rel="icon" type="image/x-icon" href="@Url.Content("~/assets/icons/icon16.ico")" />
-    <link href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")"
-          rel="stylesheet" />
-    <link rel="stylesheet"
-          href="@Url.Content("~/lib/font-awesome/css/all.min.css")" />
-    <link rel="stylesheet" href="/assets/css/pages/order.css" />
-</head>
+@section LibraryJS {
+}
 
-<body class="bg-light">
+@section Header {
     <header class="py-3 bg-white border-bottom shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="@Url.Action("Index", "Home")" class="text-decoration-none">
@@ -47,29 +36,38 @@
             </div>
         </div>
     </header>
+}
 
-    <main class="container my-4">
-        <form class="row g-4" action="@Url.Action("ProcessOrder", "Cart")" method="post">
-            <div class="col-12 col-lg-7">
-                <div class="card border-0 shadow-sm rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <h5 class="fw-bold mb-4 d-flex align-items-center">
-                            <i class="fa-solid fa-location-dot me-2 text-danger"></i> Thông tin nhận hàng
-                        </h5>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold">Họ và tên *</label>
-                                <input type="text" name="HoTen" class="form-control" placeholder="Nguyễn Văn A" value="@(Model != null ? Model.TenNguoiDung : "")" required />
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold">Số điện thoại *</label>
-                                <input type="tel" name="SoDienThoai"     class="form-control" placeholder="0123456789" value="@(Model != null ? Model.SoDienThoai : "")" required />
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label small fw-bold">Email</label>
-                                <input type="email" name="Email" class="form-control" placeholder="example@gmail.com" value="@(Model != null ? Model.Email : "")" />
-                            </div>
-                            @*<div class="col-md-6">
+@section Footer {
+    <footer class="bg-white border-top py-4 mt-5">
+        <div class="container text-center">
+            <p>Copyright © 2023 - 2026 <strong>FashionShop</strong>. All rights reserved.</p>
+        </div>
+    </footer>
+}
+
+<main class="container my-4">
+    <form class="row g-4" action="@Url.Action("ProcessOrder", "Cart")" method="post">
+        <div class="col-12 col-lg-7">
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-4 d-flex align-items-center">
+                        <i class="fa-solid fa-location-dot me-2 text-danger"></i> Thông tin nhận hàng
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Họ và tên *</label>
+                            <input type="text" name="HoTen" class="form-control" placeholder="Nguyễn Văn A" value="@(Model != null ? Model.TenNguoiDung : "")" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Số điện thoại *</label>
+                            <input type="tel" name="SoDienThoai" class="form-control" placeholder="0123456789" value="@(Model != null ? Model.SoDienThoai : "")" required />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Email</label>
+                            <input type="email" name="Email" class="form-control" placeholder="example@gmail.com" value="@(Model != null ? Model.Email : "")" />
+                        </div>
+                        @*<div class="col-md-6">
                                 <label class="form-label small fw-bold">Tỉnh / Thành phố *</label>
                                 <select class="form-select" onchange="updateDeliveryFee()" required>
                                     <option selected disabled>Chọn tỉnh thành</option>
@@ -82,148 +80,140 @@
                                     <option selected disabled>Chọn phường xã</option>
                                 </select>
                             </div>*@
-                            <div class="col-12">
-                                <label class="form-label small fw-bold">Địa chỉ chi tiết *</label>
-                                <input type="text" name="DiaChiChiTiet" class="form-control" placeholder="Số nhà, tên đường..." value="@(Model != null ? Model.DiaChi : "")" />
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label small fw-bold">Ghi chú đơn hàng</label>
-                                <textarea class="form-control"
-                                          name="GhiChu"
-                                          rows="2"
-                                          placeholder="Lưu ý cho người giao hàng..."></textarea>
-                            </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Địa chỉ chi tiết *</label>
+                            <input type="text" name="DiaChiChiTiet" class="form-control" placeholder="Số nhà, tên đường..." value="@(Model != null ? Model.DiaChi : "")" />
                         </div>
-                    </div>
-                </div>
-
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="fw-bold mb-3">
-                                    <i class="fa-solid fa-truck me-2 text-danger"></i> Vận chuyển
-                                </h6>
-                                <label class="custom-selector d-flex align-items-center border rounded p-3 mb-2 w-100">
-                                    <input class="form-check-input flex-shrink-0 me-3"
-                                           type="radio"
-                                           name="phuongThucVanChuyen"
-                                           value="Giao hàng nhanh"
-                                           id="ship1"
-                                           checked />
-                                    <div class="d-flex justify-content-between w-100 align-items-center">
-                                        <span class="text-dark">Giao hàng nhanh</span>
-                                        <span class="fw-bold text-danger">30,000₫</span>
-                                    </div>
-                                </label>
-                                <label class="custom-selector d-flex align-items-center border rounded p-3 w-100">
-                                    <input class="form-check-input flex-shrink-0 me-3"
-                                           type="radio"
-                                           name="phuongThucVanChuyen"
-                                           value="Giao hàng tiết kiệm"
-                                           id="ship2" />
-                                    <div class="d-flex justify-content-between w-100 align-items-center">
-                                        <span class="text-dark">Giao hàng tiết kiệm</span>
-                                        <span class="fw-bold text-danger">15,000₫</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="fw-bold mb-3">
-                                    <i class="fa-solid fa-credit-card me-2 text-danger"></i> Thanh toán
-                                </h6>
-                                <label class="custom-selector d-flex align-items-center border rounded p-3 mb-2 w-100">
-                                    <input class="form-check-input flex-shrink-0 me-3"
-                                           type="radio"
-                                           name="phuongThucThanhToan"
-                                           value="Thanh toán khi nhận hàng (COD)"
-                                           id="pay1"
-                                           checked />
-                                    <span class="text-dark">Thanh toán khi nhận hàng (COD)</span>
-                                </label>
-                                <label class="custom-selector d-flex align-items-center border rounded p-3 w-100">
-                                    <input class="form-check-input flex-shrink-0 me-3"
-                                           type="radio"
-                                           name="phuongThucThanhToan"
-                                           value="Chuyển khoản ngân hàng"
-                                           id="pay2" />
-                                    <span class="text-dark">Chuyển khoản ngân hàng</span>
-                                </label>
-                            </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Ghi chú đơn hàng</label>
+                            <textarea class="form-control"
+                                        name="GhiChu"
+                                        rows="2"
+                                        placeholder="Lưu ý cho người giao hàng..."></textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-lg-5">
-                <div class="card border-0 shadow-sm sticky-top" style="top: 20px; z-index: 1000">
-                    <div class="card-body p-4">
-                        <h5 class="fw-bold mb-4 border-bottom pb-2">Đơn hàng (1 sản phẩm)</h5>
-                        @foreach (var item in checkoutList)
-                        {
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="position-relative border rounded p-1 bg-white me-3"
-                                     style="width: 70px; height: 70px">
-                                    <img src="@Url.Content("~/assets/img/")@item.sAnhDaiDien"
-                                         alt="@item.sTenSanPham"
-                                         class="img-fluid rounded"
-                                         style="object-fit: contain; width: 100%; height: 100%" />
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">@item.iSoLuong</span>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fa-solid fa-truck me-2 text-danger"></i> Vận chuyển
+                            </h6>
+                            <label class="custom-selector d-flex align-items-center border rounded p-3 mb-2 w-100">
+                                <input class="form-check-input flex-shrink-0 me-3"
+                                        type="radio"
+                                        name="phuongThucVanChuyen"
+                                        value="Giao hàng nhanh"
+                                        id="ship1"
+                                        checked />
+                                <div class="d-flex justify-content-between w-100 align-items-center">
+                                    <span class="text-dark">Giao hàng nhanh</span>
+                                    <span class="fw-bold text-danger">30,000₫</span>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="small fw-bold mb-0">@item.sTenSanPham</h6>
-                                    <p class="small text-muted mb-0">@string.Format("Size {0} / {1}", item.sTenSize, item.sTenMau)</p>
+                            </label>
+                            <label class="custom-selector d-flex align-items-center border rounded p-3 w-100">
+                                <input class="form-check-input flex-shrink-0 me-3"
+                                        type="radio"
+                                        name="phuongThucVanChuyen"
+                                        value="Giao hàng tiết kiệm"
+                                        id="ship2" />
+                                <div class="d-flex justify-content-between w-100 align-items-center">
+                                    <span class="text-dark">Giao hàng tiết kiệm</span>
+                                    <span class="fw-bold text-danger">15,000₫</span>
                                 </div>
-                                <div class="fw-bold small">@string.Format("{0:#,##0}đ", item.dThanhTien)</div>
-                            </div>
-                        }
-                        
-
-                        <div class="input-group mb-4">
-                            <input type="text" class="form-control" placeholder="Mã giảm giá" />
-                            <button class="btn btn-dark px-4" type="button">Áp dụng</button>
+                            </label>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="border-bottom pb-3 mb-3">
-                            <div class="d-flex justify-content-between mb-2 small">
-                                <span class="text-muted">Tạm tính</span>
-                                <span>13,816,000₫</span>
-                            </div>
-                            <div class="d-flex justify-content-between small">
-                                <span class="text-muted">Phí vận chuyển</span>
-                                <span>30,000₫</span>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <span class="fw-bold fs-5">Tổng cộng</span>
-                            <span class="fw-bold fs-4 text-danger">@string.Format("{0:#,##0}đ", ViewBag.TongThanhTien)</span>
-                        </div>
-
-                        <div class="d-flex flex-column gap-2">
-                            <button type="submit" class="btn btn-danger py-3 fw-bold shadow-sm" >
-                                ĐẶT HÀNG NGAY
-                            </button>
-                            <a href="@Url.Action("Index", "Cart")"
-                               class="btn btn-link text-muted text-decoration-none small text-center">
-                                <i class="fa-solid fa-chevron-left me-1"></i> Quay lại giỏ hàng
-                            </a>
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fa-solid fa-credit-card me-2 text-danger"></i> Thanh toán
+                            </h6>
+                            <label class="custom-selector d-flex align-items-center border rounded p-3 mb-2 w-100">
+                                <input class="form-check-input flex-shrink-0 me-3"
+                                        type="radio"
+                                        name="phuongThucThanhToan"
+                                        value="Thanh toán khi nhận hàng (COD)"
+                                        id="pay1"
+                                        checked />
+                                <span class="text-dark">Thanh toán khi nhận hàng (COD)</span>
+                            </label>
+                            <label class="custom-selector d-flex align-items-center border rounded p-3 w-100">
+                                <input class="form-check-input flex-shrink-0 me-3"
+                                        type="radio"
+                                        name="phuongThucThanhToan"
+                                        value="Chuyển khoản ngân hàng"
+                                        id="pay2" />
+                                <span class="text-dark">Chuyển khoản ngân hàng</span>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </main>
-
-    <footer class="bg-white border-top py-4 mt-5">
-        <div class="container text-center">
-            <p>Copyright © 2023 - 2026 <strong>FashionShop</strong>. All rights reserved.</p>
         </div>
-    </footer>
-</body>
-</html>
+
+        <div class="col-12 col-lg-5">
+            <div class="card border-0 shadow-sm sticky-top" style="top: 20px; z-index: 1000">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-4 border-bottom pb-2">Đơn hàng (1 sản phẩm)</h5>
+                    @foreach (var item in checkoutList)
+                    {
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="position-relative border rounded p-1 bg-white me-3"
+                                    style="width: 70px; height: 70px">
+                                <img src="@Url.Content("~/assets/img/")@item.sAnhDaiDien"
+                                        alt="@item.sTenSanPham"
+                                        class="img-fluid rounded"
+                                        style="object-fit: contain; width: 100%; height: 100%" />
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">@item.iSoLuong</span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="small fw-bold mb-0">@item.sTenSanPham</h6>
+                                <p class="small text-muted mb-0">@string.Format("Size {0} / {1}", item.sTenSize, item.sTenMau)</p>
+                            </div>
+                            <div class="fw-bold small">@string.Format("{0:#,##0}đ", item.dThanhTien)</div>
+                        </div>
+                    }
+
+
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Mã giảm giá" />
+                        <button class="btn btn-dark px-4" type="button">Áp dụng</button>
+                    </div>
+
+                    <div class="border-bottom pb-3 mb-3">
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">Tạm tính</span>
+                            <span>13,816,000₫</span>
+                        </div>
+                        <div class="d-flex justify-content-between small">
+                            <span class="text-muted">Phí vận chuyển</span>
+                            <span>30,000₫</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fw-bold fs-5">Tổng cộng</span>
+                        <span class="fw-bold fs-4 text-danger">@string.Format("{0:#,##0}đ", ViewBag.TongThanhTien)</span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2">
+                        <button type="submit" class="btn btn-danger py-3 fw-bold shadow-sm">
+                            ĐẶT HÀNG NGAY
+                        </button>
+                        <a href="@Url.Action("Index", "Cart")"
+                            class="btn btn-link text-muted text-decoration-none small text-center">
+                            <i class="fa-solid fa-chevron-left me-1"></i> Quay lại giỏ hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

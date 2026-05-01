@@ -37,7 +37,7 @@ namespace FashionShop.Controllers
             taiKhoan.SoDienThoai = form["SoDienThoai"];
             db.SaveChanges();
             Session["User"] = taiKhoan;
-            return RedirectToAction("Profile", "Account");
+            return RedirectToAction("Profile", "User");
         }
     }
 }

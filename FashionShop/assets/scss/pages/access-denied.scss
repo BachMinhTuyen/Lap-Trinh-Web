@@ -1,0 +1,35 @@
+@import "../style.scss";
+
+.animate__shakeX {
+	animation: shakeX 1s;
+}
+
+@keyframes shakeX {
+	from,
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translate3d(-10px, 0, 0);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translate3d(10px, 0, 0);
+	}
+}
+
+.btn-danger {
+	background-color: $primary-red;
+	border-color: $primary-red;
+}
+
+.btn-outline-secondary:hover {
+	background-color: $light-gray;
+	color: #6c757d;
+}
